@@ -38,7 +38,7 @@ class LoginScreenState extends State<LoginScreen> {
           data: data['data']));
 
       await Future.delayed(const Duration(milliseconds: 2000));
-      print(_isLoading);
+
       if (data.containsKey('email')) {
         Navigator.push(
           context,
