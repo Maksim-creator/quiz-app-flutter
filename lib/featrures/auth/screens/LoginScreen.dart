@@ -15,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final loginController = TextEditingController();
-  final passwordController = TextEditingController();
+  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool loginIsNotEmpty = false;
   bool passIsNotEmpty = false;
   bool _isLoading = false;
@@ -69,13 +69,6 @@ class LoginScreenState extends State<LoginScreen> {
       });
     });
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    passwordController.dispose();
-    loginController.dispose();
-    super.dispose();
   }
 
   @override
