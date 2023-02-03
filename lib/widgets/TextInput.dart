@@ -7,6 +7,7 @@ class TextInput extends StatefulWidget {
   final IconData prefixIcon;
   final TextEditingController controller;
   final bool? isPassword;
+  final String? Function(String?)? validate;
 
   const TextInput(
       {super.key,
@@ -14,6 +15,7 @@ class TextInput extends StatefulWidget {
       required this.label,
       required this.prefixIcon,
       required this.controller,
+      this.validate,
       this.isPassword});
 
   @override
@@ -24,12 +26,6 @@ class TextInputState extends State<TextInput> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -45,7 +41,8 @@ class TextInputState extends State<TextInput> {
           ),
         ),
         Flexible(
-            child: TextField(
+            child: TextFormField(
+          validator: widget.validate,
           controller: widget.controller,
           obscureText: widget.isPassword ?? false,
           cursorColor: ColorConstants.violet,
