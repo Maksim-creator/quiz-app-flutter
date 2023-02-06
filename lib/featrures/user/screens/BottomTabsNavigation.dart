@@ -11,14 +11,14 @@ class TabItem {
   TabItem({required this.icon, required this.name});
 }
 
-class UserProfile extends StatefulWidget {
-  const UserProfile({super.key});
+class BottomTabs extends StatefulWidget {
+  const BottomTabs({super.key});
 
   @override
-  State<UserProfile> createState() => UserProfileState();
+  State<BottomTabs> createState() => BottomTabsState();
 }
 
-class UserProfileState extends State<UserProfile> {
+class BottomTabsState extends State<BottomTabs> {
   int _selectedIndex = 0;
 
   final screenItems = [

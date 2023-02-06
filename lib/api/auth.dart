@@ -31,7 +31,7 @@ class AuthApi {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => UserProfile()),
+        MaterialPageRoute(builder: (context) => const BottomTabs()),
       );
     } else {
       showToastMessage(data['message'], context, isError: true);
@@ -58,7 +58,7 @@ class AuthApi {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const UserProfile()),
+        MaterialPageRoute(builder: (context) => const BottomTabs()),
       );
     } else {
       showToastMessage(data['message'], context, isError: true);
