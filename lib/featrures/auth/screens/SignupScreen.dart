@@ -8,7 +8,7 @@ import '../../../api/auth.dart';
 import '../../../assets/colors.dart';
 import '../../../widgets/TextInput.dart';
 import '../../../widgets/Button.dart';
-import '../../user/screens/UserProfile.dart';
+import '../../user/screens/BottomTabsNavigation.dart';
 import '../cubit/auth_cubit.dart';
 
 class SignupScreen extends StatefulWidget {
