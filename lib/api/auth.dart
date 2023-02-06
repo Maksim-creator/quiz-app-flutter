@@ -15,7 +15,7 @@ class AuthApi {
 
   Future signIn(context, SignInData signInData) async {
     final url = Uri.parse('$baseUrl/auth/login');
-    print(signInData);
+
     final response = await http.post(url,
         body: {'email': signInData.email, 'password': signInData.password});
 
