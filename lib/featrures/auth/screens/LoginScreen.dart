@@ -5,7 +5,7 @@ import 'package:quizz_app/api/entities.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/auth/cubit/auth_cubit.dart';
 import 'package:quizz_app/featrures/auth/utils/validation.dart';
-import 'package:quizz_app/featrures/user/screens/UserProfile.dart';
+import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
 import 'package:quizz_app/widgets/Button.dart';
 import 'package:quizz_app/widgets/LoadingOverlay.dart';
 import 'package:quizz_app/widgets/TextInput.dart';
