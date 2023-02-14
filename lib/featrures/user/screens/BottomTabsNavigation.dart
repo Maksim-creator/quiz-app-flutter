@@ -54,6 +54,7 @@ class BottomTabsState extends State<BottomTabs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: buildNavigator(),
       bottomNavigationBar: Container(
           decoration: const BoxDecoration(
