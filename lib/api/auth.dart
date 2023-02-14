@@ -46,22 +46,25 @@ class AuthApi {
       'password': signUpData.password,
       'confirmPassword': signUpData.confirmPassword
     });
-    final Map<String, dynamic> data = json.decode(response.body);
 
-    if (data.containsKey('email')) {
-      BlocProvider.of<AuthCubit>(context).setLoginData(UserData(
-          email: data['email'],
-          name: data['name'],
-          token: data['token'],
-          avatar: '',
-          data: data['data']));
+    if (response.body.isNotEmpty) {
+      final Map<String, dynamic> data = json.decode(response.body);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomTabs()),
-      );
-    } else {
-      showToastMessage(data['message'], context, isError: true);
+      if (data.containsKey('email')) {
+        BlocProvider.of<AuthCubit>(context).setLoginData(UserData(
+            email: data['email'],
+            name: data['name'],
+            token: data['token'],
+            avatar: data['avatar'],
+            data: data['data']));
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomTabs()),
+        );
+      } else {
+        showToastMessage(data['message'], context, isError: true);
+      }
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/auth/cubit/auth_cubit.dart';
+import 'package:quizz_app/featrures/quizzes/cubit/quizzes_cubit.dart';
 import 'featrures/auth/screens/InitialScreen.dart';
 
 void main() {
@@ -13,8 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-      create: (context) => AuthCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (BuildContext context) => AuthCubit()),
+        BlocProvider(create: (BuildContext context) => QuizzesCubit())
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         home: Navigator(

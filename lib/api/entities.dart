@@ -52,3 +52,28 @@ class SignInData {
 
   SignInData({required this.email, required this.password});
 }
+
+class Category {
+  int id;
+  String category;
+  int selectedTimes;
+  String icon;
+  int quizzesCount;
+
+  Category(
+      {required this.category,
+      required this.icon,
+      required this.id,
+      required this.quizzesCount,
+      required this.selectedTimes});
+
+  factory Category.fromJson(Map<dynamic, dynamic> json) {
+    return Category(
+      id: json['id'] as int,
+      category: json['category'] as String,
+      icon: json['icon'] as String,
+      selectedTimes: json['selectedTimes'] as int,
+      quizzesCount: json['quizzesCount'] as int,
+    );
+  }
+}
