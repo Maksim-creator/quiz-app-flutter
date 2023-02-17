@@ -8,6 +8,10 @@ class TextInput extends StatefulWidget {
   final TextEditingController controller;
   final bool? isPassword;
   final String? Function(String?)? validate;
+  final Color? iconColor;
+  final Color? inputBackground;
+  final Color? hintTextColor;
+  final double? verticalInputPadding;
 
   const TextInput(
       {super.key,
@@ -15,7 +19,11 @@ class TextInput extends StatefulWidget {
       required this.label,
       required this.prefixIcon,
       required this.controller,
+      this.inputBackground,
+      this.iconColor,
       this.validate,
+      this.hintTextColor,
+      this.verticalInputPadding,
       this.isPassword});
 
   @override
@@ -34,7 +42,8 @@ class TextInputState extends State<TextInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+          padding: EdgeInsets.symmetric(
+              horizontal: 0, vertical: widget.verticalInputPadding ?? 5),
           child: Text(
             widget.label,
             style: const TextStyle(fontWeight: FontWeight.w700),
@@ -49,16 +58,17 @@ class TextInputState extends State<TextInput> {
           decoration: InputDecoration(
               prefixIcon: Icon(
                 widget.prefixIcon,
-                color: ColorConstants.violet,
+                color: widget.iconColor ?? ColorConstants.violet,
               ),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                   borderSide: BorderSide.none),
-              hintStyle: const TextStyle(fontSize: 13),
+              hintStyle: TextStyle(
+                  fontSize: 13, color: widget.hintTextColor ?? Colors.grey),
               hintText: widget.hintText,
               filled: true,
               contentPadding: const EdgeInsets.all(10),
-              fillColor: Colors.white),
+              fillColor: widget.inputBackground ?? Colors.white),
           style: const TextStyle(fontSize: 14),
         ))
       ],
