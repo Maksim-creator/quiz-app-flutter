@@ -59,21 +59,49 @@ class Category {
   int selectedTimes;
   String icon;
   int quizzesCount;
+  String color;
 
   Category(
       {required this.category,
       required this.icon,
       required this.id,
       required this.quizzesCount,
-      required this.selectedTimes});
+      required this.selectedTimes,
+      required this.color});
 
   factory Category.fromJson(Map<dynamic, dynamic> json) {
     return Category(
-      id: json['id'] as int,
-      category: json['category'] as String,
-      icon: json['icon'] as String,
-      selectedTimes: json['selectedTimes'] as int,
-      quizzesCount: json['quizzesCount'] as int,
-    );
+        id: json['id'] as int,
+        category: json['category'] as String,
+        icon: json['icon'] as String,
+        selectedTimes: json['selectedTimes'] as int,
+        quizzesCount: json['quizzesCount'] as int,
+        color: json['color'] as String);
   }
+}
+
+class TopSelected {
+  String id;
+  String category;
+  String icon;
+  String topic;
+  int quizzesCount;
+
+  TopSelected(
+      {required this.id,
+      required this.category,
+      required this.icon,
+      required this.topic,
+      required this.quizzesCount});
+}
+
+class Leader {
+  String avatar;
+  String name;
+  int totalExperience;
+
+  Leader(
+      {required this.avatar,
+      required this.name,
+      required this.totalExperience});
 }

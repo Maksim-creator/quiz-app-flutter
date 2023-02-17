@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizz_app/featrures/user/screens/Home.dart';
 import 'package:quizz_app/featrures/user/screens/Leaderboard.dart';
 import 'package:quizz_app/featrures/user/screens/Profile.dart';
-import 'package:quizz_app/featrures/user/screens/Search.dart';
+import 'package:quizz_app/featrures/user/discover/screens/Discover.dart';
 
 class TabItem {
   String name;
@@ -35,8 +35,8 @@ class BottomTabsState extends State<BottomTabs> {
     3: GlobalKey<NavigatorState>()
   };
   final List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Search(),
+    const Home(),
+    const Discover(),
     Leaderboard(),
     Profile()
   ];

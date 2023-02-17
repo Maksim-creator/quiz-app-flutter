@@ -28,4 +28,19 @@ class QuizzesApi {
       showToastMessage(data['message'], context, isError: true);
     }
   }
+
+  Future<TopSelected> getTopSelectedQuiz(context) async {
+    Uri url = Uri.parse('$baseUrl/quizzes/topSelected');
+
+    final response = await http.get(url);
+
+    final data = json.decode(response.body);
+
+    return TopSelected(
+        id: data['id'],
+        category: data['category'],
+        icon: data['icon'],
+        topic: data['topic'],
+        quizzesCount: data['quizzesCount']);
+  }
 }

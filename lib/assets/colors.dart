@@ -19,4 +19,6 @@ class ColorConstants {
   static Color lightPink = hexToColor('#ffccd5');
   static Color darkPink = hexToColor('#bb727e');
   static Color darkTan = hexToColor('#700e1f');
+  static Color darkViolet = hexToColor('#5b4dc3');
+  static Color darkGrey = hexToColor('#d7d7d7');
 }
