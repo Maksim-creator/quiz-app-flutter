@@ -1,18 +1,3 @@
-// class UserData {
-//   String email;
-//   String token;
-//   String name;
-//   dynamic data;
-//   String avatar;
-
-//   UserData(
-//       {required this.email,
-//       required this.name,
-//       required this.token,
-//       required this.data,
-//       required this.avatar});
-// }
-
 class UserGameData {
   int level;
   int totalExperience;

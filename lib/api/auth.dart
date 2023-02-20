@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizz_app/utils/toast.dart';
-import '../featrures/auth/cubit/auth_cubit.dart';
 import '../featrures/user/screens/BottomTabsNavigation.dart';
 import './entities.dart';
 
