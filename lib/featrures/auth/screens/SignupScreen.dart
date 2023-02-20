@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/api/entities.dart';
+import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
 import 'package:quizz_app/featrures/auth/screens/LoginScreen.dart';
 import 'package:quizz_app/featrures/auth/utils/validation.dart';
 import 'package:quizz_app/widgets/LoadingOverlay.dart';
-import '../../../api/auth.dart';
 import '../../../assets/colors.dart';
 import '../../../widgets/TextInput.dart';
 import '../../../widgets/Button.dart';
 import '../../user/screens/BottomTabsNavigation.dart';
-import '../cubit/auth_cubit.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -33,26 +32,24 @@ class SignupScreenState extends State<SignupScreen> {
     super.initState();
   }
 
-  void signUp() async {
+  void registration() {
     try {
-      setState(() {
-        _isLoading = true;
-      });
-      final SignUpData signUpData = SignUpData(
-          name: name.text,
+      SignUpData signUpData = SignUpData(
           email: email.text,
+          password: password.text,
           confirmPassword: confirmPassword.text,
-          password: password.text);
+          name: name.text);
 
-      await AuthApi().signUp(context, signUpData);
-      setState(() {
-        _isLoading = false;
-      });
-    } on Error catch (e) {
-      setState(() {
-        _isLoading = false;
-        _error = e.message;
-      });
+      context
+          .read<AuthBloc>()
+          .add(AuthEvent.registration(signUpData: signUpData));
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const BottomTabs()),
+      );
+    } catch (e) {
+      throw Exception();
     }
   }
 
@@ -156,7 +153,7 @@ class SignupScreenState extends State<SignupScreen> {
                               buttonText: 'Sign up',
                               onPress: () {
                                 if (formKey.currentState!.validate()) {
-                                  signUp();
+                                  registration();
                                 }
                               },
                               disabled: false,

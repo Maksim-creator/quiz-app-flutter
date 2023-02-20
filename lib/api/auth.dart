@@ -22,13 +22,6 @@ class AuthApi {
     final Map<String, dynamic> data = json.decode(response.body);
 
     if (data.containsKey('email')) {
-      BlocProvider.of<AuthCubit>(context).setLoginData(UserData(
-          email: data['email'],
-          name: data['name'],
-          token: data['token'],
-          avatar: data['avatar'],
-          data: data['data']));
-
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const BottomTabs()),
@@ -51,13 +44,6 @@ class AuthApi {
       final Map<String, dynamic> data = json.decode(response.body);
 
       if (data.containsKey('email')) {
-        BlocProvider.of<AuthCubit>(context).setLoginData(UserData(
-            email: data['email'],
-            name: data['name'],
-            token: data['token'],
-            avatar: data['avatar'],
-            data: data['data']));
-
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const BottomTabs()),
