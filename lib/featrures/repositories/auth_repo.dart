@@ -1,12 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:http/http.dart' as http;
-// import '../../../api/entities.dart';
-import '../../../api/entities.dart';
-import '../../user/screens/BottomTabsNavigation.dart';
-import '../models/user_data.dart';
+import 'package:quizz_app/featrures/auth/utils/entities.dart';
+import '../auth/models/user_data.dart';
 
 class AuthRepo {
   String baseUrl = Device.get().isAndroid

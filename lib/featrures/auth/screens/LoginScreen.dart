@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quizz_app/api/entities.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
+import 'package:quizz_app/featrures/auth/utils/entities.dart';
 import 'package:quizz_app/featrures/auth/utils/validation.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
 import 'package:quizz_app/widgets/Button.dart';
 import 'package:quizz_app/widgets/TextInput.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => LoginScreenState();
 }
@@ -76,6 +78,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 if (!value!.isValidEmail) {
                                   return 'Enter valid email';
                                 }
+                                return null;
                               },
                             ),
                           ),

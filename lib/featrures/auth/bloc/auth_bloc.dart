@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:quizz_app/featrures/auth/models/user_data.dart';
-import 'package:quizz_app/featrures/auth/repositories/auth_repo.dart';
-
-import '../../../api/entities.dart';
+import 'package:quizz_app/featrures/auth/utils/entities.dart';
+import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 
 part 'auth_bloc.freezed.dart';
 // part 'auth_bloc.g.dart';

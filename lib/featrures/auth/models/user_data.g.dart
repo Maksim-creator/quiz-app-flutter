@@ -7,7 +7,7 @@ part of 'user_data.dart';
 // **************************************************************************
 
 _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
-      data: UserGameData.fromJson(json['data']),
+      data: UserGameData.fromJson(json['data'] as Map<String, dynamic>),
       email: json['email'] as String,
       token: json['token'] as String,
       name: json['name'] as String,
