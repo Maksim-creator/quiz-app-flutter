@@ -25,7 +25,7 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
   Widget build(BuildContext context) {
     final state = context.watch<CategoriesBloc>().state;
     return Container(
-      height: 304,
+      height: 300,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -61,17 +61,20 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
               ),
             );
           }, loaded: (categories) {
-            return ListView.builder(
-              padding: const EdgeInsets.all(0),
-              shrinkWrap: true,
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                return CategoryCard(
-                    category: categories[index].category,
-                    icon: categories[index].icon,
-                    quizzesCount: categories[index].quizzesCount,
-                    selectedTimes: categories[index].selectedTimes);
-              },
+            return SizedBox(
+              height: 190,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(0),
+                shrinkWrap: true,
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return CategoryCard(
+                      category: categories[index].category,
+                      icon: categories[index].icon,
+                      quizzesCount: categories[index].quizzesCount,
+                      selectedTimes: categories[index].selectedTimes);
+                },
+              ),
             );
           }, error: () {
             return Column(
