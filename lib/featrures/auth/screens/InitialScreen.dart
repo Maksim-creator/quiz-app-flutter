@@ -1,16 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
 import 'package:quizz_app/featrures/auth/screens/LoginScreen.dart';
 import 'package:quizz_app/featrures/auth/screens/SignupScreen.dart';
 
 import '../../../assets/colors.dart';
+import '../../user/screens/BottomTabsNavigation.dart';
+import '../utils/entities.dart';
 
-class InitialScreen extends StatelessWidget {
+class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
 
+  @override
+  State<InitialScreen> createState() => _InitialScreenState();
+}
+
+class _InitialScreenState extends State<InitialScreen> {
+  final storage = const FlutterSecureStorage();
+
+  Future<void> _readFromStorage() async {
+    String? login = await storage.read(key: "KEY_USERNAME");
+    String? password = await storage.read(key: "KEY_PASSWORD");
+    print(login);
+    if (login != null && password != null) {
+      SignInData signInData = SignInData(email: login, password: password);
+
+      context.read<AuthBloc>().add(AuthEvent.login(signInData: signInData));
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const BottomTabs()),
+      );
+    }
+  }
+
   final String assetName = 'lib/assets/svg/logo.svg';
+
+  @override
+  void initState() {
+    super.initState();
+    _readFromStorage();
+  }
 
   @override
   Widget build(BuildContext context) {
