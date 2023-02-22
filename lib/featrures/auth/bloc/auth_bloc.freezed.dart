@@ -93,10 +93,10 @@ class __$$AuthEventLoginCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signInData = freezed,
+    Object? signInData = null,
   }) {
     return _then(_$AuthEventLogin(
-      signInData: freezed == signInData
+      signInData: null == signInData
           ? _value.signInData
           : signInData // ignore: cast_nullable_to_non_nullable
               as SignInData,
@@ -122,13 +122,12 @@ class _$AuthEventLogin implements AuthEventLogin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthEventLogin &&
-            const DeepCollectionEquality()
-                .equals(other.signInData, signInData));
+            (identical(other.signInData, signInData) ||
+                other.signInData == signInData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(signInData));
+  int get hashCode => Object.hash(runtimeType, signInData);
 
   @JsonKey(ignore: true)
   @override
@@ -229,10 +228,10 @@ class __$$AuthEventRegistrationCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? signUpData = freezed,
+    Object? signUpData = null,
   }) {
     return _then(_$AuthEventRegistration(
-      signUpData: freezed == signUpData
+      signUpData: null == signUpData
           ? _value.signUpData
           : signUpData // ignore: cast_nullable_to_non_nullable
               as SignUpData,
@@ -258,13 +257,12 @@ class _$AuthEventRegistration implements AuthEventRegistration {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthEventRegistration &&
-            const DeepCollectionEquality()
-                .equals(other.signUpData, signUpData));
+            (identical(other.signUpData, signUpData) ||
+                other.signUpData == signUpData));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(signUpData));
+  int get hashCode => Object.hash(runtimeType, signUpData);
 
   @JsonKey(ignore: true)
   @override

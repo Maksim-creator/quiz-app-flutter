@@ -1,9 +1,11 @@
 part of 'quizzes_bloc.dart';
 
 @freezed
-class QuizzesState with _$QuizzesState {
+abstract class QuizzesState with _$QuizzesState {
   const factory QuizzesState.loading() = QuizzesStateLoading;
-  const factory QuizzesState.loaded({TopSelected? topSelected}) =
-      QuizzesStateLoaded;
+  const factory QuizzesState.topSelectedLoaded(
+      {required TopSelected topSelected}) = QuizzesStateTopSelectedLoaded;
+  const factory QuizzesState.topicsLoaded({required List<Topic> topics}) =
+      QuizzesStateTopicsLoaded;
   const factory QuizzesState.error() = QuizzesStateError;
 }

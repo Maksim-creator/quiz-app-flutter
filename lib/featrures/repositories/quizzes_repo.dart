@@ -17,4 +17,16 @@ class QuizzesRepo {
     final data = json.decode(response.body);
     return TopSelected.fromJson(data);
   }
+
+  Future<List<Topic>> getTopicsByCategory(String category) async {
+    Uri url = Uri.parse('$baseUrl/quizzes/topics');
+
+    final response = await http.post(url, body: {"category": category});
+
+    final List<dynamic> data = json.decode(response.body);
+
+    List<Topic> list = data.map((e) => Topic.fromJson(e)).toList();
+
+    return list;
+  }
 }

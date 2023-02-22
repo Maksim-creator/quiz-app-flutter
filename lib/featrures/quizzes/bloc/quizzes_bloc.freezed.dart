@@ -19,32 +19,38 @@ mixin _$QuizzesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getTopSelected,
+    required TResult Function(String category) getTopicsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTopSelected,
+    TResult? Function(String category)? getTopicsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTopSelected,
+    TResult Function(String category)? getTopicsList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -110,6 +116,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getTopSelected,
+    required TResult Function(String category) getTopicsList,
   }) {
     return getTopSelected();
   }
@@ -118,6 +125,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTopSelected,
+    TResult? Function(String category)? getTopicsList,
   }) {
     return getTopSelected?.call();
   }
@@ -126,6 +134,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTopSelected,
+    TResult Function(String category)? getTopicsList,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -138,6 +147,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
   }) {
     return getTopSelected(this);
   }
@@ -146,6 +156,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
   }) {
     return getTopSelected?.call(this);
   }
@@ -154,6 +165,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -168,25 +180,165 @@ abstract class QuizzesEventGetTopSelected implements QuizzesEvent {
 }
 
 /// @nodoc
+abstract class _$$QuizzesEventGetTopicsListCopyWith<$Res> {
+  factory _$$QuizzesEventGetTopicsListCopyWith(
+          _$QuizzesEventGetTopicsList value,
+          $Res Function(_$QuizzesEventGetTopicsList) then) =
+      __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String category});
+}
+
+/// @nodoc
+class __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>
+    extends _$QuizzesEventCopyWithImpl<$Res, _$QuizzesEventGetTopicsList>
+    implements _$$QuizzesEventGetTopicsListCopyWith<$Res> {
+  __$$QuizzesEventGetTopicsListCopyWithImpl(_$QuizzesEventGetTopicsList _value,
+      $Res Function(_$QuizzesEventGetTopicsList) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$QuizzesEventGetTopicsList(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
+  const _$QuizzesEventGetTopicsList({required this.category});
+
+  @override
+  final String category;
+
+  @override
+  String toString() {
+    return 'QuizzesEvent.getTopicsList(category: $category)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizzesEventGetTopicsList &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QuizzesEventGetTopicsListCopyWith<_$QuizzesEventGetTopicsList>
+      get copyWith => __$$QuizzesEventGetTopicsListCopyWithImpl<
+          _$QuizzesEventGetTopicsList>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getTopSelected,
+    required TResult Function(String category) getTopicsList,
+  }) {
+    return getTopicsList(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getTopSelected,
+    TResult? Function(String category)? getTopicsList,
+  }) {
+    return getTopicsList?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getTopSelected,
+    TResult Function(String category)? getTopicsList,
+    required TResult orElse(),
+  }) {
+    if (getTopicsList != null) {
+      return getTopicsList(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
+  }) {
+    return getTopicsList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
+  }) {
+    return getTopicsList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    required TResult orElse(),
+  }) {
+    if (getTopicsList != null) {
+      return getTopicsList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class QuizzesEventGetTopicsList implements QuizzesEvent {
+  const factory QuizzesEventGetTopicsList({required final String category}) =
+      _$QuizzesEventGetTopicsList;
+
+  String get category;
+  @JsonKey(ignore: true)
+  _$$QuizzesEventGetTopicsListCopyWith<_$QuizzesEventGetTopicsList>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$QuizzesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(TopSelected? topSelected) loaded,
+    required TResult Function(TopSelected topSelected) topSelectedLoaded,
+    required TResult Function(List<Topic> topics) topicsLoaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(TopSelected? topSelected)? loaded,
+    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult? Function(List<Topic> topics)? topicsLoaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(TopSelected? topSelected)? loaded,
+    TResult Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult Function(List<Topic> topics)? topicsLoaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -194,21 +346,25 @@ mixin _$QuizzesState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateLoaded value) loaded,
+    required TResult Function(QuizzesStateTopSelectedLoaded value)
+        topSelectedLoaded,
+    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
     required TResult Function(QuizzesStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateLoaded value)? loaded,
+    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult? Function(QuizzesStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateLoaded value)? loaded,
+    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult Function(QuizzesStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -272,7 +428,8 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(TopSelected? topSelected) loaded,
+    required TResult Function(TopSelected topSelected) topSelectedLoaded,
+    required TResult Function(List<Topic> topics) topicsLoaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -282,7 +439,8 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(TopSelected? topSelected)? loaded,
+    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult? Function(List<Topic> topics)? topicsLoaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -292,7 +450,8 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(TopSelected? topSelected)? loaded,
+    TResult Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult Function(List<Topic> topics)? topicsLoaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -306,7 +465,9 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateLoaded value) loaded,
+    required TResult Function(QuizzesStateTopSelectedLoaded value)
+        topSelectedLoaded,
+    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
     required TResult Function(QuizzesStateError value) error,
   }) {
     return loading(this);
@@ -316,7 +477,8 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateLoaded value)? loaded,
+    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult? Function(QuizzesStateError value)? error,
   }) {
     return loading?.call(this);
@@ -326,7 +488,8 @@ class _$QuizzesStateLoading implements QuizzesStateLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateLoaded value)? loaded,
+    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult Function(QuizzesStateError value)? error,
     required TResult orElse(),
   }) {
@@ -342,45 +505,43 @@ abstract class QuizzesStateLoading implements QuizzesState {
 }
 
 /// @nodoc
-abstract class _$$QuizzesStateLoadedCopyWith<$Res> {
-  factory _$$QuizzesStateLoadedCopyWith(_$QuizzesStateLoaded value,
-          $Res Function(_$QuizzesStateLoaded) then) =
-      __$$QuizzesStateLoadedCopyWithImpl<$Res>;
+abstract class _$$QuizzesStateTopSelectedLoadedCopyWith<$Res> {
+  factory _$$QuizzesStateTopSelectedLoadedCopyWith(
+          _$QuizzesStateTopSelectedLoaded value,
+          $Res Function(_$QuizzesStateTopSelectedLoaded) then) =
+      __$$QuizzesStateTopSelectedLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({TopSelected? topSelected});
+  $Res call({TopSelected topSelected});
 
-  $TopSelectedCopyWith<$Res>? get topSelected;
+  $TopSelectedCopyWith<$Res> get topSelected;
 }
 
 /// @nodoc
-class __$$QuizzesStateLoadedCopyWithImpl<$Res>
-    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateLoaded>
-    implements _$$QuizzesStateLoadedCopyWith<$Res> {
-  __$$QuizzesStateLoadedCopyWithImpl(
-      _$QuizzesStateLoaded _value, $Res Function(_$QuizzesStateLoaded) _then)
+class __$$QuizzesStateTopSelectedLoadedCopyWithImpl<$Res>
+    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateTopSelectedLoaded>
+    implements _$$QuizzesStateTopSelectedLoadedCopyWith<$Res> {
+  __$$QuizzesStateTopSelectedLoadedCopyWithImpl(
+      _$QuizzesStateTopSelectedLoaded _value,
+      $Res Function(_$QuizzesStateTopSelectedLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? topSelected = freezed,
+    Object? topSelected = null,
   }) {
-    return _then(_$QuizzesStateLoaded(
-      topSelected: freezed == topSelected
+    return _then(_$QuizzesStateTopSelectedLoaded(
+      topSelected: null == topSelected
           ? _value.topSelected
           : topSelected // ignore: cast_nullable_to_non_nullable
-              as TopSelected?,
+              as TopSelected,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TopSelectedCopyWith<$Res>? get topSelected {
-    if (_value.topSelected == null) {
-      return null;
-    }
-
-    return $TopSelectedCopyWith<$Res>(_value.topSelected!, (value) {
+  $TopSelectedCopyWith<$Res> get topSelected {
+    return $TopSelectedCopyWith<$Res>(_value.topSelected, (value) {
       return _then(_value.copyWith(topSelected: value));
     });
   }
@@ -388,22 +549,22 @@ class __$$QuizzesStateLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$QuizzesStateLoaded implements QuizzesStateLoaded {
-  const _$QuizzesStateLoaded({this.topSelected});
+class _$QuizzesStateTopSelectedLoaded implements QuizzesStateTopSelectedLoaded {
+  const _$QuizzesStateTopSelectedLoaded({required this.topSelected});
 
   @override
-  final TopSelected? topSelected;
+  final TopSelected topSelected;
 
   @override
   String toString() {
-    return 'QuizzesState.loaded(topSelected: $topSelected)';
+    return 'QuizzesState.topSelectedLoaded(topSelected: $topSelected)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuizzesStateLoaded &&
+            other is _$QuizzesStateTopSelectedLoaded &&
             (identical(other.topSelected, topSelected) ||
                 other.topSelected == topSelected));
   }
@@ -414,40 +575,43 @@ class _$QuizzesStateLoaded implements QuizzesStateLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$QuizzesStateLoadedCopyWith<_$QuizzesStateLoaded> get copyWith =>
-      __$$QuizzesStateLoadedCopyWithImpl<_$QuizzesStateLoaded>(
-          this, _$identity);
+  _$$QuizzesStateTopSelectedLoadedCopyWith<_$QuizzesStateTopSelectedLoaded>
+      get copyWith => __$$QuizzesStateTopSelectedLoadedCopyWithImpl<
+          _$QuizzesStateTopSelectedLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(TopSelected? topSelected) loaded,
+    required TResult Function(TopSelected topSelected) topSelectedLoaded,
+    required TResult Function(List<Topic> topics) topicsLoaded,
     required TResult Function() error,
   }) {
-    return loaded(topSelected);
+    return topSelectedLoaded(topSelected);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(TopSelected? topSelected)? loaded,
+    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult? Function(List<Topic> topics)? topicsLoaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(topSelected);
+    return topSelectedLoaded?.call(topSelected);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(TopSelected? topSelected)? loaded,
+    TResult Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult Function(List<Topic> topics)? topicsLoaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(topSelected);
+    if (topSelectedLoaded != null) {
+      return topSelectedLoaded(topSelected);
     }
     return orElse();
   }
@@ -456,45 +620,206 @@ class _$QuizzesStateLoaded implements QuizzesStateLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateLoaded value) loaded,
+    required TResult Function(QuizzesStateTopSelectedLoaded value)
+        topSelectedLoaded,
+    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
     required TResult Function(QuizzesStateError value) error,
   }) {
-    return loaded(this);
+    return topSelectedLoaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateLoaded value)? loaded,
+    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult? Function(QuizzesStateError value)? error,
   }) {
-    return loaded?.call(this);
+    return topSelectedLoaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateLoaded value)? loaded,
+    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult Function(QuizzesStateError value)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (topSelectedLoaded != null) {
+      return topSelectedLoaded(this);
     }
     return orElse();
   }
 }
 
-abstract class QuizzesStateLoaded implements QuizzesState {
-  const factory QuizzesStateLoaded({final TopSelected? topSelected}) =
-      _$QuizzesStateLoaded;
+abstract class QuizzesStateTopSelectedLoaded implements QuizzesState {
+  const factory QuizzesStateTopSelectedLoaded(
+          {required final TopSelected topSelected}) =
+      _$QuizzesStateTopSelectedLoaded;
 
-  TopSelected? get topSelected;
+  TopSelected get topSelected;
   @JsonKey(ignore: true)
-  _$$QuizzesStateLoadedCopyWith<_$QuizzesStateLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$QuizzesStateTopSelectedLoadedCopyWith<_$QuizzesStateTopSelectedLoaded>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$QuizzesStateTopicsLoadedCopyWith<$Res> {
+  factory _$$QuizzesStateTopicsLoadedCopyWith(_$QuizzesStateTopicsLoaded value,
+          $Res Function(_$QuizzesStateTopicsLoaded) then) =
+      __$$QuizzesStateTopicsLoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Topic> topics});
+}
+
+/// @nodoc
+class __$$QuizzesStateTopicsLoadedCopyWithImpl<$Res>
+    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateTopicsLoaded>
+    implements _$$QuizzesStateTopicsLoadedCopyWith<$Res> {
+  __$$QuizzesStateTopicsLoadedCopyWithImpl(_$QuizzesStateTopicsLoaded _value,
+      $Res Function(_$QuizzesStateTopicsLoaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topics = null,
+  }) {
+    return _then(_$QuizzesStateTopicsLoaded(
+      topics: null == topics
+          ? _value._topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<Topic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$QuizzesStateTopicsLoaded implements QuizzesStateTopicsLoaded {
+  const _$QuizzesStateTopicsLoaded({required final List<Topic> topics})
+      : _topics = topics;
+
+  final List<Topic> _topics;
+  @override
+  List<Topic> get topics {
+    if (_topics is EqualUnmodifiableListView) return _topics;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topics);
+  }
+
+  @override
+  String toString() {
+    return 'QuizzesState.topicsLoaded(topics: $topics)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$QuizzesStateTopicsLoaded &&
+            const DeepCollectionEquality().equals(other._topics, _topics));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_topics));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$QuizzesStateTopicsLoadedCopyWith<_$QuizzesStateTopicsLoaded>
+      get copyWith =>
+          __$$QuizzesStateTopicsLoadedCopyWithImpl<_$QuizzesStateTopicsLoaded>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(TopSelected topSelected) topSelectedLoaded,
+    required TResult Function(List<Topic> topics) topicsLoaded,
+    required TResult Function() error,
+  }) {
+    return topicsLoaded(topics);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult? Function(List<Topic> topics)? topicsLoaded,
+    TResult? Function()? error,
+  }) {
+    return topicsLoaded?.call(topics);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult Function(List<Topic> topics)? topicsLoaded,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (topicsLoaded != null) {
+      return topicsLoaded(topics);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuizzesStateLoading value) loading,
+    required TResult Function(QuizzesStateTopSelectedLoaded value)
+        topSelectedLoaded,
+    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
+    required TResult Function(QuizzesStateError value) error,
+  }) {
+    return topicsLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuizzesStateLoading value)? loading,
+    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
+    TResult? Function(QuizzesStateError value)? error,
+  }) {
+    return topicsLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuizzesStateLoading value)? loading,
+    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
+    TResult Function(QuizzesStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (topicsLoaded != null) {
+      return topicsLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class QuizzesStateTopicsLoaded implements QuizzesState {
+  const factory QuizzesStateTopicsLoaded({required final List<Topic> topics}) =
+      _$QuizzesStateTopicsLoaded;
+
+  List<Topic> get topics;
+  @JsonKey(ignore: true)
+  _$$QuizzesStateTopicsLoadedCopyWith<_$QuizzesStateTopicsLoaded>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -536,7 +861,8 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(TopSelected? topSelected) loaded,
+    required TResult Function(TopSelected topSelected) topSelectedLoaded,
+    required TResult Function(List<Topic> topics) topicsLoaded,
     required TResult Function() error,
   }) {
     return error();
@@ -546,7 +872,8 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(TopSelected? topSelected)? loaded,
+    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult? Function(List<Topic> topics)? topicsLoaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -556,7 +883,8 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(TopSelected? topSelected)? loaded,
+    TResult Function(TopSelected topSelected)? topSelectedLoaded,
+    TResult Function(List<Topic> topics)? topicsLoaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -570,7 +898,9 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateLoaded value) loaded,
+    required TResult Function(QuizzesStateTopSelectedLoaded value)
+        topSelectedLoaded,
+    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
     required TResult Function(QuizzesStateError value) error,
   }) {
     return error(this);
@@ -580,7 +910,8 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateLoaded value)? loaded,
+    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult? Function(QuizzesStateError value)? error,
   }) {
     return error?.call(this);
@@ -590,7 +921,8 @@ class _$QuizzesStateError implements QuizzesStateError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateLoaded value)? loaded,
+    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
+    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
     TResult Function(QuizzesStateError value)? error,
     required TResult orElse(),
   }) {

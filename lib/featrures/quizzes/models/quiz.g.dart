@@ -104,3 +104,21 @@ Map<String, dynamic> _$$_CorrectAnswersToJson(_$_CorrectAnswers instance) =>
       'c': instance.c,
       'd': instance.d,
     };
+
+_$_Topic _$$_TopicFromJson(Map<String, dynamic> json) => _$_Topic(
+      id: json['id'] as String,
+      category: json['category'] as String,
+      topic: json['topic'] as String,
+      icon: json['icon'] as String,
+      author: json['author'] as String,
+      selectedTimes: json['selectedTimes'] as int,
+    );
+
+Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
+      'id': instance.id,
+      'category': instance.category,
+      'topic': instance.topic,
+      'icon': instance.icon,
+      'author': instance.author,
+      'selectedTimes': instance.selectedTimes,
+    };
