@@ -18,7 +18,19 @@ class QuizzesBloc extends Bloc<QuizzesEvent, QuizzesState> {
       try {
         TopSelected topSelected = await quizzesRepo.getTopSelectedQuiz();
 
-        emit(QuizzesState.loaded(topSelected: topSelected));
+        emit(QuizzesState.topSelectedLoaded(topSelected: topSelected));
+      } catch (e) {
+        emit(const QuizzesState.error());
+      }
+    });
+    on<QuizzesEventGetTopicsList>((event, emit) async {
+      emit(const QuizzesState.loading());
+
+      try {
+        List<Topic> topics =
+            await quizzesRepo.getTopicsByCategory(event.category);
+
+        emit(QuizzesState.topicsLoaded(topics: topics));
       } catch (e) {
         emit(const QuizzesState.error());
       }

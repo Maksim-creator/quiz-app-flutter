@@ -76,3 +76,17 @@ class CorrectAnswers with _$CorrectAnswers {
   factory CorrectAnswers.fromJson(Map<String, dynamic> json) =>
       _$CorrectAnswersFromJson(json);
 }
+
+@freezed
+class Topic with _$Topic {
+  const factory Topic({
+    required String id,
+    required String category,
+    required String topic,
+    required String icon,
+    required String author,
+    required int selectedTimes,
+  }) = _Topic;
+
+  factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
+}

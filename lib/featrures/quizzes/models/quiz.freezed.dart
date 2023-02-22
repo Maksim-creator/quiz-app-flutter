@@ -1298,3 +1298,252 @@ abstract class _CorrectAnswers implements CorrectAnswers {
   _$$_CorrectAnswersCopyWith<_$_CorrectAnswers> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Topic _$TopicFromJson(Map<String, dynamic> json) {
+  return _Topic.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Topic {
+  String get id => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get topic => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
+  String get author => throw _privateConstructorUsedError;
+  int get selectedTimes => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TopicCopyWith<Topic> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TopicCopyWith<$Res> {
+  factory $TopicCopyWith(Topic value, $Res Function(Topic) then) =
+      _$TopicCopyWithImpl<$Res, Topic>;
+  @useResult
+  $Res call(
+      {String id,
+      String category,
+      String topic,
+      String icon,
+      String author,
+      int selectedTimes});
+}
+
+/// @nodoc
+class _$TopicCopyWithImpl<$Res, $Val extends Topic>
+    implements $TopicCopyWith<$Res> {
+  _$TopicCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? category = null,
+    Object? topic = null,
+    Object? icon = null,
+    Object? author = null,
+    Object? selectedTimes = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedTimes: null == selectedTimes
+          ? _value.selectedTimes
+          : selectedTimes // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TopicCopyWith<$Res> implements $TopicCopyWith<$Res> {
+  factory _$$_TopicCopyWith(_$_Topic value, $Res Function(_$_Topic) then) =
+      __$$_TopicCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String category,
+      String topic,
+      String icon,
+      String author,
+      int selectedTimes});
+}
+
+/// @nodoc
+class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res, _$_Topic>
+    implements _$$_TopicCopyWith<$Res> {
+  __$$_TopicCopyWithImpl(_$_Topic _value, $Res Function(_$_Topic) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? category = null,
+    Object? topic = null,
+    Object? icon = null,
+    Object? author = null,
+    Object? selectedTimes = null,
+  }) {
+    return _then(_$_Topic(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedTimes: null == selectedTimes
+          ? _value.selectedTimes
+          : selectedTimes // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Topic with DiagnosticableTreeMixin implements _Topic {
+  const _$_Topic(
+      {required this.id,
+      required this.category,
+      required this.topic,
+      required this.icon,
+      required this.author,
+      required this.selectedTimes});
+
+  factory _$_Topic.fromJson(Map<String, dynamic> json) =>
+      _$$_TopicFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String category;
+  @override
+  final String topic;
+  @override
+  final String icon;
+  @override
+  final String author;
+  @override
+  final int selectedTimes;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Topic(id: $id, category: $category, topic: $topic, icon: $icon, author: $author, selectedTimes: $selectedTimes)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Topic'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('topic', topic))
+      ..add(DiagnosticsProperty('icon', icon))
+      ..add(DiagnosticsProperty('author', author))
+      ..add(DiagnosticsProperty('selectedTimes', selectedTimes));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Topic &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.selectedTimes, selectedTimes) ||
+                other.selectedTimes == selectedTimes));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, category, topic, icon, author, selectedTimes);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TopicCopyWith<_$_Topic> get copyWith =>
+      __$$_TopicCopyWithImpl<_$_Topic>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TopicToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Topic implements Topic {
+  const factory _Topic(
+      {required final String id,
+      required final String category,
+      required final String topic,
+      required final String icon,
+      required final String author,
+      required final int selectedTimes}) = _$_Topic;
+
+  factory _Topic.fromJson(Map<String, dynamic> json) = _$_Topic.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get category;
+  @override
+  String get topic;
+  @override
+  String get icon;
+  @override
+  String get author;
+  @override
+  int get selectedTimes;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TopicCopyWith<_$_Topic> get copyWith =>
+      throw _privateConstructorUsedError;
+}

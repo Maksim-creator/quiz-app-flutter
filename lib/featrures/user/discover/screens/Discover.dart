@@ -7,6 +7,7 @@ import 'package:quizz_app/featrures/user/discover/widgets/TopPlayer.dart';
 import 'package:quizz_app/widgets/TextInput.dart';
 
 import '../../../categories/models/category.dart';
+import '../../../categories/screens/TopicsListScreen.dart';
 
 class Discover extends StatefulWidget {
   const Discover({super.key});
@@ -17,6 +18,13 @@ class Discover extends StatefulWidget {
 
 class _DiscoverState extends State<Discover> {
   TextEditingController search = TextEditingController();
+
+  void onCategorySelect() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const TopicsListScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +129,7 @@ class _DiscoverState extends State<Discover> {
                                       color: Colors.transparent,
                                     ),
                                   ),
-                                  onPressed: () => {},
+                                  onPressed: onCategorySelect,
                                   child: Center(
                                     child: Column(
                                         mainAxisAlignment:
