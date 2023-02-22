@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
 import 'package:quizz_app/featrures/auth/utils/entities.dart';
@@ -16,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  final storage = const FlutterSecureStorage();
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -24,7 +26,7 @@ class LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  void login() {
+  void login() async {
     try {
       SignInData signInData = SignInData(
           email: loginController.text, password: passwordController.text);
@@ -35,7 +37,11 @@ class LoginScreenState extends State<LoginScreen> {
         context,
         MaterialPageRoute(builder: (context) => const BottomTabs()),
       );
+
+      await storage.write(key: "KEY_USERNAME", value: loginController.text);
+      await storage.write(key: "KEY_PASSWORD", value: passwordController.text);
     } catch (e) {
+      print(e);
       throw Exception();
     }
   }
