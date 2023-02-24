@@ -25,7 +25,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Future<void> _readFromStorage() async {
     String? login = await storage.read(key: "KEY_USERNAME");
     String? password = await storage.read(key: "KEY_PASSWORD");
-    print(login);
+
     if (login != null && password != null) {
       SignInData signInData = SignInData(email: login, password: password);
 
@@ -106,11 +106,8 @@ class _InitialScreenState extends State<InitialScreen> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginScreen()),
-                                    );
+                                    Navigator.pushReplacementNamed(
+                                        context, '/login_screen');
                                   },
                                   style: ElevatedButton.styleFrom(
                                       padding: const EdgeInsets.all(15),
@@ -131,12 +128,8 @@ class _InitialScreenState extends State<InitialScreen> {
                                       minimumSize: const Size.fromHeight(40),
                                     ),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignupScreen()),
-                                      );
+                                      Navigator.pushReplacementNamed(
+                                          context, '/registration_screen');
                                     },
                                     child: Text(
                                       'Create an acoount',

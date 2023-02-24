@@ -112,6 +112,7 @@ _$_Topic _$$_TopicFromJson(Map<String, dynamic> json) => _$_Topic(
       icon: json['icon'] as String,
       author: json['author'] as String,
       selectedTimes: json['selectedTimes'] as int,
+      description: json['description'] as String,
     );
 
 Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
@@ -121,4 +122,5 @@ Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
       'icon': instance.icon,
       'author': instance.author,
       'selectedTimes': instance.selectedTimes,
+      'description': instance.description,
     };

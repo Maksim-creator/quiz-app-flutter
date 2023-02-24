@@ -19,13 +19,6 @@ class Discover extends StatefulWidget {
 class _DiscoverState extends State<Discover> {
   TextEditingController search = TextEditingController();
 
-  void onCategorySelect() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const TopicsListScreen()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final state = context.watch<CategoriesBloc>().state;
@@ -129,7 +122,10 @@ class _DiscoverState extends State<Discover> {
                                       color: Colors.transparent,
                                     ),
                                   ),
-                                  onPressed: onCategorySelect,
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                        '/main_screen/topics_list_screen');
+                                  },
                                   child: Center(
                                     child: Column(
                                         mainAxisAlignment:

@@ -55,7 +55,7 @@ class BottomTabsState extends State<BottomTabs> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: buildNavigator(),
+      body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -85,17 +85,5 @@ class BottomTabsState extends State<BottomTabs> {
             ),
           )),
     );
-  }
-
-  buildNavigator() {
-    return WillPopScope(
-        onWillPop: _onWillPop,
-        child: Navigator(
-          key: navigatorKeys[_selectedIndex],
-          onGenerateRoute: (RouteSettings settings) {
-            return MaterialPageRoute(
-                builder: (_) => _widgetOptions.elementAt(_selectedIndex));
-          },
-        ));
   }
 }

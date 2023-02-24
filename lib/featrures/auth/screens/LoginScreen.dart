@@ -18,8 +18,10 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   final storage = const FlutterSecureStorage();
-  TextEditingController loginController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController loginController =
+      TextEditingController(text: 'lalal@g.c');
+  TextEditingController passwordController =
+      TextEditingController(text: 'Test123!');
 
   @override
   void initState() {
@@ -33,10 +35,7 @@ class LoginScreenState extends State<LoginScreen> {
 
       context.read<AuthBloc>().add(AuthEvent.login(signInData: signInData));
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomTabs()),
-      );
+      Navigator.pushReplacementNamed(context, '/main_screen');
 
       await storage.write(key: "KEY_USERNAME", value: loginController.text);
       await storage.write(key: "KEY_PASSWORD", value: passwordController.text);
