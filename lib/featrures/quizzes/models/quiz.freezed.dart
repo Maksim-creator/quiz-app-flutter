@@ -1311,6 +1311,7 @@ mixin _$Topic {
   String get icon => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   int get selectedTimes => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1328,7 +1329,8 @@ abstract class $TopicCopyWith<$Res> {
       String topic,
       String icon,
       String author,
-      int selectedTimes});
+      int selectedTimes,
+      String description});
 }
 
 /// @nodoc
@@ -1350,6 +1352,7 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
     Object? icon = null,
     Object? author = null,
     Object? selectedTimes = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1376,6 +1379,10 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
           ? _value.selectedTimes
           : selectedTimes // ignore: cast_nullable_to_non_nullable
               as int,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1392,7 +1399,8 @@ abstract class _$$_TopicCopyWith<$Res> implements $TopicCopyWith<$Res> {
       String topic,
       String icon,
       String author,
-      int selectedTimes});
+      int selectedTimes,
+      String description});
 }
 
 /// @nodoc
@@ -1410,6 +1418,7 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res, _$_Topic>
     Object? icon = null,
     Object? author = null,
     Object? selectedTimes = null,
+    Object? description = null,
   }) {
     return _then(_$_Topic(
       id: null == id
@@ -1436,6 +1445,10 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res, _$_Topic>
           ? _value.selectedTimes
           : selectedTimes // ignore: cast_nullable_to_non_nullable
               as int,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1449,7 +1462,8 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       required this.topic,
       required this.icon,
       required this.author,
-      required this.selectedTimes});
+      required this.selectedTimes,
+      required this.description});
 
   factory _$_Topic.fromJson(Map<String, dynamic> json) =>
       _$$_TopicFromJson(json);
@@ -1466,10 +1480,12 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
   final String author;
   @override
   final int selectedTimes;
+  @override
+  final String description;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Topic(id: $id, category: $category, topic: $topic, icon: $icon, author: $author, selectedTimes: $selectedTimes)';
+    return 'Topic(id: $id, category: $category, topic: $topic, icon: $icon, author: $author, selectedTimes: $selectedTimes, description: $description)';
   }
 
   @override
@@ -1482,7 +1498,8 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       ..add(DiagnosticsProperty('topic', topic))
       ..add(DiagnosticsProperty('icon', icon))
       ..add(DiagnosticsProperty('author', author))
-      ..add(DiagnosticsProperty('selectedTimes', selectedTimes));
+      ..add(DiagnosticsProperty('selectedTimes', selectedTimes))
+      ..add(DiagnosticsProperty('description', description));
   }
 
   @override
@@ -1497,13 +1514,15 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.selectedTimes, selectedTimes) ||
-                other.selectedTimes == selectedTimes));
+                other.selectedTimes == selectedTimes) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, category, topic, icon, author, selectedTimes);
+  int get hashCode => Object.hash(runtimeType, id, category, topic, icon,
+      author, selectedTimes, description);
 
   @JsonKey(ignore: true)
   @override
@@ -1526,7 +1545,8 @@ abstract class _Topic implements Topic {
       required final String topic,
       required final String icon,
       required final String author,
-      required final int selectedTimes}) = _$_Topic;
+      required final int selectedTimes,
+      required final String description}) = _$_Topic;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$_Topic.fromJson;
 
@@ -1542,6 +1562,8 @@ abstract class _Topic implements Topic {
   String get author;
   @override
   int get selectedTimes;
+  @override
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$_TopicCopyWith<_$_Topic> get copyWith =>
