@@ -7,13 +7,13 @@ part 'quiz.g.dart';
 @freezed
 class Quiz with _$Quiz {
   const factory Quiz({
-    required String id,
+    required int id,
     required String topic,
     required String icon,
     required String category,
     required List<Question> questions,
     required int selectedTimes,
-    required int author,
+    required String author,
   }) = _Quiz;
 
   factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);
@@ -36,7 +36,7 @@ class TopSelected with _$TopSelected {
 @freezed
 class Question with _$Question {
   const factory Question({
-    required String id,
+    required int id,
     required String question,
     required String? description,
     required Answers answers,
@@ -90,4 +90,26 @@ class Topic with _$Topic {
   }) = _Topic;
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
+}
+
+@freezed
+class QuizScreenArgs with _$QuizScreenArgs {
+  const factory QuizScreenArgs({
+    required String topic,
+    required int count,
+  }) = _QuizScreenArgs;
+
+  factory QuizScreenArgs.fromJson(Map<String, dynamic> json) =>
+      _$QuizScreenArgsFromJson(json);
+}
+
+@freezed
+class ReviewQuizScreenArgs with _$ReviewQuizScreenArgs {
+  const factory ReviewQuizScreenArgs({
+    required List<Question> questions,
+    required int score,
+  }) = _ReviewQuizScreenArgs;
+
+  factory ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =>
+      _$ReviewQuizScreenArgsFromJson(json);
 }

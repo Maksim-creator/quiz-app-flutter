@@ -29,4 +29,15 @@ class QuizzesRepo {
 
     return list;
   }
+
+  Future<List<Question>> getQuizzesByTopic(String topic) async {
+    Uri url = Uri.parse('$baseUrl/quizzes/quiz');
+
+    final response = await http.post(url, body: {"topic": topic});
+
+    final List<dynamic> data = json.decode(response.body);
+    List<Question> list = data.map((e) => Question.fromJson(e)).toList();
+
+    return list;
+  }
 }

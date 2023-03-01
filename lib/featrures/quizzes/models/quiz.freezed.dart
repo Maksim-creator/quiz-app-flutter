@@ -20,13 +20,13 @@ Quiz _$QuizFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Quiz {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get topic => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   List<Question> get questions => throw _privateConstructorUsedError;
   int get selectedTimes => throw _privateConstructorUsedError;
-  int get author => throw _privateConstructorUsedError;
+  String get author => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,13 +39,13 @@ abstract class $QuizCopyWith<$Res> {
       _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String topic,
       String icon,
       String category,
       List<Question> questions,
       int selectedTimes,
-      int author});
+      String author});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -97,7 +97,7 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ) as $Val);
   }
 }
@@ -109,13 +109,13 @@ abstract class _$$_QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String topic,
       String icon,
       String category,
       List<Question> questions,
       int selectedTimes,
-      int author});
+      String author});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       topic: null == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class __$$_QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res, _$_Quiz>
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -184,7 +184,7 @@ class _$_Quiz with DiagnosticableTreeMixin implements _Quiz {
   factory _$_Quiz.fromJson(Map<String, dynamic> json) => _$$_QuizFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String topic;
   @override
@@ -202,7 +202,7 @@ class _$_Quiz with DiagnosticableTreeMixin implements _Quiz {
   @override
   final int selectedTimes;
   @override
-  final int author;
+  final String author;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -261,18 +261,18 @@ class _$_Quiz with DiagnosticableTreeMixin implements _Quiz {
 
 abstract class _Quiz implements Quiz {
   const factory _Quiz(
-      {required final String id,
+      {required final int id,
       required final String topic,
       required final String icon,
       required final String category,
       required final List<Question> questions,
       required final int selectedTimes,
-      required final int author}) = _$_Quiz;
+      required final String author}) = _$_Quiz;
 
   factory _Quiz.fromJson(Map<String, dynamic> json) = _$_Quiz.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get topic;
   @override
@@ -284,7 +284,7 @@ abstract class _Quiz implements Quiz {
   @override
   int get selectedTimes;
   @override
-  int get author;
+  String get author;
   @override
   @JsonKey(ignore: true)
   _$$_QuizCopyWith<_$_Quiz> get copyWith => throw _privateConstructorUsedError;
@@ -531,7 +531,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Question {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   Answers get answers => throw _privateConstructorUsedError;
@@ -554,7 +554,7 @@ abstract class $QuestionCopyWith<$Res> {
       _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String question,
       String? description,
       Answers answers,
@@ -597,7 +597,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
@@ -662,7 +662,7 @@ abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String question,
       String? description,
       Answers answers,
@@ -705,7 +705,7 @@ class __$$_QuestionCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
@@ -765,7 +765,7 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
       _$$_QuestionFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String question;
   @override
@@ -863,7 +863,7 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
 
 abstract class _Question implements Question {
   const factory _Question(
-      {required final String id,
+      {required final int id,
       required final String question,
       required final String? description,
       required final Answers answers,
@@ -877,7 +877,7 @@ abstract class _Question implements Question {
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get question;
   @override
@@ -1567,5 +1567,347 @@ abstract class _Topic implements Topic {
   @override
   @JsonKey(ignore: true)
   _$$_TopicCopyWith<_$_Topic> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+QuizScreenArgs _$QuizScreenArgsFromJson(Map<String, dynamic> json) {
+  return _QuizScreenArgs.fromJson(json);
+}
+
+/// @nodoc
+mixin _$QuizScreenArgs {
+  String get topic => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $QuizScreenArgsCopyWith<QuizScreenArgs> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $QuizScreenArgsCopyWith<$Res> {
+  factory $QuizScreenArgsCopyWith(
+          QuizScreenArgs value, $Res Function(QuizScreenArgs) then) =
+      _$QuizScreenArgsCopyWithImpl<$Res, QuizScreenArgs>;
+  @useResult
+  $Res call({String topic, int count});
+}
+
+/// @nodoc
+class _$QuizScreenArgsCopyWithImpl<$Res, $Val extends QuizScreenArgs>
+    implements $QuizScreenArgsCopyWith<$Res> {
+  _$QuizScreenArgsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topic = null,
+    Object? count = null,
+  }) {
+    return _then(_value.copyWith(
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_QuizScreenArgsCopyWith<$Res>
+    implements $QuizScreenArgsCopyWith<$Res> {
+  factory _$$_QuizScreenArgsCopyWith(
+          _$_QuizScreenArgs value, $Res Function(_$_QuizScreenArgs) then) =
+      __$$_QuizScreenArgsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String topic, int count});
+}
+
+/// @nodoc
+class __$$_QuizScreenArgsCopyWithImpl<$Res>
+    extends _$QuizScreenArgsCopyWithImpl<$Res, _$_QuizScreenArgs>
+    implements _$$_QuizScreenArgsCopyWith<$Res> {
+  __$$_QuizScreenArgsCopyWithImpl(
+      _$_QuizScreenArgs _value, $Res Function(_$_QuizScreenArgs) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topic = null,
+    Object? count = null,
+  }) {
+    return _then(_$_QuizScreenArgs(
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_QuizScreenArgs
+    with DiagnosticableTreeMixin
+    implements _QuizScreenArgs {
+  const _$_QuizScreenArgs({required this.topic, required this.count});
+
+  factory _$_QuizScreenArgs.fromJson(Map<String, dynamic> json) =>
+      _$$_QuizScreenArgsFromJson(json);
+
+  @override
+  final String topic;
+  @override
+  final int count;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'QuizScreenArgs(topic: $topic, count: $count)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'QuizScreenArgs'))
+      ..add(DiagnosticsProperty('topic', topic))
+      ..add(DiagnosticsProperty('count', count));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_QuizScreenArgs &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            (identical(other.count, count) || other.count == count));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, topic, count);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_QuizScreenArgsCopyWith<_$_QuizScreenArgs> get copyWith =>
+      __$$_QuizScreenArgsCopyWithImpl<_$_QuizScreenArgs>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_QuizScreenArgsToJson(
+      this,
+    );
+  }
+}
+
+abstract class _QuizScreenArgs implements QuizScreenArgs {
+  const factory _QuizScreenArgs(
+      {required final String topic,
+      required final int count}) = _$_QuizScreenArgs;
+
+  factory _QuizScreenArgs.fromJson(Map<String, dynamic> json) =
+      _$_QuizScreenArgs.fromJson;
+
+  @override
+  String get topic;
+  @override
+  int get count;
+  @override
+  @JsonKey(ignore: true)
+  _$$_QuizScreenArgsCopyWith<_$_QuizScreenArgs> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ReviewQuizScreenArgs _$ReviewQuizScreenArgsFromJson(Map<String, dynamic> json) {
+  return _ReviewQuizScreenArgs.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ReviewQuizScreenArgs {
+  List<Question> get questions => throw _privateConstructorUsedError;
+  int get score => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReviewQuizScreenArgsCopyWith<ReviewQuizScreenArgs> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReviewQuizScreenArgsCopyWith<$Res> {
+  factory $ReviewQuizScreenArgsCopyWith(ReviewQuizScreenArgs value,
+          $Res Function(ReviewQuizScreenArgs) then) =
+      _$ReviewQuizScreenArgsCopyWithImpl<$Res, ReviewQuizScreenArgs>;
+  @useResult
+  $Res call({List<Question> questions, int score});
+}
+
+/// @nodoc
+class _$ReviewQuizScreenArgsCopyWithImpl<$Res,
+        $Val extends ReviewQuizScreenArgs>
+    implements $ReviewQuizScreenArgsCopyWith<$Res> {
+  _$ReviewQuizScreenArgsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questions = null,
+    Object? score = null,
+  }) {
+    return _then(_value.copyWith(
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ReviewQuizScreenArgsCopyWith<$Res>
+    implements $ReviewQuizScreenArgsCopyWith<$Res> {
+  factory _$$_ReviewQuizScreenArgsCopyWith(_$_ReviewQuizScreenArgs value,
+          $Res Function(_$_ReviewQuizScreenArgs) then) =
+      __$$_ReviewQuizScreenArgsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Question> questions, int score});
+}
+
+/// @nodoc
+class __$$_ReviewQuizScreenArgsCopyWithImpl<$Res>
+    extends _$ReviewQuizScreenArgsCopyWithImpl<$Res, _$_ReviewQuizScreenArgs>
+    implements _$$_ReviewQuizScreenArgsCopyWith<$Res> {
+  __$$_ReviewQuizScreenArgsCopyWithImpl(_$_ReviewQuizScreenArgs _value,
+      $Res Function(_$_ReviewQuizScreenArgs) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? questions = null,
+    Object? score = null,
+  }) {
+    return _then(_$_ReviewQuizScreenArgs(
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ReviewQuizScreenArgs
+    with DiagnosticableTreeMixin
+    implements _ReviewQuizScreenArgs {
+  const _$_ReviewQuizScreenArgs(
+      {required final List<Question> questions, required this.score})
+      : _questions = questions;
+
+  factory _$_ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =>
+      _$$_ReviewQuizScreenArgsFromJson(json);
+
+  final List<Question> _questions;
+  @override
+  List<Question> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  @override
+  final int score;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ReviewQuizScreenArgs(questions: $questions, score: $score)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ReviewQuizScreenArgs'))
+      ..add(DiagnosticsProperty('questions', questions))
+      ..add(DiagnosticsProperty('score', score));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ReviewQuizScreenArgs &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            (identical(other.score, score) || other.score == score));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_questions), score);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ReviewQuizScreenArgsCopyWith<_$_ReviewQuizScreenArgs> get copyWith =>
+      __$$_ReviewQuizScreenArgsCopyWithImpl<_$_ReviewQuizScreenArgs>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ReviewQuizScreenArgsToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ReviewQuizScreenArgs implements ReviewQuizScreenArgs {
+  const factory _ReviewQuizScreenArgs(
+      {required final List<Question> questions,
+      required final int score}) = _$_ReviewQuizScreenArgs;
+
+  factory _ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =
+      _$_ReviewQuizScreenArgs.fromJson;
+
+  @override
+  List<Question> get questions;
+  @override
+  int get score;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ReviewQuizScreenArgsCopyWith<_$_ReviewQuizScreenArgs> get copyWith =>
       throw _privateConstructorUsedError;
 }
