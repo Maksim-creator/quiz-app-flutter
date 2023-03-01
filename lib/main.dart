@@ -8,6 +8,8 @@ import 'package:quizz_app/featrures/categories/bloc/categories_bloc.dart';
 import 'package:quizz_app/featrures/categories/screens/TopicsListScreen.dart';
 import 'package:quizz_app/featrures/leaderboard/bloc/leaderboard_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
+import 'package:quizz_app/featrures/quizzes/screens/QuizScreen.dart';
+import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
 import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 import 'package:quizz_app/featrures/repositories/categories_repo.dart';
 import 'package:quizz_app/featrures/repositories/leaderboard_repo.dart';
@@ -62,6 +64,23 @@ class MyApp extends StatelessWidget {
               topic: args,
             );
           },
+          '/main_screen/quiz_screen': (context) {
+            final args =
+                ModalRoute.of(context)!.settings.arguments as QuizScreenArgs;
+
+            return QuizScreen(
+              topic: args.topic,
+              count: args.count,
+            );
+          },
+          '/main_screen/review_quiz_screen': ((context) {
+            final args = ModalRoute.of(context)!.settings.arguments
+                as ReviewQuizScreenArgs;
+            return ReviewQuiz(
+              questions: args.questions,
+              score: args.score,
+            );
+          })
         },
         theme: ThemeData(scaffoldBackgroundColor: ColorConstants.violet),
       ),

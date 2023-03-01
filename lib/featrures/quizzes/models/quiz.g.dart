@@ -7,7 +7,7 @@ part of 'quiz.dart';
 // **************************************************************************
 
 _$_Quiz _$$_QuizFromJson(Map<String, dynamic> json) => _$_Quiz(
-      id: json['id'] as String,
+      id: json['id'] as int,
       topic: json['topic'] as String,
       icon: json['icon'] as String,
       category: json['category'] as String,
@@ -15,7 +15,7 @@ _$_Quiz _$$_QuizFromJson(Map<String, dynamic> json) => _$_Quiz(
           .map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
       selectedTimes: json['selectedTimes'] as int,
-      author: json['author'] as int,
+      author: json['author'] as String,
     );
 
 Map<String, dynamic> _$$_QuizToJson(_$_Quiz instance) => <String, dynamic>{
@@ -47,7 +47,7 @@ Map<String, dynamic> _$$_TopSelectedToJson(_$_TopSelected instance) =>
     };
 
 _$_Question _$$_QuestionFromJson(Map<String, dynamic> json) => _$_Question(
-      id: json['id'] as String,
+      id: json['id'] as int,
       question: json['question'] as String,
       description: json['description'] as String?,
       answers: Answers.fromJson(json['answers'] as Map<String, dynamic>),
@@ -123,4 +123,32 @@ Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
       'author': instance.author,
       'selectedTimes': instance.selectedTimes,
       'description': instance.description,
+    };
+
+_$_QuizScreenArgs _$$_QuizScreenArgsFromJson(Map<String, dynamic> json) =>
+    _$_QuizScreenArgs(
+      topic: json['topic'] as String,
+      count: json['count'] as int,
+    );
+
+Map<String, dynamic> _$$_QuizScreenArgsToJson(_$_QuizScreenArgs instance) =>
+    <String, dynamic>{
+      'topic': instance.topic,
+      'count': instance.count,
+    };
+
+_$_ReviewQuizScreenArgs _$$_ReviewQuizScreenArgsFromJson(
+        Map<String, dynamic> json) =>
+    _$_ReviewQuizScreenArgs(
+      questions: (json['questions'] as List<dynamic>)
+          .map((e) => Question.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      score: json['score'] as int,
+    );
+
+Map<String, dynamic> _$$_ReviewQuizScreenArgsToJson(
+        _$_ReviewQuizScreenArgs instance) =>
+    <String, dynamic>{
+      'questions': instance.questions,
+      'score': instance.score,
     };
