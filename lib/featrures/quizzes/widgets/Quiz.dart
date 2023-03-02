@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
+import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import '../../../assets/colors.dart';
 import '../models/quiz.dart';
 import '../utils/utils.dart';
@@ -9,8 +9,9 @@ import 'QuizHeader.dart';
 
 class QuizWidget extends StatefulWidget {
   final List<Question>? questions;
+  final String topic;
 
-  const QuizWidget({super.key, required this.questions});
+  const QuizWidget({super.key, required this.questions, required this.topic});
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -25,6 +26,8 @@ class _QuizWidgetState extends State<QuizWidget> {
   String? selectedAnswer;
   bool? isAnswerRight;
   int score = 0;
+  int skipped = 0;
+  int _incorrectAnswers = 0;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -34,6 +37,7 @@ class _QuizWidgetState extends State<QuizWidget> {
         if (_seconds == 0) {
           setState(() {
             timer.cancel();
+            skipped = skipped + 1;
           });
           if (_lives != 1) {
             setState(() {
@@ -61,18 +65,24 @@ class _QuizWidgetState extends State<QuizWidget> {
   }
 
   void finishQuiz() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (BuildContext context) =>
-              ReviewQuiz(questions: widget.questions!, score: score),
-        ),
-        (route) => false);
+    UserRepo().updateUserPoints(_points).then((value) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (BuildContext context) => ReviewQuiz(
+                questions: widget.questions!,
+                score: score,
+                skipped: skipped,
+                incorrectAnswers: _incorrectAnswers,
+                topic: widget.topic),
+          ),
+          (route) => false);
+    });
   }
 
   void restartTimer() {
     setState(() {
       _timer.cancel();
-      _seconds = 15;
+      _seconds = 10;
     });
     startTimer();
   }
@@ -88,6 +98,7 @@ class _QuizWidgetState extends State<QuizWidget> {
       _points = _points + 5;
       score = score + 1;
     } else {
+      _incorrectAnswers = _incorrectAnswers + 1;
       if (_lives == 1) {
         finishQuiz();
         return;
@@ -235,8 +246,9 @@ class _QuizWidgetState extends State<QuizWidget> {
                                             style: ButtonStyle(
                                               backgroundColor:
                                                   MaterialStateProperty.all(
-                                                      transformedAnswers[index]
-                                                                  ['key'] ==
+                                                      transformedAnswers[
+                                                                      index]![
+                                                                  'key'] ==
                                                               selectedAnswer
                                                           ? renderButtonBg()
                                                           : Colors.white),
@@ -253,15 +265,16 @@ class _QuizWidgetState extends State<QuizWidget> {
                                             ),
                                             onPressed: () {
                                               handleAnswerSelect(
-                                                transformedAnswers[index]
-                                                    ['key'],
-                                                transformedAnswers[index]
-                                                    ['value'],
+                                                transformedAnswers[index]![
+                                                    'key'],
+                                                transformedAnswers[index]![
+                                                    'value'],
                                                 correctAnswer!.key,
                                               );
                                             },
                                             child: Text(
-                                              transformedAnswers[index]['value']
+                                              transformedAnswers[index]![
+                                                      'value']
                                                   .toString(),
                                               style: const TextStyle(
                                                   color: Colors.black,

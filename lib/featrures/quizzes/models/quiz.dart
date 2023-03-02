@@ -108,6 +108,9 @@ class ReviewQuizScreenArgs with _$ReviewQuizScreenArgs {
   const factory ReviewQuizScreenArgs({
     required List<Question> questions,
     required int score,
+    required int skipped,
+    required int incorrectAnswers,
+    required String topic,
   }) = _ReviewQuizScreenArgs;
 
   factory ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =>

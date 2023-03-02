@@ -1743,6 +1743,9 @@ ReviewQuizScreenArgs _$ReviewQuizScreenArgsFromJson(Map<String, dynamic> json) {
 mixin _$ReviewQuizScreenArgs {
   List<Question> get questions => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
+  int get skipped => throw _privateConstructorUsedError;
+  int get incorrectAnswers => throw _privateConstructorUsedError;
+  String get topic => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1756,7 +1759,12 @@ abstract class $ReviewQuizScreenArgsCopyWith<$Res> {
           $Res Function(ReviewQuizScreenArgs) then) =
       _$ReviewQuizScreenArgsCopyWithImpl<$Res, ReviewQuizScreenArgs>;
   @useResult
-  $Res call({List<Question> questions, int score});
+  $Res call(
+      {List<Question> questions,
+      int score,
+      int skipped,
+      int incorrectAnswers,
+      String topic});
 }
 
 /// @nodoc
@@ -1775,6 +1783,9 @@ class _$ReviewQuizScreenArgsCopyWithImpl<$Res,
   $Res call({
     Object? questions = null,
     Object? score = null,
+    Object? skipped = null,
+    Object? incorrectAnswers = null,
+    Object? topic = null,
   }) {
     return _then(_value.copyWith(
       questions: null == questions
@@ -1785,6 +1796,18 @@ class _$ReviewQuizScreenArgsCopyWithImpl<$Res,
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      skipped: null == skipped
+          ? _value.skipped
+          : skipped // ignore: cast_nullable_to_non_nullable
+              as int,
+      incorrectAnswers: null == incorrectAnswers
+          ? _value.incorrectAnswers
+          : incorrectAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1797,7 +1820,12 @@ abstract class _$$_ReviewQuizScreenArgsCopyWith<$Res>
       __$$_ReviewQuizScreenArgsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Question> questions, int score});
+  $Res call(
+      {List<Question> questions,
+      int score,
+      int skipped,
+      int incorrectAnswers,
+      String topic});
 }
 
 /// @nodoc
@@ -1813,6 +1841,9 @@ class __$$_ReviewQuizScreenArgsCopyWithImpl<$Res>
   $Res call({
     Object? questions = null,
     Object? score = null,
+    Object? skipped = null,
+    Object? incorrectAnswers = null,
+    Object? topic = null,
   }) {
     return _then(_$_ReviewQuizScreenArgs(
       questions: null == questions
@@ -1823,6 +1854,18 @@ class __$$_ReviewQuizScreenArgsCopyWithImpl<$Res>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int,
+      skipped: null == skipped
+          ? _value.skipped
+          : skipped // ignore: cast_nullable_to_non_nullable
+              as int,
+      incorrectAnswers: null == incorrectAnswers
+          ? _value.incorrectAnswers
+          : incorrectAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1833,7 +1876,11 @@ class _$_ReviewQuizScreenArgs
     with DiagnosticableTreeMixin
     implements _ReviewQuizScreenArgs {
   const _$_ReviewQuizScreenArgs(
-      {required final List<Question> questions, required this.score})
+      {required final List<Question> questions,
+      required this.score,
+      required this.skipped,
+      required this.incorrectAnswers,
+      required this.topic})
       : _questions = questions;
 
   factory _$_ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =>
@@ -1849,10 +1896,16 @@ class _$_ReviewQuizScreenArgs
 
   @override
   final int score;
+  @override
+  final int skipped;
+  @override
+  final int incorrectAnswers;
+  @override
+  final String topic;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ReviewQuizScreenArgs(questions: $questions, score: $score)';
+    return 'ReviewQuizScreenArgs(questions: $questions, score: $score, skipped: $skipped, incorrectAnswers: $incorrectAnswers, topic: $topic)';
   }
 
   @override
@@ -1861,7 +1914,10 @@ class _$_ReviewQuizScreenArgs
     properties
       ..add(DiagnosticsProperty('type', 'ReviewQuizScreenArgs'))
       ..add(DiagnosticsProperty('questions', questions))
-      ..add(DiagnosticsProperty('score', score));
+      ..add(DiagnosticsProperty('score', score))
+      ..add(DiagnosticsProperty('skipped', skipped))
+      ..add(DiagnosticsProperty('incorrectAnswers', incorrectAnswers))
+      ..add(DiagnosticsProperty('topic', topic));
   }
 
   @override
@@ -1871,13 +1927,22 @@ class _$_ReviewQuizScreenArgs
             other is _$_ReviewQuizScreenArgs &&
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
-            (identical(other.score, score) || other.score == score));
+            (identical(other.score, score) || other.score == score) &&
+            (identical(other.skipped, skipped) || other.skipped == skipped) &&
+            (identical(other.incorrectAnswers, incorrectAnswers) ||
+                other.incorrectAnswers == incorrectAnswers) &&
+            (identical(other.topic, topic) || other.topic == topic));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_questions), score);
+      runtimeType,
+      const DeepCollectionEquality().hash(_questions),
+      score,
+      skipped,
+      incorrectAnswers,
+      topic);
 
   @JsonKey(ignore: true)
   @override
@@ -1897,7 +1962,10 @@ class _$_ReviewQuizScreenArgs
 abstract class _ReviewQuizScreenArgs implements ReviewQuizScreenArgs {
   const factory _ReviewQuizScreenArgs(
       {required final List<Question> questions,
-      required final int score}) = _$_ReviewQuizScreenArgs;
+      required final int score,
+      required final int skipped,
+      required final int incorrectAnswers,
+      required final String topic}) = _$_ReviewQuizScreenArgs;
 
   factory _ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =
       _$_ReviewQuizScreenArgs.fromJson;
@@ -1906,6 +1974,12 @@ abstract class _ReviewQuizScreenArgs implements ReviewQuizScreenArgs {
   List<Question> get questions;
   @override
   int get score;
+  @override
+  int get skipped;
+  @override
+  int get incorrectAnswers;
+  @override
+  String get topic;
   @override
   @JsonKey(ignore: true)
   _$$_ReviewQuizScreenArgsCopyWith<_$_ReviewQuizScreenArgs> get copyWith =>
