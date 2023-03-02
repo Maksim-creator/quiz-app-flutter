@@ -1,10 +1,8 @@
-import '../models/quiz.dart';
-
-List<dynamic> transformAnswers(Answers? answers) {
+List<dynamic> transformAnswers(dynamic answers) {
   if (answers == null) {
     return [];
   }
-  List<Map<String, dynamic>?> list = answers.toJson().entries.map((e) {
+  List<dynamic> list = answers.toJson().entries.map((e) {
     if (e.value != null) {
       return {'value': e.value, 'key': e.key};
     }

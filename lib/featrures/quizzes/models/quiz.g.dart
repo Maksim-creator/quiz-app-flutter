@@ -144,6 +144,9 @@ _$_ReviewQuizScreenArgs _$$_ReviewQuizScreenArgsFromJson(
           .map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
       score: json['score'] as int,
+      skipped: json['skipped'] as int,
+      incorrectAnswers: json['incorrectAnswers'] as int,
+      topic: json['topic'] as String,
     );
 
 Map<String, dynamic> _$$_ReviewQuizScreenArgsToJson(
@@ -151,4 +154,7 @@ Map<String, dynamic> _$$_ReviewQuizScreenArgsToJson(
     <String, dynamic>{
       'questions': instance.questions,
       'score': instance.score,
+      'skipped': instance.skipped,
+      'incorrectAnswers': instance.incorrectAnswers,
+      'topic': instance.topic,
     };

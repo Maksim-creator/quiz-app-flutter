@@ -50,7 +50,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
   void getQuestions() async {
     List<Question> response =
-        await QuizzesRepo().getQuizzesByTopic(widget.topic);
+        await QuizzesRepo().getQuizzesByTopic(widget.topic, widget.count);
 
     setState(() {
       questions = response;
@@ -86,6 +86,6 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                   ),
                 ),
               )
-            : QuizWidget(questions: questions));
+            : QuizWidget(questions: questions, topic: widget.topic));
   }
 }

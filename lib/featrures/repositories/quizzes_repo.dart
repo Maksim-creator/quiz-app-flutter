@@ -1,14 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:http/http.dart' as http;
+import 'package:quizz_app/featrures/repositories/constants.dart';
 import '../quizzes/models/quiz.dart';
 
 class QuizzesRepo {
-  String baseUrl = Device.get().isAndroid
-      ? 'http://192.168.0.80:7001'
-      : 'http://localhost:7001';
-
   Future<TopSelected> getTopSelectedQuiz() async {
     Uri url = Uri.parse('$baseUrl/quizzes/topSelected');
 
@@ -30,10 +26,11 @@ class QuizzesRepo {
     return list;
   }
 
-  Future<List<Question>> getQuizzesByTopic(String topic) async {
+  Future<List<Question>> getQuizzesByTopic(String topic, int count) async {
     Uri url = Uri.parse('$baseUrl/quizzes/quiz');
 
-    final response = await http.post(url, body: {"topic": topic});
+    final response =
+        await http.post(url, body: {"topic": topic, "count": count.toString()});
 
     final List<dynamic> data = json.decode(response.body);
     List<Question> list = data.map((e) => Question.fromJson(e)).toList();

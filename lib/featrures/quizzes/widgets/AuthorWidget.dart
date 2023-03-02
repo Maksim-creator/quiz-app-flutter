@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:quizz_app/featrures/repositories/user_repo.dart';
 
 class AuthorWidget extends StatefulWidget {
   final String author;
@@ -15,16 +14,6 @@ class AuthorWidget extends StatefulWidget {
 class _AuthorWidgetState extends State<AuthorWidget> {
   dynamic userAvatar;
   final String baseAvatar = 'lib/assets/baseAvatar.png';
-
-  @override
-  void initState() {
-    super.initState();
-    UserRepo().getUserAvatar(widget.author).then((value) {
-      setState(() {
-        userAvatar = value;
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
