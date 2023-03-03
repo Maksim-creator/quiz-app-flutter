@@ -7,7 +7,9 @@ import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
 import '../../quizzes/models/quiz.dart';
 
 class TopicsListScreen extends StatefulWidget {
-  const TopicsListScreen({super.key});
+  final String category;
+
+  const TopicsListScreen({super.key, required this.category});
 
   @override
   State<TopicsListScreen> createState() => _TopicsListScreenState();
@@ -18,7 +20,7 @@ class _TopicsListScreenState extends State<TopicsListScreen> {
   void initState() {
     context
         .read<QuizzesBloc>()
-        .add(const QuizzesEvent.getTopicsList(category: 'Math'));
+        .add(QuizzesEvent.getTopicsList(category: widget.category));
     super.initState();
   }
 
