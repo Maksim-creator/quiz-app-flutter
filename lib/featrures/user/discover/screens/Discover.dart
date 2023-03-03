@@ -5,9 +5,7 @@ import 'package:quizz_app/featrures/categories/bloc/categories_bloc.dart';
 import 'package:quizz_app/featrures/user/discover/widgets/TopPicksCard.dart';
 import 'package:quizz_app/featrures/user/discover/widgets/TopPlayer.dart';
 import 'package:quizz_app/widgets/TextInput.dart';
-
 import '../../../categories/models/category.dart';
-import '../../../categories/screens/TopicsListScreen.dart';
 
 class Discover extends StatefulWidget {
   const Discover({super.key});
@@ -18,6 +16,24 @@ class Discover extends StatefulWidget {
 
 class _DiscoverState extends State<Discover> {
   TextEditingController search = TextEditingController();
+  List<Category> filteredCategories = [];
+
+  void filterCategories(List<Category> categories, String search) {
+    if (search.isEmpty) {
+      setState(() {
+        filteredCategories = categories;
+      });
+    } else {
+      List<Category> filtered = categories
+          .where((category) =>
+              category.category.toLowerCase().contains(search.toLowerCase()))
+          .toList();
+
+      setState(() {
+        filteredCategories = filtered;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +70,10 @@ class _DiscoverState extends State<Discover> {
                       iconColor: Colors.white,
                       inputBackground: ColorConstants.darkViolet,
                       hintTextColor: ColorConstants.darkGrey,
+                      inputTextColor: Colors.white,
                       verticalInputPadding: 0,
+                      onChanged: (String value) =>
+                          filterCategories(filteredCategories, value),
                     ),
                   ),
                   const TopPicksCard()
@@ -95,11 +114,14 @@ class _DiscoverState extends State<Discover> {
                               color: ColorConstants.violet),
                         );
                       }, loaded: (categories) {
+                        filterCategories(categories, search.text);
+
                         return Flexible(
                             child: GridView.count(
                           crossAxisCount: 2,
-                          children: List.generate(categories.length, (index) {
-                            Category category = categories[index];
+                          children:
+                              List.generate(filteredCategories.length, (index) {
+                            Category category = filteredCategories[index];
                             return Container(
                                 margin: const EdgeInsets.all(8),
                                 alignment: Alignment.center,
