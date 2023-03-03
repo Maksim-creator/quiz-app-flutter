@@ -68,8 +68,14 @@ class _MyAppState extends State<MyApp> {
           '/login_screen': (context) => const LoginScreen(),
           '/registration_screen': (context) => const SignupScreen(),
           '/main_screen': (context) => const BottomTabs(),
-          '/main_screen/topics_list_screen': (context) =>
-              const TopicsListScreen(),
+          '/main_screen/topics_list_screen': (context) {
+            final category =
+                ModalRoute.of(context)!.settings.arguments as String;
+
+            return TopicsListScreen(
+              category: category,
+            );
+          },
           '/main_screen/count_selection': (context) {
             final args = ModalRoute.of(context)!.settings.arguments as Topic;
             return CountSelection(

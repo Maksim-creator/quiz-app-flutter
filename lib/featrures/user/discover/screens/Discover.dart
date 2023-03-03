@@ -146,7 +146,8 @@ class _DiscoverState extends State<Discover> {
                                   ),
                                   onPressed: () {
                                     Navigator.of(context).pushNamed(
-                                        '/main_screen/topics_list_screen');
+                                        '/main_screen/topics_list_screen',
+                                        arguments: category.category);
                                   },
                                   child: Center(
                                     child: Column(
