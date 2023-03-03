@@ -12,6 +12,8 @@ class TextInput extends StatefulWidget {
   final Color? inputBackground;
   final Color? hintTextColor;
   final double? verticalInputPadding;
+  final Function(String)? onChanged;
+  final Color? inputTextColor;
 
   const TextInput(
       {super.key,
@@ -19,11 +21,13 @@ class TextInput extends StatefulWidget {
       required this.label,
       required this.prefixIcon,
       required this.controller,
+      this.onChanged,
       this.inputBackground,
       this.iconColor,
       this.validate,
       this.hintTextColor,
       this.verticalInputPadding,
+      this.inputTextColor,
       this.isPassword});
 
   @override
@@ -55,6 +59,7 @@ class TextInputState extends State<TextInput> {
           controller: widget.controller,
           obscureText: widget.isPassword ?? false,
           cursorColor: ColorConstants.violet,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
               prefixIcon: Icon(
                 widget.prefixIcon,
@@ -69,7 +74,8 @@ class TextInputState extends State<TextInput> {
               filled: true,
               contentPadding: const EdgeInsets.all(10),
               fillColor: widget.inputBackground ?? Colors.white),
-          style: const TextStyle(fontSize: 14),
+          style: TextStyle(
+              fontSize: 14, color: widget.inputTextColor ?? Colors.white),
         ))
       ],
     );
