@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import '../../../assets/colors.dart';
@@ -168,7 +169,9 @@ class _QuizWidgetState extends State<QuizWidget> {
         QuizHeader(points: _points, lives: _lives, progress: progress),
         Expanded(
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            margin: EdgeInsets.symmetric(
+                horizontal: Device.get().isTablet ? 30 : 10,
+                vertical: Device.get().isTablet ? 40 : 20),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Column(
@@ -211,10 +214,10 @@ class _QuizWidgetState extends State<QuizWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         'QUESTION ${_currentQuestinIdx + 1} OF ${widget.questions!.length}',
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w800,
-                            fontSize: 17),
+                            fontSize: Device.get().isTablet ? 22 : 17),
                       ),
                     ),
                     widget.questions != null && question != null
@@ -232,9 +235,11 @@ class _QuizWidgetState extends State<QuizWidget> {
                                       alignment: Alignment.centerLeft,
                                       child: Text(
                                         question.question,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             fontWeight: FontWeight.w800,
-                                            fontSize: 17),
+                                            fontSize: Device.get().isTablet
+                                                ? 22
+                                                : 17),
                                       ),
                                     ),
                                   ),
@@ -276,9 +281,13 @@ class _QuizWidgetState extends State<QuizWidget> {
                                               transformedAnswers[index]![
                                                       'value']
                                                   .toString(),
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.black,
-                                                  fontWeight: FontWeight.w700),
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize:
+                                                      Device.get().isTablet
+                                                          ? 17
+                                                          : 14),
                                             ));
                                       }))
                                 ]),

@@ -349,21 +349,21 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
+    required TResult Function(AuthBlocState? state) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
+    TResult? Function(AuthBlocState? state)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
+    TResult Function(AuthBlocState? state)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -448,7 +448,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
+    required TResult Function(AuthBlocState? state) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -458,7 +458,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
+    TResult? Function(AuthBlocState? state)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -468,7 +468,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
+    TResult Function(AuthBlocState? state)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -523,9 +523,9 @@ abstract class _$$AuthStateLoadedCopyWith<$Res> {
           _$AuthStateLoaded value, $Res Function(_$AuthStateLoaded) then) =
       __$$AuthStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserData userData});
+  $Res call({AuthBlocState? state});
 
-  $UserDataCopyWith<$Res> get userData;
+  $AuthBlocStateCopyWith<$Res>? get state;
 }
 
 /// @nodoc
@@ -539,21 +539,25 @@ class __$$AuthStateLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userData = null,
+    Object? state = freezed,
   }) {
     return _then(_$AuthStateLoaded(
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
+      state: freezed == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as AuthBlocState?,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res> get userData {
-    return $UserDataCopyWith<$Res>(_value.userData, (value) {
-      return _then(_value.copyWith(userData: value));
+  $AuthBlocStateCopyWith<$Res>? get state {
+    if (_value.state == null) {
+      return null;
+    }
+
+    return $AuthBlocStateCopyWith<$Res>(_value.state!, (value) {
+      return _then(_value.copyWith(state: value));
     });
   }
 }
@@ -561,14 +565,14 @@ class __$$AuthStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthStateLoaded implements AuthStateLoaded {
-  const _$AuthStateLoaded({required this.userData});
+  const _$AuthStateLoaded({this.state});
 
   @override
-  final UserData userData;
+  final AuthBlocState? state;
 
   @override
   String toString() {
-    return 'AuthState.loaded(userData: $userData)';
+    return 'AuthState.loaded(state: $state)';
   }
 
   @override
@@ -576,12 +580,11 @@ class _$AuthStateLoaded implements AuthStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthStateLoaded &&
-            (identical(other.userData, userData) ||
-                other.userData == userData));
+            (identical(other.state, state) || other.state == state));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userData);
+  int get hashCode => Object.hash(runtimeType, state);
 
   @JsonKey(ignore: true)
   @override
@@ -593,32 +596,32 @@ class _$AuthStateLoaded implements AuthStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
+    required TResult Function(AuthBlocState? state) loaded,
     required TResult Function() error,
   }) {
-    return loaded(userData);
+    return loaded(state);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
+    TResult? Function(AuthBlocState? state)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(userData);
+    return loaded?.call(state);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
+    TResult Function(AuthBlocState? state)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(userData);
+      return loaded(state);
     }
     return orElse();
   }
@@ -659,10 +662,10 @@ class _$AuthStateLoaded implements AuthStateLoaded {
 }
 
 abstract class AuthStateLoaded implements AuthState {
-  const factory AuthStateLoaded({required final UserData userData}) =
+  const factory AuthStateLoaded({final AuthBlocState? state}) =
       _$AuthStateLoaded;
 
-  UserData get userData;
+  AuthBlocState? get state;
   @JsonKey(ignore: true)
   _$$AuthStateLoadedCopyWith<_$AuthStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -707,7 +710,7 @@ class _$AuthStateError implements AuthStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
+    required TResult Function(AuthBlocState? state) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -717,7 +720,7 @@ class _$AuthStateError implements AuthStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
+    TResult? Function(AuthBlocState? state)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -727,7 +730,7 @@ class _$AuthStateError implements AuthStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
+    TResult Function(AuthBlocState? state)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/quizzes/constants.dart';
 import 'package:quizz_app/featrures/quizzes/utils/utils.dart';
@@ -27,6 +29,7 @@ class CupCardWidget extends StatefulWidget {
 
 class _CupCardWidgetState extends State<CupCardWidget> {
   String assetName = 'lib/assets/svg/trophy.svg';
+  String congratsJson = 'lib/assets/lottieAnimations/quizCongrats.json';
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +42,20 @@ class _CupCardWidgetState extends State<CupCardWidget> {
             color: ColorConstants.pink,
             borderRadius: BorderRadius.circular(15)),
         child: Column(children: [
-          SvgPicture.string(trophySvgString
-              .replaceAll('main', widget.mainColor)
-              .replaceAll('shadow', widget.shadowColor)),
+          Center(
+            child: Stack(
+              children: [
+                Center(
+                  child: Lottie.asset(congratsJson, height: 150, width: 230),
+                ),
+                Center(
+                  child: SvgPicture.string(trophySvgString
+                      .replaceAll('main', widget.mainColor)
+                      .replaceAll('shadow', widget.shadowColor)),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
@@ -77,15 +91,16 @@ class _CupCardWidgetState extends State<CupCardWidget> {
 Future<void> _showAnswersDialog(context, List<Question> questions) async {
   return showDialog<void>(
     context: context,
-    barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
         insetPadding: const EdgeInsets.all(10),
         title: Stack(children: [
-          const Center(
+          Center(
             child: Text(
               'Correct answers',
-              style: TextStyle(fontWeight: FontWeight.w700),
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: Device.get().isTablet ? 22 : 14),
             ),
           ),
           Positioned(
@@ -105,8 +120,8 @@ Future<void> _showAnswersDialog(context, List<Question> questions) async {
                   )))
         ]),
         content: SizedBox(
-          width: 300,
-          height: 500,
+          width: Device.get().isTablet ? Device.width / 3 : 300,
+          height: Device.get().isTablet ? Device.screenHeight / 2 : 500,
           child: ListView.builder(
               itemCount: questions.length - 1,
               shrinkWrap: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/categories/bloc/categories_bloc.dart';
@@ -25,7 +26,6 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
   Widget build(BuildContext context) {
     final state = context.watch<CategoriesBloc>().state;
     return Container(
-      height: 300,
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -33,6 +33,7 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
             topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,8 +62,9 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
               ),
             );
           }, loaded: (categories) {
-            return SizedBox(
-              height: 190,
+            return Container(
+              height: Device.get().isTablet ? Device.screenHeight / 2 : 190,
+              margin: const EdgeInsets.only(bottom: 20),
               child: ListView.builder(
                 padding: const EdgeInsets.all(0),
                 shrinkWrap: true,

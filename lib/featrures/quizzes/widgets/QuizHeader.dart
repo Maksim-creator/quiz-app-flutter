@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/assets/colors.dart';
 
 class QuizHeader extends StatefulWidget {
@@ -20,7 +21,9 @@ class _QuizHeaderState extends State<QuizHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      padding: EdgeInsets.symmetric(
+          horizontal: Device.get().isTablet ? 35 : 20,
+          vertical: Device.get().isTablet ? 25 : 15),
       child: Row(
         children: [
           Container(

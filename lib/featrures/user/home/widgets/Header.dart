@@ -55,7 +55,7 @@ class _HomeHeaderState extends State<HomeHeader> {
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Text(
-                  userLoaded.name,
+                  userLoaded!.name!,
                   style: const TextStyle(color: Colors.white, fontSize: 17),
                 ),
               )
@@ -63,9 +63,9 @@ class _HomeHeaderState extends State<HomeHeader> {
           ),
           ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(100)),
-              child: userLoaded.avatar.isNotEmpty
+              child: userLoaded.avatar!.isNotEmpty
                   ? Image.memory(
-                      base64Decode(userLoaded.avatar),
+                      base64Decode(userLoaded.avatar!),
                       width: 65,
                       height: 65,
                       fit: BoxFit.cover,
@@ -79,7 +79,15 @@ class _HomeHeaderState extends State<HomeHeader> {
         ],
       );
     }, error: () {
-      return Text('data');
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 12),
+        child: Center(
+          child: Text(
+            "Can't load user data. Tty again later.",
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+        ),
+      );
     });
   }
 }

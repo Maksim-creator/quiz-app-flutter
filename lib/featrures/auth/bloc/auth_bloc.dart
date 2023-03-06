@@ -18,7 +18,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         UserData userLoaded = await authRepo.signIn(event.signInData);
 
-        emit(AuthState.loaded(userData: userLoaded));
+        emit(AuthState.loaded(
+            state: AuthBlocState(
+                avatar: userLoaded.avatar,
+                data: userLoaded.data,
+                token: userLoaded.token,
+                email: userLoaded.email,
+                name: userLoaded.name)));
       } catch (e) {
         emit(const AuthState.error());
       }
@@ -27,8 +33,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(const AuthState.loading());
 
       try {
-        UserData userData = await authRepo.signUp(event.signUpData);
-        emit(AuthState.loaded(userData: userData));
+        UserData userLoaded = await authRepo.signUp(event.signUpData);
+        emit(AuthState.loaded(
+            state: AuthBlocState(
+                avatar: userLoaded.avatar,
+                data: userLoaded.data,
+                token: userLoaded.token,
+                email: userLoaded.email,
+                name: userLoaded.name)));
       } catch (e) {
         emit(const AuthState.error());
       }

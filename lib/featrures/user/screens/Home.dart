@@ -11,7 +11,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: Device.get().isAndroid ? 20 : 40),
+        padding: EdgeInsets.only(
+            top: Device.get().isAndroid ? 20 : 40,
+            left: Device.get().isTablet ? 50 : 0,
+            right: Device.get().isTablet ? 50 : 0),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
@@ -20,8 +23,8 @@ class Home extends StatelessWidget {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Column(
-                  children: const [
+                child: const Column(
+                  children: [
                     HomeHeader(),
                     RecentQuiz(),
                     FindFriendsCard(),
