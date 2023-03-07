@@ -47,7 +47,7 @@ class _TopPlayerCardState extends State<TopPlayerCard> {
                     color: Colors.white,
                   ),
                 );
-              }, loaded: (leader) {
+              }, loaded: (leader, t) {
                 return leader != null
                     ? Row(
                         children: [

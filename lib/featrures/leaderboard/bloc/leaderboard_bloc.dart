@@ -22,5 +22,16 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
         throw Exception(e.toString());
       }
     });
+    on<LeaderboardEventGetLeaderboard>((event, emit) async {
+      const LeaderboardState.loading();
+
+      try {
+        List<Leader> leaderboard = await leaderboardRepo.getLeaderboard();
+
+        emit(LeaderboardState.loaded(leaderboard: leaderboard));
+      } catch (e) {
+        throw Exception(e.toString());
+      }
+    });
   }
 }

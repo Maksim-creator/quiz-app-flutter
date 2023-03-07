@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
@@ -73,8 +74,9 @@ class _TopicsListScreenState extends State<TopicsListScreen> {
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               vertical: 6, horizontal: 15),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 12),
+                          padding: EdgeInsets.symmetric(
+                              vertical: Device.get().isTablet ? 14 : 8,
+                              horizontal: 12),
                           decoration: BoxDecoration(
                               color: ColorConstants.lightViolet,
                               boxShadow: [
@@ -96,7 +98,7 @@ class _TopicsListScreenState extends State<TopicsListScreen> {
                                 IconData(int.parse(topic.icon),
                                     fontFamily: 'MaterialIcons'),
                                 color: ColorConstants.violet,
-                                size: 20,
+                                size: Device.get().isTablet ? 30 : 20,
                               ),
                             ),
                             Padding(
@@ -108,12 +110,15 @@ class _TopicsListScreenState extends State<TopicsListScreen> {
                                     topic.topic,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        color: Colors.grey.shade800),
+                                        color: Colors.grey.shade800,
+                                        fontSize:
+                                            Device.get().isTablet ? 18 : 14),
                                   ),
                                   Text(
                                     'Created by ${topic.author}',
                                     style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize:
+                                            Device.get().isTablet ? 16 : 12,
                                         color: Colors.grey.shade700),
                                   )
                                 ],

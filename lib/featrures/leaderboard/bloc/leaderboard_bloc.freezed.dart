@@ -19,32 +19,39 @@ mixin _$LeaderboardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLeader,
+    required TResult Function() getLeaderboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLeader,
+    TResult? Function()? getLeaderboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLeader,
+    TResult Function()? getLeaderboard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LeaderboardEventGetLeader value) getLeader,
+    required TResult Function(LeaderboardEventGetLeaderboard value)
+        getLeaderboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult? Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,6 +116,7 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLeader,
+    required TResult Function() getLeaderboard,
   }) {
     return getLeader();
   }
@@ -117,6 +125,7 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLeader,
+    TResult? Function()? getLeaderboard,
   }) {
     return getLeader?.call();
   }
@@ -125,6 +134,7 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLeader,
+    TResult Function()? getLeaderboard,
     required TResult orElse(),
   }) {
     if (getLeader != null) {
@@ -137,6 +147,8 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LeaderboardEventGetLeader value) getLeader,
+    required TResult Function(LeaderboardEventGetLeaderboard value)
+        getLeaderboard,
   }) {
     return getLeader(this);
   }
@@ -145,6 +157,7 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult? Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
   }) {
     return getLeader?.call(this);
   }
@@ -153,6 +166,7 @@ class _$LeaderboardEventGetLeader implements LeaderboardEventGetLeader {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
     required TResult orElse(),
   }) {
     if (getLeader != null) {
@@ -167,25 +181,134 @@ abstract class LeaderboardEventGetLeader implements LeaderboardEvent {
 }
 
 /// @nodoc
+abstract class _$$LeaderboardEventGetLeaderboardCopyWith<$Res> {
+  factory _$$LeaderboardEventGetLeaderboardCopyWith(
+          _$LeaderboardEventGetLeaderboard value,
+          $Res Function(_$LeaderboardEventGetLeaderboard) then) =
+      __$$LeaderboardEventGetLeaderboardCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LeaderboardEventGetLeaderboardCopyWithImpl<$Res>
+    extends _$LeaderboardEventCopyWithImpl<$Res,
+        _$LeaderboardEventGetLeaderboard>
+    implements _$$LeaderboardEventGetLeaderboardCopyWith<$Res> {
+  __$$LeaderboardEventGetLeaderboardCopyWithImpl(
+      _$LeaderboardEventGetLeaderboard _value,
+      $Res Function(_$LeaderboardEventGetLeaderboard) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LeaderboardEventGetLeaderboard
+    implements LeaderboardEventGetLeaderboard {
+  const _$LeaderboardEventGetLeaderboard();
+
+  @override
+  String toString() {
+    return 'LeaderboardEvent.getLeaderboard()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LeaderboardEventGetLeaderboard);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLeader,
+    required TResult Function() getLeaderboard,
+  }) {
+    return getLeaderboard();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getLeader,
+    TResult? Function()? getLeaderboard,
+  }) {
+    return getLeaderboard?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLeader,
+    TResult Function()? getLeaderboard,
+    required TResult orElse(),
+  }) {
+    if (getLeaderboard != null) {
+      return getLeaderboard();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LeaderboardEventGetLeader value) getLeader,
+    required TResult Function(LeaderboardEventGetLeaderboard value)
+        getLeaderboard,
+  }) {
+    return getLeaderboard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult? Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
+  }) {
+    return getLeaderboard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LeaderboardEventGetLeader value)? getLeader,
+    TResult Function(LeaderboardEventGetLeaderboard value)? getLeaderboard,
+    required TResult orElse(),
+  }) {
+    if (getLeaderboard != null) {
+      return getLeaderboard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LeaderboardEventGetLeaderboard implements LeaderboardEvent {
+  const factory LeaderboardEventGetLeaderboard() =
+      _$LeaderboardEventGetLeaderboard;
+}
+
+/// @nodoc
 mixin _$LeaderboardState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Leader? leader) loaded,
+    required TResult Function(Leader? leader, List<Leader>? leaderboard) loaded,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Leader? leader)? loaded,
+    TResult? Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Leader? leader)? loaded,
+    TResult Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -272,7 +395,7 @@ class _$LeaderboardStateLoading implements LeaderboardStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Leader? leader) loaded,
+    required TResult Function(Leader? leader, List<Leader>? leaderboard) loaded,
     required TResult Function() error,
   }) {
     return loading();
@@ -282,7 +405,7 @@ class _$LeaderboardStateLoading implements LeaderboardStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Leader? leader)? loaded,
+    TResult? Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -292,7 +415,7 @@ class _$LeaderboardStateLoading implements LeaderboardStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Leader? leader)? loaded,
+    TResult Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -347,7 +470,7 @@ abstract class _$$LeaderboardStateLoadedCopyWith<$Res> {
           $Res Function(_$LeaderboardStateLoaded) then) =
       __$$LeaderboardStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Leader? leader});
+  $Res call({Leader? leader, List<Leader>? leaderboard});
 
   $LeaderCopyWith<$Res>? get leader;
 }
@@ -364,12 +487,17 @@ class __$$LeaderboardStateLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? leader = freezed,
+    Object? leaderboard = freezed,
   }) {
     return _then(_$LeaderboardStateLoaded(
       leader: freezed == leader
           ? _value.leader
           : leader // ignore: cast_nullable_to_non_nullable
               as Leader?,
+      leaderboard: freezed == leaderboard
+          ? _value._leaderboard
+          : leaderboard // ignore: cast_nullable_to_non_nullable
+              as List<Leader>?,
     ));
   }
 
@@ -389,14 +517,24 @@ class __$$LeaderboardStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LeaderboardStateLoaded implements LeaderboardStateLoaded {
-  const _$LeaderboardStateLoaded({required this.leader});
+  const _$LeaderboardStateLoaded({this.leader, final List<Leader>? leaderboard})
+      : _leaderboard = leaderboard;
 
   @override
   final Leader? leader;
+  final List<Leader>? _leaderboard;
+  @override
+  List<Leader>? get leaderboard {
+    final value = _leaderboard;
+    if (value == null) return null;
+    if (_leaderboard is EqualUnmodifiableListView) return _leaderboard;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'LeaderboardState.loaded(leader: $leader)';
+    return 'LeaderboardState.loaded(leader: $leader, leaderboard: $leaderboard)';
   }
 
   @override
@@ -404,11 +542,14 @@ class _$LeaderboardStateLoaded implements LeaderboardStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LeaderboardStateLoaded &&
-            (identical(other.leader, leader) || other.leader == leader));
+            (identical(other.leader, leader) || other.leader == leader) &&
+            const DeepCollectionEquality()
+                .equals(other._leaderboard, _leaderboard));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, leader);
+  int get hashCode => Object.hash(
+      runtimeType, leader, const DeepCollectionEquality().hash(_leaderboard));
 
   @JsonKey(ignore: true)
   @override
@@ -421,32 +562,32 @@ class _$LeaderboardStateLoaded implements LeaderboardStateLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Leader? leader) loaded,
+    required TResult Function(Leader? leader, List<Leader>? leaderboard) loaded,
     required TResult Function() error,
   }) {
-    return loaded(leader);
+    return loaded(leader, leaderboard);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Leader? leader)? loaded,
+    TResult? Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult? Function()? error,
   }) {
-    return loaded?.call(leader);
+    return loaded?.call(leader, leaderboard);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Leader? leader)? loaded,
+    TResult Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(leader);
+      return loaded(leader, leaderboard);
     }
     return orElse();
   }
@@ -487,10 +628,12 @@ class _$LeaderboardStateLoaded implements LeaderboardStateLoaded {
 }
 
 abstract class LeaderboardStateLoaded implements LeaderboardState {
-  const factory LeaderboardStateLoaded({required final Leader? leader}) =
-      _$LeaderboardStateLoaded;
+  const factory LeaderboardStateLoaded(
+      {final Leader? leader,
+      final List<Leader>? leaderboard}) = _$LeaderboardStateLoaded;
 
   Leader? get leader;
+  List<Leader>? get leaderboard;
   @JsonKey(ignore: true)
   _$$LeaderboardStateLoadedCopyWith<_$LeaderboardStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -535,7 +678,7 @@ class _$LeaderboardStateError implements LeaderboardStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(Leader? leader) loaded,
+    required TResult Function(Leader? leader, List<Leader>? leaderboard) loaded,
     required TResult Function() error,
   }) {
     return error();
@@ -545,7 +688,7 @@ class _$LeaderboardStateError implements LeaderboardStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(Leader? leader)? loaded,
+    TResult? Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -555,7 +698,7 @@ class _$LeaderboardStateError implements LeaderboardStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(Leader? leader)? loaded,
+    TResult Function(Leader? leader, List<Leader>? leaderboard)? loaded,
     TResult Function()? error,
     required TResult orElse(),
   }) {

@@ -40,13 +40,7 @@ class _DiscoverState extends State<Discover> {
     final state = context.watch<CategoriesBloc>().state;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back),
-        ),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
+        automaticallyImplyLeading: false,
         title: const Text(
           'Discover',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
