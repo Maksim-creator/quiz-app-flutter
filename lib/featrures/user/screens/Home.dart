@@ -20,8 +20,8 @@ class Home extends StatelessWidget {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Column(
-                  children: const [
+                child: const Column(
+                  children: [
                     HomeHeader(),
                     RecentQuiz(),
                     FindFriendsCard(),
