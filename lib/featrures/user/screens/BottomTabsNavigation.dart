@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app/featrures/user/screens/Home.dart';
-import 'package:quizz_app/featrures/user/screens/Leaderboard.dart';
+import 'package:quizz_app/featrures/leaderboard/screen/Leaderboard.dart';
 import 'package:quizz_app/featrures/user/screens/Profile.dart';
 import 'package:quizz_app/featrures/user/discover/screens/Discover.dart';
 
@@ -45,10 +45,6 @@ class BottomTabsState extends State<BottomTabs> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  Future<bool> _onWillPop() async {
-    return false;
   }
 
   @override

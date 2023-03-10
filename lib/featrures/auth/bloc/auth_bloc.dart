@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:quizz_app/featrures/auth/models/user_data.dart';
@@ -7,43 +8,72 @@ import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 part 'auth_bloc.freezed.dart';
 // part 'auth_bloc.g.dart';
 part 'auth_event.dart';
-part 'auth_state.dart';
+
+@freezed
+abstract class AuthState with _$AuthState {
+  const factory AuthState({
+    required UserGameData data,
+    required String email,
+    required String token,
+    required String name,
+    required String avatar,
+    @Default(false) bool isLoading,
+  }) = _AuthState;
+}
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo authRepo;
-  AuthBloc({required this.authRepo}) : super(const AuthState.loading()) {
-    on<AuthEventLogin>((event, emit) async {
-      emit(const AuthState.loading());
+  AuthBloc({required this.authRepo})
+      : super(const AuthState(
+            email: '',
+            token: '',
+            name: '',
+            avatar: '',
+            data: UserGameData(
+                level: 0, totalExperience: 0, rank: 0, balance: 0)));
+  @override
+  Stream<AuthState> mapEventToState(AuthEvent event) async* {
+    yield* event.when(login: (signInData) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-      try {
-        UserData userLoaded = await authRepo.signIn(event.signInData);
+      UserData userLoaded = await authRepo.signIn(signInData);
+      await Future.delayed(const Duration(milliseconds: 3000));
+      final updatedState = currentState.copyWith(
+          name: userLoaded.name,
+          email: userLoaded.email,
+          avatar: userLoaded.avatar,
+          token: userLoaded.token,
+          isLoading: false,
+          data: userLoaded.data);
+      yield updatedState;
+    }, registration: (signUpData) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-        emit(AuthState.loaded(
-            state: AuthBlocState(
-                avatar: userLoaded.avatar,
-                data: userLoaded.data,
-                token: userLoaded.token,
-                email: userLoaded.email,
-                name: userLoaded.name)));
-      } catch (e) {
-        emit(const AuthState.error());
-      }
-    });
-    on<AuthEventRegistration>((event, emit) async {
-      emit(const AuthState.loading());
+      UserData userLoaded = await authRepo.signUp(signUpData);
 
-      try {
-        UserData userLoaded = await authRepo.signUp(event.signUpData);
-        emit(AuthState.loaded(
-            state: AuthBlocState(
-                avatar: userLoaded.avatar,
-                data: userLoaded.data,
-                token: userLoaded.token,
-                email: userLoaded.email,
-                name: userLoaded.name)));
-      } catch (e) {
-        emit(const AuthState.error());
-      }
+      final updatedState = currentState.copyWith(
+          name: userLoaded.name,
+          email: userLoaded.email,
+          avatar: userLoaded.avatar,
+          token: userLoaded.token,
+          isLoading: false,
+          data: userLoaded.data);
+      yield updatedState;
+    }, uploadAvatar: (avatarFile) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
+
+      String avatar = await authRepo.uploadUserAvatar(avatarFile);
+
+      final updatedState =
+          currentState.copyWith(avatar: avatar, isLoading: false);
+
+      yield updatedState;
     });
   }
 }
