@@ -15,42 +15,283 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$AuthState {
+  UserGameData get data => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthStateCopyWith<AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthStateCopyWith<$Res> {
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
+  @useResult
+  $Res call(
+      {UserGameData data,
+      String email,
+      String token,
+      String name,
+      String avatar,
+      bool isLoading});
+
+  $UserGameDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
+  _$AuthStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? email = null,
+    Object? token = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? isLoading = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UserGameData,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserGameDataCopyWith<$Res> get data {
+    return $UserGameDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$$_AuthStateCopyWith(
+          _$_AuthState value, $Res Function(_$_AuthState) then) =
+      __$$_AuthStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {UserGameData data,
+      String email,
+      String token,
+      String name,
+      String avatar,
+      bool isLoading});
+
+  @override
+  $UserGameDataCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$_AuthStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$_AuthState>
+    implements _$$_AuthStateCopyWith<$Res> {
+  __$$_AuthStateCopyWithImpl(
+      _$_AuthState _value, $Res Function(_$_AuthState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? email = null,
+    Object? token = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? isLoading = null,
+  }) {
+    return _then(_$_AuthState(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UserGameData,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthState implements _AuthState {
+  const _$_AuthState(
+      {required this.data,
+      required this.email,
+      required this.token,
+      required this.name,
+      required this.avatar,
+      this.isLoading = false});
+
+  @override
+  final UserGameData data;
+  @override
+  final String email;
+  @override
+  final String token;
+  @override
+  final String name;
+  @override
+  final String avatar;
+  @override
+  @JsonKey()
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthState &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, data, email, token, name, avatar, isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      __$$_AuthStateCopyWithImpl<_$_AuthState>(this, _$identity);
+}
+
+abstract class _AuthState implements AuthState {
+  const factory _AuthState(
+      {required final UserGameData data,
+      required final String email,
+      required final String token,
+      required final String name,
+      required final String avatar,
+      final bool isLoading}) = _$_AuthState;
+
+  @override
+  UserGameData get data;
+  @override
+  String get email;
+  @override
+  String get token;
+  @override
+  String get name;
+  @override
+  String get avatar;
+  @override
+  bool get isLoading;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SignInData signInData) login,
     required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(File avatar) uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SignInData signInData)? login,
     TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(File avatar)? uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInData signInData)? login,
     TResult Function(SignUpData signUpData)? registration,
+    TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthEventLogin value) login,
-    required TResult Function(AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventLogin value) login,
+    required TResult Function(_AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthEventLogin value)? login,
-    TResult? Function(AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventLogin value)? login,
+    TResult? Function(_AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthEventLogin value)? login,
-    TResult Function(AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventLogin value)? login,
+    TResult Function(_AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,20 +315,20 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
 }
 
 /// @nodoc
-abstract class _$$AuthEventLoginCopyWith<$Res> {
-  factory _$$AuthEventLoginCopyWith(
-          _$AuthEventLogin value, $Res Function(_$AuthEventLogin) then) =
-      __$$AuthEventLoginCopyWithImpl<$Res>;
+abstract class _$$_AuthEventLoginCopyWith<$Res> {
+  factory _$$_AuthEventLoginCopyWith(
+          _$_AuthEventLogin value, $Res Function(_$_AuthEventLogin) then) =
+      __$$_AuthEventLoginCopyWithImpl<$Res>;
   @useResult
   $Res call({SignInData signInData});
 }
 
 /// @nodoc
-class __$$AuthEventLoginCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthEventLogin>
-    implements _$$AuthEventLoginCopyWith<$Res> {
-  __$$AuthEventLoginCopyWithImpl(
-      _$AuthEventLogin _value, $Res Function(_$AuthEventLogin) _then)
+class __$$_AuthEventLoginCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventLogin>
+    implements _$$_AuthEventLoginCopyWith<$Res> {
+  __$$_AuthEventLoginCopyWithImpl(
+      _$_AuthEventLogin _value, $Res Function(_$_AuthEventLogin) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +336,7 @@ class __$$AuthEventLoginCopyWithImpl<$Res>
   $Res call({
     Object? signInData = null,
   }) {
-    return _then(_$AuthEventLogin(
+    return _then(_$_AuthEventLogin(
       signInData: null == signInData
           ? _value.signInData
           : signInData // ignore: cast_nullable_to_non_nullable
@@ -106,8 +347,8 @@ class __$$AuthEventLoginCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthEventLogin implements AuthEventLogin {
-  const _$AuthEventLogin({required this.signInData});
+class _$_AuthEventLogin implements _AuthEventLogin {
+  const _$_AuthEventLogin({required this.signInData});
 
   @override
   final SignInData signInData;
@@ -121,7 +362,7 @@ class _$AuthEventLogin implements AuthEventLogin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthEventLogin &&
+            other is _$_AuthEventLogin &&
             (identical(other.signInData, signInData) ||
                 other.signInData == signInData));
   }
@@ -132,14 +373,15 @@ class _$AuthEventLogin implements AuthEventLogin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthEventLoginCopyWith<_$AuthEventLogin> get copyWith =>
-      __$$AuthEventLoginCopyWithImpl<_$AuthEventLogin>(this, _$identity);
+  _$$_AuthEventLoginCopyWith<_$_AuthEventLogin> get copyWith =>
+      __$$_AuthEventLoginCopyWithImpl<_$_AuthEventLogin>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SignInData signInData) login,
     required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(File avatar) uploadAvatar,
   }) {
     return login(signInData);
   }
@@ -149,6 +391,7 @@ class _$AuthEventLogin implements AuthEventLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SignInData signInData)? login,
     TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(File avatar)? uploadAvatar,
   }) {
     return login?.call(signInData);
   }
@@ -158,6 +401,7 @@ class _$AuthEventLogin implements AuthEventLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInData signInData)? login,
     TResult Function(SignUpData signUpData)? registration,
+    TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -169,8 +413,9 @@ class _$AuthEventLogin implements AuthEventLogin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthEventLogin value) login,
-    required TResult Function(AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventLogin value) login,
+    required TResult Function(_AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
   }) {
     return login(this);
   }
@@ -178,8 +423,9 @@ class _$AuthEventLogin implements AuthEventLogin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthEventLogin value)? login,
-    TResult? Function(AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventLogin value)? login,
+    TResult? Function(_AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
   }) {
     return login?.call(this);
   }
@@ -187,8 +433,9 @@ class _$AuthEventLogin implements AuthEventLogin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthEventLogin value)? login,
-    TResult Function(AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventLogin value)? login,
+    TResult Function(_AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -198,31 +445,31 @@ class _$AuthEventLogin implements AuthEventLogin {
   }
 }
 
-abstract class AuthEventLogin implements AuthEvent {
-  const factory AuthEventLogin({required final SignInData signInData}) =
-      _$AuthEventLogin;
+abstract class _AuthEventLogin implements AuthEvent {
+  const factory _AuthEventLogin({required final SignInData signInData}) =
+      _$_AuthEventLogin;
 
   SignInData get signInData;
   @JsonKey(ignore: true)
-  _$$AuthEventLoginCopyWith<_$AuthEventLogin> get copyWith =>
+  _$$_AuthEventLoginCopyWith<_$_AuthEventLogin> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthEventRegistrationCopyWith<$Res> {
-  factory _$$AuthEventRegistrationCopyWith(_$AuthEventRegistration value,
-          $Res Function(_$AuthEventRegistration) then) =
-      __$$AuthEventRegistrationCopyWithImpl<$Res>;
+abstract class _$$_AuthEventRegistrationCopyWith<$Res> {
+  factory _$$_AuthEventRegistrationCopyWith(_$_AuthEventRegistration value,
+          $Res Function(_$_AuthEventRegistration) then) =
+      __$$_AuthEventRegistrationCopyWithImpl<$Res>;
   @useResult
   $Res call({SignUpData signUpData});
 }
 
 /// @nodoc
-class __$$AuthEventRegistrationCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthEventRegistration>
-    implements _$$AuthEventRegistrationCopyWith<$Res> {
-  __$$AuthEventRegistrationCopyWithImpl(_$AuthEventRegistration _value,
-      $Res Function(_$AuthEventRegistration) _then)
+class __$$_AuthEventRegistrationCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventRegistration>
+    implements _$$_AuthEventRegistrationCopyWith<$Res> {
+  __$$_AuthEventRegistrationCopyWithImpl(_$_AuthEventRegistration _value,
+      $Res Function(_$_AuthEventRegistration) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -230,7 +477,7 @@ class __$$AuthEventRegistrationCopyWithImpl<$Res>
   $Res call({
     Object? signUpData = null,
   }) {
-    return _then(_$AuthEventRegistration(
+    return _then(_$_AuthEventRegistration(
       signUpData: null == signUpData
           ? _value.signUpData
           : signUpData // ignore: cast_nullable_to_non_nullable
@@ -241,8 +488,8 @@ class __$$AuthEventRegistrationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthEventRegistration implements AuthEventRegistration {
-  const _$AuthEventRegistration({required this.signUpData});
+class _$_AuthEventRegistration implements _AuthEventRegistration {
+  const _$_AuthEventRegistration({required this.signUpData});
 
   @override
   final SignUpData signUpData;
@@ -256,7 +503,7 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthEventRegistration &&
+            other is _$_AuthEventRegistration &&
             (identical(other.signUpData, signUpData) ||
                 other.signUpData == signUpData));
   }
@@ -267,8 +514,8 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthEventRegistrationCopyWith<_$AuthEventRegistration> get copyWith =>
-      __$$AuthEventRegistrationCopyWithImpl<_$AuthEventRegistration>(
+  _$$_AuthEventRegistrationCopyWith<_$_AuthEventRegistration> get copyWith =>
+      __$$_AuthEventRegistrationCopyWithImpl<_$_AuthEventRegistration>(
           this, _$identity);
 
   @override
@@ -276,6 +523,7 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   TResult when<TResult extends Object?>({
     required TResult Function(SignInData signInData) login,
     required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(File avatar) uploadAvatar,
   }) {
     return registration(signUpData);
   }
@@ -285,6 +533,7 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SignInData signInData)? login,
     TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(File avatar)? uploadAvatar,
   }) {
     return registration?.call(signUpData);
   }
@@ -294,6 +543,7 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SignInData signInData)? login,
     TResult Function(SignUpData signUpData)? registration,
+    TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (registration != null) {
@@ -305,8 +555,9 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthEventLogin value) login,
-    required TResult Function(AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventLogin value) login,
+    required TResult Function(_AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
   }) {
     return registration(this);
   }
@@ -314,8 +565,9 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthEventLogin value)? login,
-    TResult? Function(AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventLogin value)? login,
+    TResult? Function(_AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
   }) {
     return registration?.call(this);
   }
@@ -323,8 +575,9 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthEventLogin value)? login,
-    TResult Function(AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventLogin value)? login,
+    TResult Function(_AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (registration != null) {
@@ -334,291 +587,108 @@ class _$AuthEventRegistration implements AuthEventRegistration {
   }
 }
 
-abstract class AuthEventRegistration implements AuthEvent {
-  const factory AuthEventRegistration({required final SignUpData signUpData}) =
-      _$AuthEventRegistration;
+abstract class _AuthEventRegistration implements AuthEvent {
+  const factory _AuthEventRegistration({required final SignUpData signUpData}) =
+      _$_AuthEventRegistration;
 
   SignUpData get signUpData;
   @JsonKey(ignore: true)
-  _$$AuthEventRegistrationCopyWith<_$AuthEventRegistration> get copyWith =>
+  _$$_AuthEventRegistrationCopyWith<_$_AuthEventRegistration> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$AuthState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
-    required TResult Function() error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateLoaded value) loaded,
-    required TResult Function(AuthStateError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthStateLoading value)? loading,
-    TResult? Function(AuthStateLoaded value)? loaded,
-    TResult? Function(AuthStateError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateLoaded value)? loaded,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
-}
-
-/// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$AuthStateLoadingCopyWith<$Res> {
-  factory _$$AuthStateLoadingCopyWith(
-          _$AuthStateLoading value, $Res Function(_$AuthStateLoading) then) =
-      __$$AuthStateLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$AuthStateLoadingCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateLoading>
-    implements _$$AuthStateLoadingCopyWith<$Res> {
-  __$$AuthStateLoadingCopyWithImpl(
-      _$AuthStateLoading _value, $Res Function(_$AuthStateLoading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$AuthStateLoading implements AuthStateLoading {
-  const _$AuthStateLoading();
-
-  @override
-  String toString() {
-    return 'AuthState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthStateLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
-    required TResult Function() error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
-    TResult? Function()? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateLoaded value) loaded,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthStateLoading value)? loading,
-    TResult? Function(AuthStateLoaded value)? loaded,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateLoaded value)? loaded,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthStateLoading implements AuthState {
-  const factory AuthStateLoading() = _$AuthStateLoading;
-}
-
-/// @nodoc
-abstract class _$$AuthStateLoadedCopyWith<$Res> {
-  factory _$$AuthStateLoadedCopyWith(
-          _$AuthStateLoaded value, $Res Function(_$AuthStateLoaded) then) =
-      __$$AuthStateLoadedCopyWithImpl<$Res>;
+abstract class _$$_AuthEventUploadAvatarCopyWith<$Res> {
+  factory _$$_AuthEventUploadAvatarCopyWith(_$_AuthEventUploadAvatar value,
+          $Res Function(_$_AuthEventUploadAvatar) then) =
+      __$$_AuthEventUploadAvatarCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserData userData});
-
-  $UserDataCopyWith<$Res> get userData;
+  $Res call({File avatar});
 }
 
 /// @nodoc
-class __$$AuthStateLoadedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateLoaded>
-    implements _$$AuthStateLoadedCopyWith<$Res> {
-  __$$AuthStateLoadedCopyWithImpl(
-      _$AuthStateLoaded _value, $Res Function(_$AuthStateLoaded) _then)
+class __$$_AuthEventUploadAvatarCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventUploadAvatar>
+    implements _$$_AuthEventUploadAvatarCopyWith<$Res> {
+  __$$_AuthEventUploadAvatarCopyWithImpl(_$_AuthEventUploadAvatar _value,
+      $Res Function(_$_AuthEventUploadAvatar) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userData = null,
+    Object? avatar = null,
   }) {
-    return _then(_$AuthStateLoaded(
-      userData: null == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData,
+    return _then(_$_AuthEventUploadAvatar(
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res> get userData {
-    return $UserDataCopyWith<$Res>(_value.userData, (value) {
-      return _then(_value.copyWith(userData: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$AuthStateLoaded implements AuthStateLoaded {
-  const _$AuthStateLoaded({required this.userData});
+class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
+  const _$_AuthEventUploadAvatar({required this.avatar});
 
   @override
-  final UserData userData;
+  final File avatar;
 
   @override
   String toString() {
-    return 'AuthState.loaded(userData: $userData)';
+    return 'AuthEvent.uploadAvatar(avatar: $avatar)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthStateLoaded &&
-            (identical(other.userData, userData) ||
-                other.userData == userData));
+            other is _$_AuthEventUploadAvatar &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userData);
+  int get hashCode => Object.hash(runtimeType, avatar);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthStateLoadedCopyWith<_$AuthStateLoaded> get copyWith =>
-      __$$AuthStateLoadedCopyWithImpl<_$AuthStateLoaded>(this, _$identity);
+  _$$_AuthEventUploadAvatarCopyWith<_$_AuthEventUploadAvatar> get copyWith =>
+      __$$_AuthEventUploadAvatarCopyWithImpl<_$_AuthEventUploadAvatar>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
-    required TResult Function() error,
+    required TResult Function(SignInData signInData) login,
+    required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(File avatar) uploadAvatar,
   }) {
-    return loaded(userData);
+    return uploadAvatar(avatar);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
-    TResult? Function()? error,
+    TResult? Function(SignInData signInData)? login,
+    TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(File avatar)? uploadAvatar,
   }) {
-    return loaded?.call(userData);
+    return uploadAvatar?.call(avatar);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
-    TResult Function()? error,
+    TResult Function(SignInData signInData)? login,
+    TResult Function(SignUpData signUpData)? registration,
+    TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(userData);
+    if (uploadAvatar != null) {
+      return uploadAvatar(avatar);
     }
     return orElse();
   }
@@ -626,152 +696,44 @@ class _$AuthStateLoaded implements AuthStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateLoaded value) loaded,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_AuthEventLogin value) login,
+    required TResult Function(_AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
   }) {
-    return loaded(this);
+    return uploadAvatar(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthStateLoading value)? loading,
-    TResult? Function(AuthStateLoaded value)? loaded,
-    TResult? Function(AuthStateError value)? error,
+    TResult? Function(_AuthEventLogin value)? login,
+    TResult? Function(_AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
   }) {
-    return loaded?.call(this);
+    return uploadAvatar?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateLoaded value)? loaded,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_AuthEventLogin value)? login,
+    TResult Function(_AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (uploadAvatar != null) {
+      return uploadAvatar(this);
     }
     return orElse();
   }
 }
 
-abstract class AuthStateLoaded implements AuthState {
-  const factory AuthStateLoaded({required final UserData userData}) =
-      _$AuthStateLoaded;
+abstract class _AuthEventUploadAvatar implements AuthEvent {
+  const factory _AuthEventUploadAvatar({required final File avatar}) =
+      _$_AuthEventUploadAvatar;
 
-  UserData get userData;
+  File get avatar;
   @JsonKey(ignore: true)
-  _$$AuthStateLoadedCopyWith<_$AuthStateLoaded> get copyWith =>
+  _$$_AuthEventUploadAvatarCopyWith<_$_AuthEventUploadAvatar> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AuthStateErrorCopyWith<$Res> {
-  factory _$$AuthStateErrorCopyWith(
-          _$AuthStateError value, $Res Function(_$AuthStateError) then) =
-      __$$AuthStateErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$AuthStateErrorCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthStateError>
-    implements _$$AuthStateErrorCopyWith<$Res> {
-  __$$AuthStateErrorCopyWithImpl(
-      _$AuthStateError _value, $Res Function(_$AuthStateError) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$AuthStateError implements AuthStateError {
-  const _$AuthStateError();
-
-  @override
-  String toString() {
-    return 'AuthState.error()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthStateError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(UserData userData) loaded,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(UserData userData)? loaded,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(UserData userData)? loaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateLoaded value) loaded,
-    required TResult Function(AuthStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthStateLoading value)? loading,
-    TResult? Function(AuthStateLoaded value)? loaded,
-    TResult? Function(AuthStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateLoaded value)? loaded,
-    TResult Function(AuthStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthStateError implements AuthState {
-  const factory AuthStateError() = _$AuthStateError;
 }

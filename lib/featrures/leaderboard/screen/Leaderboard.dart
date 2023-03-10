@@ -45,10 +45,16 @@ class _LeaderboardState extends State<Leaderboard> {
         state.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (l, leaderboard) {
-              List<Leader> restLeaders = leaderboard!.sublist(3, 10);
+              List<Leader> podium = leaderboard!.sublist(0, 3);
+              Leader firstPlace = podium[1];
+              Leader secondPlace = podium[0];
+              podium[0] = firstPlace;
+              podium[1] = secondPlace;
+
+              List<Leader> restLeaders = leaderboard.sublist(3, 10);
               return Column(
                 children: [
-                  Podium(leaderboard: leaderboard),
+                  Podium(podium: podium),
                   LeadersList(
                     restLeaders: restLeaders,
                   ),

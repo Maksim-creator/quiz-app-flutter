@@ -62,69 +62,76 @@ class LoginScreenState extends State<LoginScreen> {
           backgroundColor: ColorConstants.lightViolet,
           elevation: 0,
         ),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
-                child: IntrinsicHeight(
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 7),
-                            child: TextInput(
-                              hintText: 'Your email address',
-                              label: 'Email',
-                              prefixIcon: Icons.email_outlined,
-                              controller: loginController,
-                              validate: (value) {
-                                if (!value!.isValidEmail) {
-                                  return 'Enter valid email';
-                                }
-                                return null;
-                              },
+        body: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Container(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
+                    child: IntrinsicHeight(
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 7),
+                                child: TextInput(
+                                  hintText: 'Your email address',
+                                  label: 'Email',
+                                  prefixIcon: Icons.email_outlined,
+                                  controller: loginController,
+                                  validate: (value) {
+                                    if (!value!.isValidEmail) {
+                                      return 'Enter valid email';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
                             ),
-                          ),
+                            Flexible(
+                                child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 7),
+                              child: TextInput(
+                                hintText: 'Your password',
+                                label: 'Password',
+                                prefixIcon: Icons.lock_outline,
+                                controller: passwordController,
+                                isPassword: true,
+                              ),
+                            )),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 5),
+                              child: Button(
+                                  buttonText: 'Login',
+                                  onPress: () {
+                                    if (formKey.currentState!.validate()) {
+                                      login();
+                                    }
+                                  },
+                                  disabled: false),
+                            ),
+                            OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(
+                                      color: Colors.transparent)),
+                              child: Text(
+                                'Forgot password?',
+                                style: TextStyle(
+                                    color: ColorConstants.violet,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
-                        Flexible(
-                            child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 7),
-                          child: TextInput(
-                            hintText: 'Your password',
-                            label: 'Password',
-                            prefixIcon: Icons.lock_outline,
-                            controller: passwordController,
-                            isPassword: true,
-                          ),
-                        )),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 5),
-                          child: Button(
-                              buttonText: 'Login',
-                              onPress: () {
-                                if (formKey.currentState!.validate()) {
-                                  login();
-                                }
-                              },
-                              disabled: false),
-                        ),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                              side:
-                                  const BorderSide(color: Colors.transparent)),
-                          child: Text(
-                            'Forgot password?',
-                            style: TextStyle(
-                                color: ColorConstants.violet,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                ))));
+                      ),
+                    )));
+          },
+        ));
   }
 }

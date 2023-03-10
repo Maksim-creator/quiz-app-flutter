@@ -23,7 +23,17 @@ class LeaderboardRepo {
 
     final List<dynamic> data = json.decode(response.body);
 
-    List<Leader> list = data.map((e) => Leader.fromJson(e)).toList();
+    final List<dynamic> decodedData = data.map((e) {
+      dynamic avatar = e['avatar'];
+      Map<String, dynamic> parsedAvatar = jsonDecode(avatar);
+      return {
+        'name': e['name'],
+        'totalExperience': e['totalExperience'],
+        'avatar': parsedAvatar['data']
+      };
+    }).toList();
+
+    List<Leader> list = decodedData.map((e) => Leader.fromJson(e)).toList();
 
     return list;
   }
