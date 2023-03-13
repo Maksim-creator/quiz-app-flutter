@@ -75,7 +75,7 @@ class TextInputState extends State<TextInput> {
               contentPadding: const EdgeInsets.all(10),
               fillColor: widget.inputBackground ?? Colors.white),
           style: TextStyle(
-              fontSize: 14, color: widget.inputTextColor ?? Colors.white),
+              fontSize: 14, color: widget.inputTextColor ?? Colors.black),
         ))
       ],
     );

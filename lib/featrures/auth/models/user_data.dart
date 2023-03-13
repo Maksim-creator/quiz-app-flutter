@@ -30,3 +30,14 @@ class UserGameData with _$UserGameData {
   factory UserGameData.fromJson(Map<String, dynamic> json) =>
       _$UserGameDataFromJson(json);
 }
+
+@freezed
+class AuthBlocState with _$AuthBlocState {
+  const factory AuthBlocState({
+    UserGameData? data,
+    String? email,
+    String? token,
+    String? name,
+    String? avatar,
+  }) = _AuthBlocState;
+}

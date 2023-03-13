@@ -461,3 +461,230 @@ abstract class _UserGameData implements UserGameData {
   _$$_UserGameDataCopyWith<_$_UserGameData> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$AuthBlocState {
+  UserGameData? get data => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthBlocStateCopyWith<AuthBlocState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthBlocStateCopyWith<$Res> {
+  factory $AuthBlocStateCopyWith(
+          AuthBlocState value, $Res Function(AuthBlocState) then) =
+      _$AuthBlocStateCopyWithImpl<$Res, AuthBlocState>;
+  @useResult
+  $Res call(
+      {UserGameData? data,
+      String? email,
+      String? token,
+      String? name,
+      String? avatar});
+
+  $UserGameDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
+    implements $AuthBlocStateCopyWith<$Res> {
+  _$AuthBlocStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? email = freezed,
+    Object? token = freezed,
+    Object? name = freezed,
+    Object? avatar = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UserGameData?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserGameDataCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $UserGameDataCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_AuthBlocStateCopyWith<$Res>
+    implements $AuthBlocStateCopyWith<$Res> {
+  factory _$$_AuthBlocStateCopyWith(
+          _$_AuthBlocState value, $Res Function(_$_AuthBlocState) then) =
+      __$$_AuthBlocStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {UserGameData? data,
+      String? email,
+      String? token,
+      String? name,
+      String? avatar});
+
+  @override
+  $UserGameDataCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$_AuthBlocStateCopyWithImpl<$Res>
+    extends _$AuthBlocStateCopyWithImpl<$Res, _$_AuthBlocState>
+    implements _$$_AuthBlocStateCopyWith<$Res> {
+  __$$_AuthBlocStateCopyWithImpl(
+      _$_AuthBlocState _value, $Res Function(_$_AuthBlocState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? email = freezed,
+    Object? token = freezed,
+    Object? name = freezed,
+    Object? avatar = freezed,
+  }) {
+    return _then(_$_AuthBlocState(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UserGameData?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthBlocState with DiagnosticableTreeMixin implements _AuthBlocState {
+  const _$_AuthBlocState(
+      {this.data, this.email, this.token, this.name, this.avatar});
+
+  @override
+  final UserGameData? data;
+  @override
+  final String? email;
+  @override
+  final String? token;
+  @override
+  final String? name;
+  @override
+  final String? avatar;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'AuthBlocState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'AuthBlocState'))
+      ..add(DiagnosticsProperty('data', data))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('token', token))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('avatar', avatar));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthBlocState &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, data, email, token, name, avatar);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AuthBlocStateCopyWith<_$_AuthBlocState> get copyWith =>
+      __$$_AuthBlocStateCopyWithImpl<_$_AuthBlocState>(this, _$identity);
+}
+
+abstract class _AuthBlocState implements AuthBlocState {
+  const factory _AuthBlocState(
+      {final UserGameData? data,
+      final String? email,
+      final String? token,
+      final String? name,
+      final String? avatar}) = _$_AuthBlocState;
+
+  @override
+  UserGameData? get data;
+  @override
+  String? get email;
+  @override
+  String? get token;
+  @override
+  String? get name;
+  @override
+  String? get avatar;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AuthBlocStateCopyWith<_$_AuthBlocState> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:quizz_app/featrures/quizzes/models/quiz.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/CupCardWidget.dart';
@@ -56,7 +57,8 @@ class _ReviewQuizState extends State<ReviewQuiz> {
       ),
       body: SafeArea(
           child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        margin: EdgeInsets.symmetric(
+            horizontal: Device.get().isTablet ? 50 : 30, vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
