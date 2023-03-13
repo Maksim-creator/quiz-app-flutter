@@ -6,34 +6,61 @@ import '../models/quiz.dart';
 
 part 'quizzes_bloc.freezed.dart';
 part 'quizzes_event.dart';
-part 'quizzes_state.dart';
+
+@freezed
+abstract class QuizzesState with _$QuizzesState {
+  const factory QuizzesState({
+    required TopSelected topSelected,
+    required List<Topic> topics,
+    required List<Question> questions,
+    @Default(false) bool isLoading,
+  }) = _QuizzesState;
+}
 
 class QuizzesBloc extends Bloc<QuizzesEvent, QuizzesState> {
   final QuizzesRepo quizzesRepo;
   QuizzesBloc({required this.quizzesRepo})
-      : super(const QuizzesState.loading()) {
-    on<QuizzesEventGetTopSelected>((event, emit) async {
-      emit(const QuizzesState.loading());
+      : super(const QuizzesState(
+            topSelected: TopSelected(
+                id: '', category: '', icon: '', topic: '', quizzesCount: 0),
+            topics: [],
+            questions: []));
 
-      try {
-        TopSelected topSelected = await quizzesRepo.getTopSelectedQuiz();
+  @override
+  Stream<QuizzesState> mapEventToState(QuizzesEvent event) async* {
+    yield* event.when(getTopSelected: () async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-        emit(QuizzesState.topSelectedLoaded(topSelected: topSelected));
-      } catch (e) {
-        emit(const QuizzesState.error());
-      }
-    });
-    on<QuizzesEventGetTopicsList>((event, emit) async {
-      emit(const QuizzesState.loading());
+      TopSelected topSelected = await quizzesRepo.getTopSelectedQuiz();
 
-      try {
-        List<Topic> topics =
-            await quizzesRepo.getTopicsByCategory(event.category);
+      final updatedState =
+          loadingState.copyWith(isLoading: false, topSelected: topSelected);
 
-        emit(QuizzesState.topicsLoaded(topics: topics));
-      } catch (e) {
-        emit(const QuizzesState.error());
-      }
+      yield updatedState;
+    }, getTopicsList: (category) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
+
+      List<Topic> topics = await quizzesRepo.getTopicsByCategory(category);
+
+      final updatedState =
+          loadingState.copyWith(isLoading: false, topics: topics);
+
+      yield updatedState;
+    }, getQuestionsList: (topic, count) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
+
+      List<Question> questions =
+          await quizzesRepo.getQuizzesByTopic(topic, count);
+
+      final updatedState =
+          loadingState.copyWith(isLoading: false, questions: questions);
+      yield updatedState;
     });
   }
 }

@@ -5,23 +5,34 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'categories_bloc.freezed.dart';
 part 'categories_event.dart';
-part 'categories_state.dart';
+
+@freezed
+abstract class CategoriesState with _$CategoriesState {
+  const factory CategoriesState({
+    required List<Category> categories,
+    @Default(false) bool isLoading,
+  }) = _CategoriesState;
+}
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final CategoriesRepo categoriesRepo;
   CategoriesBloc({required this.categoriesRepo})
-      : super(const CategoriesState.loading()) {
-    on<CategoriesEventGetAvailableCategories>((event, emit) async {
-      emit(const CategoriesState.loading());
+      : super(const CategoriesState(categories: []));
 
-      try {
-        List<Category> categories =
-            await categoriesRepo.getAvailableCategories();
+  @override
+  Stream<CategoriesState> mapEventToState(CategoriesEvent event) async* {
+    yield* event.when(getAvailableCategories: () async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-        emit(CategoriesState.loaded(categories: categories));
-      } catch (e) {
-        emit(const CategoriesState.error());
-      }
+      List<Category> categories = await categoriesRepo.getAvailableCategories();
+
+      final updatedState = currentState.copyWith(
+        categories: categories,
+        isLoading: false,
+      );
+      yield updatedState;
     });
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/models/quiz.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/Quiz.dart';
 import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
@@ -48,18 +50,14 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
     );
   }
 
-  void getQuestions() async {
-    List<Question> response =
-        await QuizzesRepo().getQuizzesByTopic(widget.topic, widget.count);
-
-    setState(() {
-      questions = response;
-    });
+  void getQuestions(String topic, int count) {
+    context
+        .read<QuizzesBloc>()
+        .add(QuizzesEvent.getQuestionsList(topic: topic, count: count));
   }
 
   @override
   void initState() {
-    getQuestions();
     startTimer();
     super.initState();
   }
@@ -72,20 +70,29 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: isTimerShown
-            ? ScaleTransition(
-                scale: _animation,
-                child: Center(
-                  child: Text(
-                    _seconds == 0 ? 'Start!' : _seconds.toString(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w900),
-                  ),
-                ),
-              )
-            : QuizWidget(questions: questions, topic: widget.topic));
+    getQuestions(widget.topic, widget.count);
+
+    return BlocBuilder<QuizzesBloc, QuizzesState>(
+      builder: (context, state) {
+        return Scaffold(
+            body: isTimerShown || state.isLoading
+                ? ScaleTransition(
+                    scale: _animation,
+                    child: Center(
+                      child: Text(
+                        _seconds == 0 ? 'Start!' : _seconds.toString(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  )
+                : QuizWidget(
+                    topic: widget.topic,
+                    questions: state.questions,
+                  ));
+      },
+    );
   }
 }

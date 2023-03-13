@@ -39,7 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       yield loadingState;
 
       UserData userLoaded = await authRepo.signIn(signInData);
-      await Future.delayed(const Duration(milliseconds: 3000));
+
       final updatedState = currentState.copyWith(
           name: userLoaded.name,
           email: userLoaded.email,

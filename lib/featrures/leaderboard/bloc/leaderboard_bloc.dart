@@ -5,33 +5,48 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'leaderboard_bloc.freezed.dart';
 part 'leaderboard_event.dart';
-part 'leaderboard_state.dart';
+
+@freezed
+abstract class LeaderboardState with _$LeaderboardState {
+  const factory LeaderboardState({
+    required Leader leader,
+    required List<Leader> leaderboard,
+    @Default(false) bool isLoading,
+  }) = _LeaderboardState;
+}
 
 class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   final LeaderboardRepo leaderboardRepo;
   LeaderboardBloc({required this.leaderboardRepo})
-      : super(const LeaderboardState.loading()) {
-    on<LeaderboardEventGetLeader>((event, emit) async {
-      const LeaderboardState.loading();
+      : super(const LeaderboardState(
+            leader: Leader(avatar: '', totalExperience: 0, name: ''),
+            leaderboard: []));
 
-      try {
-        Leader leader = await leaderboardRepo.getLeader();
+  @override
+  Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {
+    yield* event.when(getLeader: () async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-        emit(LeaderboardState.loaded(leader: leader));
-      } catch (e) {
-        throw Exception(e.toString());
-      }
-    });
-    on<LeaderboardEventGetLeaderboard>((event, emit) async {
-      const LeaderboardState.loading();
+      Leader leader = await leaderboardRepo.getLeader();
 
-      try {
-        List<Leader> leaderboard = await leaderboardRepo.getLeaderboard();
+      final updatedState = currentState.copyWith(
+        leader: leader,
+        isLoading: false,
+      );
+      yield updatedState;
+    }, getLeaderboard: () async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
 
-        emit(LeaderboardState.loaded(leaderboard: leaderboard));
-      } catch (e) {
-        throw Exception(e.toString());
-      }
+      List<Leader> leaderboard = await leaderboardRepo.getLeaderboard();
+
+      final updatedState =
+          currentState.copyWith(leaderboard: leaderboard, isLoading: false);
+
+      yield updatedState;
     });
   }
 }

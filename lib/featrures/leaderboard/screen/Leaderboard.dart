@@ -19,6 +19,11 @@ class _LeaderboardState extends State<Leaderboard> {
   final String baseAvatar = 'lib/assets/baseAvatar.png';
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     context
         .read<LeaderboardBloc>()
@@ -26,10 +31,26 @@ class _LeaderboardState extends State<Leaderboard> {
     super.initState();
   }
 
+  Widget getLeaderboardWidget(List<Leader> leaderboard) {
+    List<Leader> podium = leaderboard.sublist(0, 3);
+    Leader firstPlace = podium[1];
+    Leader secondPlace = podium[0];
+    podium[0] = firstPlace;
+    podium[1] = secondPlace;
+    List<Leader> restLeaders = leaderboard.sublist(3, 10);
+
+    return Column(
+      children: [
+        Podium(podium: podium),
+        LeadersList(
+          restLeaders: restLeaders,
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<LeaderboardBloc>().state;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -40,31 +61,23 @@ class _LeaderboardState extends State<Leaderboard> {
         backgroundColor: ColorConstants.violet,
         elevation: 0,
       ),
-      body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        const FilterWidget(),
-        state.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            loaded: (l, leaderboard) {
-              List<Leader> podium = leaderboard!.sublist(0, 3);
-              Leader firstPlace = podium[1];
-              Leader secondPlace = podium[0];
-              podium[0] = firstPlace;
-              podium[1] = secondPlace;
-
-              List<Leader> restLeaders = leaderboard.sublist(3, 10);
-              return Column(
-                children: [
-                  Podium(podium: podium),
-                  LeadersList(
-                    restLeaders: restLeaders,
-                  ),
-                ],
-              );
-            },
-            error: () {
-              return const Text('Can not load leaderboard');
-            }),
-      ]),
+      body: BlocBuilder<LeaderboardBloc, LeaderboardState>(
+        builder: (context, state) {
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const FilterWidget(),
+                state.isLoading || state.leaderboard.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          backgroundColor: ColorConstants.darkViolet,
+                        ),
+                      )
+                    : getLeaderboardWidget(state.leaderboard)
+              ]);
+        },
+      ),
     );
   }
 }

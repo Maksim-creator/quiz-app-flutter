@@ -15,42 +15,266 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$QuizzesState {
+  TopSelected get topSelected => throw _privateConstructorUsedError;
+  List<Topic> get topics => throw _privateConstructorUsedError;
+  List<Question> get questions => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $QuizzesStateCopyWith<QuizzesState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $QuizzesStateCopyWith<$Res> {
+  factory $QuizzesStateCopyWith(
+          QuizzesState value, $Res Function(QuizzesState) then) =
+      _$QuizzesStateCopyWithImpl<$Res, QuizzesState>;
+  @useResult
+  $Res call(
+      {TopSelected topSelected,
+      List<Topic> topics,
+      List<Question> questions,
+      bool isLoading});
+
+  $TopSelectedCopyWith<$Res> get topSelected;
+}
+
+/// @nodoc
+class _$QuizzesStateCopyWithImpl<$Res, $Val extends QuizzesState>
+    implements $QuizzesStateCopyWith<$Res> {
+  _$QuizzesStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topSelected = null,
+    Object? topics = null,
+    Object? questions = null,
+    Object? isLoading = null,
+  }) {
+    return _then(_value.copyWith(
+      topSelected: null == topSelected
+          ? _value.topSelected
+          : topSelected // ignore: cast_nullable_to_non_nullable
+              as TopSelected,
+      topics: null == topics
+          ? _value.topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<Topic>,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TopSelectedCopyWith<$Res> get topSelected {
+    return $TopSelectedCopyWith<$Res>(_value.topSelected, (value) {
+      return _then(_value.copyWith(topSelected: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_QuizzesStateCopyWith<$Res>
+    implements $QuizzesStateCopyWith<$Res> {
+  factory _$$_QuizzesStateCopyWith(
+          _$_QuizzesState value, $Res Function(_$_QuizzesState) then) =
+      __$$_QuizzesStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {TopSelected topSelected,
+      List<Topic> topics,
+      List<Question> questions,
+      bool isLoading});
+
+  @override
+  $TopSelectedCopyWith<$Res> get topSelected;
+}
+
+/// @nodoc
+class __$$_QuizzesStateCopyWithImpl<$Res>
+    extends _$QuizzesStateCopyWithImpl<$Res, _$_QuizzesState>
+    implements _$$_QuizzesStateCopyWith<$Res> {
+  __$$_QuizzesStateCopyWithImpl(
+      _$_QuizzesState _value, $Res Function(_$_QuizzesState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topSelected = null,
+    Object? topics = null,
+    Object? questions = null,
+    Object? isLoading = null,
+  }) {
+    return _then(_$_QuizzesState(
+      topSelected: null == topSelected
+          ? _value.topSelected
+          : topSelected // ignore: cast_nullable_to_non_nullable
+              as TopSelected,
+      topics: null == topics
+          ? _value._topics
+          : topics // ignore: cast_nullable_to_non_nullable
+              as List<Topic>,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_QuizzesState implements _QuizzesState {
+  const _$_QuizzesState(
+      {required this.topSelected,
+      required final List<Topic> topics,
+      required final List<Question> questions,
+      this.isLoading = false})
+      : _topics = topics,
+        _questions = questions;
+
+  @override
+  final TopSelected topSelected;
+  final List<Topic> _topics;
+  @override
+  List<Topic> get topics {
+    if (_topics is EqualUnmodifiableListView) return _topics;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topics);
+  }
+
+  final List<Question> _questions;
+  @override
+  List<Question> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'QuizzesState(topSelected: $topSelected, topics: $topics, questions: $questions, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_QuizzesState &&
+            (identical(other.topSelected, topSelected) ||
+                other.topSelected == topSelected) &&
+            const DeepCollectionEquality().equals(other._topics, _topics) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      topSelected,
+      const DeepCollectionEquality().hash(_topics),
+      const DeepCollectionEquality().hash(_questions),
+      isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_QuizzesStateCopyWith<_$_QuizzesState> get copyWith =>
+      __$$_QuizzesStateCopyWithImpl<_$_QuizzesState>(this, _$identity);
+}
+
+abstract class _QuizzesState implements QuizzesState {
+  const factory _QuizzesState(
+      {required final TopSelected topSelected,
+      required final List<Topic> topics,
+      required final List<Question> questions,
+      final bool isLoading}) = _$_QuizzesState;
+
+  @override
+  TopSelected get topSelected;
+  @override
+  List<Topic> get topics;
+  @override
+  List<Question> get questions;
+  @override
+  bool get isLoading;
+  @override
+  @JsonKey(ignore: true)
+  _$$_QuizzesStateCopyWith<_$_QuizzesState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$QuizzesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
+    required TResult Function(String topic, int count) getQuestionsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
+    TResult? Function(String topic, int count)? getQuestionsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
+    TResult Function(String topic, int count)? getQuestionsList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
-    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetQuestionsList value)
+        getQuestionsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,27 +299,27 @@ class _$QuizzesEventCopyWithImpl<$Res, $Val extends QuizzesEvent>
 }
 
 /// @nodoc
-abstract class _$$QuizzesEventGetTopSelectedCopyWith<$Res> {
-  factory _$$QuizzesEventGetTopSelectedCopyWith(
-          _$QuizzesEventGetTopSelected value,
-          $Res Function(_$QuizzesEventGetTopSelected) then) =
-      __$$QuizzesEventGetTopSelectedCopyWithImpl<$Res>;
+abstract class _$$_QuizzesEventGetTopSelectedCopyWith<$Res> {
+  factory _$$_QuizzesEventGetTopSelectedCopyWith(
+          _$_QuizzesEventGetTopSelected value,
+          $Res Function(_$_QuizzesEventGetTopSelected) then) =
+      __$$_QuizzesEventGetTopSelectedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$QuizzesEventGetTopSelectedCopyWithImpl<$Res>
-    extends _$QuizzesEventCopyWithImpl<$Res, _$QuizzesEventGetTopSelected>
-    implements _$$QuizzesEventGetTopSelectedCopyWith<$Res> {
-  __$$QuizzesEventGetTopSelectedCopyWithImpl(
-      _$QuizzesEventGetTopSelected _value,
-      $Res Function(_$QuizzesEventGetTopSelected) _then)
+class __$$_QuizzesEventGetTopSelectedCopyWithImpl<$Res>
+    extends _$QuizzesEventCopyWithImpl<$Res, _$_QuizzesEventGetTopSelected>
+    implements _$$_QuizzesEventGetTopSelectedCopyWith<$Res> {
+  __$$_QuizzesEventGetTopSelectedCopyWithImpl(
+      _$_QuizzesEventGetTopSelected _value,
+      $Res Function(_$_QuizzesEventGetTopSelected) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
-  const _$QuizzesEventGetTopSelected();
+class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
+  const _$_QuizzesEventGetTopSelected();
 
   @override
   String toString() {
@@ -106,7 +330,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuizzesEventGetTopSelected);
+            other is _$_QuizzesEventGetTopSelected);
   }
 
   @override
@@ -117,6 +341,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   TResult when<TResult extends Object?>({
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
+    required TResult Function(String topic, int count) getQuestionsList,
   }) {
     return getTopSelected();
   }
@@ -126,6 +351,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
+    TResult? Function(String topic, int count)? getQuestionsList,
   }) {
     return getTopSelected?.call();
   }
@@ -135,6 +361,7 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
+    TResult Function(String topic, int count)? getQuestionsList,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -146,8 +373,10 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
-    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetQuestionsList value)
+        getQuestionsList,
   }) {
     return getTopSelected(this);
   }
@@ -155,8 +384,9 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
   }) {
     return getTopSelected?.call(this);
   }
@@ -164,8 +394,9 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -175,26 +406,27 @@ class _$QuizzesEventGetTopSelected implements QuizzesEventGetTopSelected {
   }
 }
 
-abstract class QuizzesEventGetTopSelected implements QuizzesEvent {
-  const factory QuizzesEventGetTopSelected() = _$QuizzesEventGetTopSelected;
+abstract class _QuizzesEventGetTopSelected implements QuizzesEvent {
+  const factory _QuizzesEventGetTopSelected() = _$_QuizzesEventGetTopSelected;
 }
 
 /// @nodoc
-abstract class _$$QuizzesEventGetTopicsListCopyWith<$Res> {
-  factory _$$QuizzesEventGetTopicsListCopyWith(
-          _$QuizzesEventGetTopicsList value,
-          $Res Function(_$QuizzesEventGetTopicsList) then) =
-      __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>;
+abstract class _$$_QuizzesEventGetTopicsListCopyWith<$Res> {
+  factory _$$_QuizzesEventGetTopicsListCopyWith(
+          _$_QuizzesEventGetTopicsList value,
+          $Res Function(_$_QuizzesEventGetTopicsList) then) =
+      __$$_QuizzesEventGetTopicsListCopyWithImpl<$Res>;
   @useResult
   $Res call({String category});
 }
 
 /// @nodoc
-class __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>
-    extends _$QuizzesEventCopyWithImpl<$Res, _$QuizzesEventGetTopicsList>
-    implements _$$QuizzesEventGetTopicsListCopyWith<$Res> {
-  __$$QuizzesEventGetTopicsListCopyWithImpl(_$QuizzesEventGetTopicsList _value,
-      $Res Function(_$QuizzesEventGetTopicsList) _then)
+class __$$_QuizzesEventGetTopicsListCopyWithImpl<$Res>
+    extends _$QuizzesEventCopyWithImpl<$Res, _$_QuizzesEventGetTopicsList>
+    implements _$$_QuizzesEventGetTopicsListCopyWith<$Res> {
+  __$$_QuizzesEventGetTopicsListCopyWithImpl(
+      _$_QuizzesEventGetTopicsList _value,
+      $Res Function(_$_QuizzesEventGetTopicsList) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -202,7 +434,7 @@ class __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>
   $Res call({
     Object? category = null,
   }) {
-    return _then(_$QuizzesEventGetTopicsList(
+    return _then(_$_QuizzesEventGetTopicsList(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -213,8 +445,8 @@ class __$$QuizzesEventGetTopicsListCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
-  const _$QuizzesEventGetTopicsList({required this.category});
+class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
+  const _$_QuizzesEventGetTopicsList({required this.category});
 
   @override
   final String category;
@@ -228,7 +460,7 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuizzesEventGetTopicsList &&
+            other is _$_QuizzesEventGetTopicsList &&
             (identical(other.category, category) ||
                 other.category == category));
   }
@@ -239,15 +471,16 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$QuizzesEventGetTopicsListCopyWith<_$QuizzesEventGetTopicsList>
-      get copyWith => __$$QuizzesEventGetTopicsListCopyWithImpl<
-          _$QuizzesEventGetTopicsList>(this, _$identity);
+  _$$_QuizzesEventGetTopicsListCopyWith<_$_QuizzesEventGetTopicsList>
+      get copyWith => __$$_QuizzesEventGetTopicsListCopyWithImpl<
+          _$_QuizzesEventGetTopicsList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
+    required TResult Function(String topic, int count) getQuestionsList,
   }) {
     return getTopicsList(category);
   }
@@ -257,6 +490,7 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
+    TResult? Function(String topic, int count)? getQuestionsList,
   }) {
     return getTopicsList?.call(category);
   }
@@ -266,6 +500,7 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
+    TResult Function(String topic, int count)? getQuestionsList,
     required TResult orElse(),
   }) {
     if (getTopicsList != null) {
@@ -277,8 +512,10 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesEventGetTopSelected value) getTopSelected,
-    required TResult Function(QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetQuestionsList value)
+        getQuestionsList,
   }) {
     return getTopicsList(this);
   }
@@ -286,8 +523,9 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult? Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
   }) {
     return getTopicsList?.call(this);
   }
@@ -295,8 +533,9 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesEventGetTopSelected value)? getTopSelected,
-    TResult Function(QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
     required TResult orElse(),
   }) {
     if (getTopicsList != null) {
@@ -306,469 +545,119 @@ class _$QuizzesEventGetTopicsList implements QuizzesEventGetTopicsList {
   }
 }
 
-abstract class QuizzesEventGetTopicsList implements QuizzesEvent {
-  const factory QuizzesEventGetTopicsList({required final String category}) =
-      _$QuizzesEventGetTopicsList;
+abstract class _QuizzesEventGetTopicsList implements QuizzesEvent {
+  const factory _QuizzesEventGetTopicsList({required final String category}) =
+      _$_QuizzesEventGetTopicsList;
 
   String get category;
   @JsonKey(ignore: true)
-  _$$QuizzesEventGetTopicsListCopyWith<_$QuizzesEventGetTopicsList>
+  _$$_QuizzesEventGetTopicsListCopyWith<_$_QuizzesEventGetTopicsList>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$QuizzesState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(TopSelected topSelected) topSelectedLoaded,
-    required TResult Function(List<Topic> topics) topicsLoaded,
-    required TResult Function() error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult? Function(List<Topic> topics)? topicsLoaded,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult Function(List<Topic> topics)? topicsLoaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateTopSelectedLoaded value)
-        topSelectedLoaded,
-    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
-    required TResult Function(QuizzesStateError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult? Function(QuizzesStateError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult Function(QuizzesStateError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $QuizzesStateCopyWith<$Res> {
-  factory $QuizzesStateCopyWith(
-          QuizzesState value, $Res Function(QuizzesState) then) =
-      _$QuizzesStateCopyWithImpl<$Res, QuizzesState>;
-}
-
-/// @nodoc
-class _$QuizzesStateCopyWithImpl<$Res, $Val extends QuizzesState>
-    implements $QuizzesStateCopyWith<$Res> {
-  _$QuizzesStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$QuizzesStateLoadingCopyWith<$Res> {
-  factory _$$QuizzesStateLoadingCopyWith(_$QuizzesStateLoading value,
-          $Res Function(_$QuizzesStateLoading) then) =
-      __$$QuizzesStateLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$QuizzesStateLoadingCopyWithImpl<$Res>
-    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateLoading>
-    implements _$$QuizzesStateLoadingCopyWith<$Res> {
-  __$$QuizzesStateLoadingCopyWithImpl(
-      _$QuizzesStateLoading _value, $Res Function(_$QuizzesStateLoading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$QuizzesStateLoading implements QuizzesStateLoading {
-  const _$QuizzesStateLoading();
-
-  @override
-  String toString() {
-    return 'QuizzesState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$QuizzesStateLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(TopSelected topSelected) topSelectedLoaded,
-    required TResult Function(List<Topic> topics) topicsLoaded,
-    required TResult Function() error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult? Function(List<Topic> topics)? topicsLoaded,
-    TResult? Function()? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult Function(List<Topic> topics)? topicsLoaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateTopSelectedLoaded value)
-        topSelectedLoaded,
-    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
-    required TResult Function(QuizzesStateError value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult? Function(QuizzesStateError value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult Function(QuizzesStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class QuizzesStateLoading implements QuizzesState {
-  const factory QuizzesStateLoading() = _$QuizzesStateLoading;
-}
-
-/// @nodoc
-abstract class _$$QuizzesStateTopSelectedLoadedCopyWith<$Res> {
-  factory _$$QuizzesStateTopSelectedLoadedCopyWith(
-          _$QuizzesStateTopSelectedLoaded value,
-          $Res Function(_$QuizzesStateTopSelectedLoaded) then) =
-      __$$QuizzesStateTopSelectedLoadedCopyWithImpl<$Res>;
+abstract class _$$_QuizzesEventGetQuestionsListCopyWith<$Res> {
+  factory _$$_QuizzesEventGetQuestionsListCopyWith(
+          _$_QuizzesEventGetQuestionsList value,
+          $Res Function(_$_QuizzesEventGetQuestionsList) then) =
+      __$$_QuizzesEventGetQuestionsListCopyWithImpl<$Res>;
   @useResult
-  $Res call({TopSelected topSelected});
-
-  $TopSelectedCopyWith<$Res> get topSelected;
+  $Res call({String topic, int count});
 }
 
 /// @nodoc
-class __$$QuizzesStateTopSelectedLoadedCopyWithImpl<$Res>
-    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateTopSelectedLoaded>
-    implements _$$QuizzesStateTopSelectedLoadedCopyWith<$Res> {
-  __$$QuizzesStateTopSelectedLoadedCopyWithImpl(
-      _$QuizzesStateTopSelectedLoaded _value,
-      $Res Function(_$QuizzesStateTopSelectedLoaded) _then)
+class __$$_QuizzesEventGetQuestionsListCopyWithImpl<$Res>
+    extends _$QuizzesEventCopyWithImpl<$Res, _$_QuizzesEventGetQuestionsList>
+    implements _$$_QuizzesEventGetQuestionsListCopyWith<$Res> {
+  __$$_QuizzesEventGetQuestionsListCopyWithImpl(
+      _$_QuizzesEventGetQuestionsList _value,
+      $Res Function(_$_QuizzesEventGetQuestionsList) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? topSelected = null,
+    Object? topic = null,
+    Object? count = null,
   }) {
-    return _then(_$QuizzesStateTopSelectedLoaded(
-      topSelected: null == topSelected
-          ? _value.topSelected
-          : topSelected // ignore: cast_nullable_to_non_nullable
-              as TopSelected,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TopSelectedCopyWith<$Res> get topSelected {
-    return $TopSelectedCopyWith<$Res>(_value.topSelected, (value) {
-      return _then(_value.copyWith(topSelected: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$QuizzesStateTopSelectedLoaded implements QuizzesStateTopSelectedLoaded {
-  const _$QuizzesStateTopSelectedLoaded({required this.topSelected});
-
-  @override
-  final TopSelected topSelected;
-
-  @override
-  String toString() {
-    return 'QuizzesState.topSelectedLoaded(topSelected: $topSelected)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$QuizzesStateTopSelectedLoaded &&
-            (identical(other.topSelected, topSelected) ||
-                other.topSelected == topSelected));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, topSelected);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$QuizzesStateTopSelectedLoadedCopyWith<_$QuizzesStateTopSelectedLoaded>
-      get copyWith => __$$QuizzesStateTopSelectedLoadedCopyWithImpl<
-          _$QuizzesStateTopSelectedLoaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(TopSelected topSelected) topSelectedLoaded,
-    required TResult Function(List<Topic> topics) topicsLoaded,
-    required TResult Function() error,
-  }) {
-    return topSelectedLoaded(topSelected);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult? Function(List<Topic> topics)? topicsLoaded,
-    TResult? Function()? error,
-  }) {
-    return topSelectedLoaded?.call(topSelected);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult Function(List<Topic> topics)? topicsLoaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (topSelectedLoaded != null) {
-      return topSelectedLoaded(topSelected);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateTopSelectedLoaded value)
-        topSelectedLoaded,
-    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
-    required TResult Function(QuizzesStateError value) error,
-  }) {
-    return topSelectedLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult? Function(QuizzesStateError value)? error,
-  }) {
-    return topSelectedLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult Function(QuizzesStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (topSelectedLoaded != null) {
-      return topSelectedLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class QuizzesStateTopSelectedLoaded implements QuizzesState {
-  const factory QuizzesStateTopSelectedLoaded(
-          {required final TopSelected topSelected}) =
-      _$QuizzesStateTopSelectedLoaded;
-
-  TopSelected get topSelected;
-  @JsonKey(ignore: true)
-  _$$QuizzesStateTopSelectedLoadedCopyWith<_$QuizzesStateTopSelectedLoaded>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$QuizzesStateTopicsLoadedCopyWith<$Res> {
-  factory _$$QuizzesStateTopicsLoadedCopyWith(_$QuizzesStateTopicsLoaded value,
-          $Res Function(_$QuizzesStateTopicsLoaded) then) =
-      __$$QuizzesStateTopicsLoadedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Topic> topics});
-}
-
-/// @nodoc
-class __$$QuizzesStateTopicsLoadedCopyWithImpl<$Res>
-    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateTopicsLoaded>
-    implements _$$QuizzesStateTopicsLoadedCopyWith<$Res> {
-  __$$QuizzesStateTopicsLoadedCopyWithImpl(_$QuizzesStateTopicsLoaded _value,
-      $Res Function(_$QuizzesStateTopicsLoaded) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? topics = null,
-  }) {
-    return _then(_$QuizzesStateTopicsLoaded(
-      topics: null == topics
-          ? _value._topics
-          : topics // ignore: cast_nullable_to_non_nullable
-              as List<Topic>,
+    return _then(_$_QuizzesEventGetQuestionsList(
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$QuizzesStateTopicsLoaded implements QuizzesStateTopicsLoaded {
-  const _$QuizzesStateTopicsLoaded({required final List<Topic> topics})
-      : _topics = topics;
+class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
+  const _$_QuizzesEventGetQuestionsList(
+      {required this.topic, required this.count});
 
-  final List<Topic> _topics;
   @override
-  List<Topic> get topics {
-    if (_topics is EqualUnmodifiableListView) return _topics;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_topics);
-  }
+  final String topic;
+  @override
+  final int count;
 
   @override
   String toString() {
-    return 'QuizzesState.topicsLoaded(topics: $topics)';
+    return 'QuizzesEvent.getQuestionsList(topic: $topic, count: $count)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$QuizzesStateTopicsLoaded &&
-            const DeepCollectionEquality().equals(other._topics, _topics));
+            other is _$_QuizzesEventGetQuestionsList &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_topics));
+  int get hashCode => Object.hash(runtimeType, topic, count);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$QuizzesStateTopicsLoadedCopyWith<_$QuizzesStateTopicsLoaded>
-      get copyWith =>
-          __$$QuizzesStateTopicsLoadedCopyWithImpl<_$QuizzesStateTopicsLoaded>(
-              this, _$identity);
+  _$$_QuizzesEventGetQuestionsListCopyWith<_$_QuizzesEventGetQuestionsList>
+      get copyWith => __$$_QuizzesEventGetQuestionsListCopyWithImpl<
+          _$_QuizzesEventGetQuestionsList>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(TopSelected topSelected) topSelectedLoaded,
-    required TResult Function(List<Topic> topics) topicsLoaded,
-    required TResult Function() error,
+    required TResult Function() getTopSelected,
+    required TResult Function(String category) getTopicsList,
+    required TResult Function(String topic, int count) getQuestionsList,
   }) {
-    return topicsLoaded(topics);
+    return getQuestionsList(topic, count);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult? Function(List<Topic> topics)? topicsLoaded,
-    TResult? Function()? error,
+    TResult? Function()? getTopSelected,
+    TResult? Function(String category)? getTopicsList,
+    TResult? Function(String topic, int count)? getQuestionsList,
   }) {
-    return topicsLoaded?.call(topics);
+    return getQuestionsList?.call(topic, count);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult Function(List<Topic> topics)? topicsLoaded,
-    TResult Function()? error,
+    TResult Function()? getTopSelected,
+    TResult Function(String category)? getTopicsList,
+    TResult Function(String topic, int count)? getQuestionsList,
     required TResult orElse(),
   }) {
-    if (topicsLoaded != null) {
-      return topicsLoaded(topics);
+    if (getQuestionsList != null) {
+      return getQuestionsList(topic, count);
     }
     return orElse();
   }
@@ -776,163 +665,47 @@ class _$QuizzesStateTopicsLoaded implements QuizzesStateTopicsLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateTopSelectedLoaded value)
-        topSelectedLoaded,
-    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
-    required TResult Function(QuizzesStateError value) error,
+    required TResult Function(_QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetQuestionsList value)
+        getQuestionsList,
   }) {
-    return topicsLoaded(this);
+    return getQuestionsList(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult? Function(QuizzesStateError value)? error,
+    TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
   }) {
-    return topicsLoaded?.call(this);
+    return getQuestionsList?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult Function(QuizzesStateError value)? error,
+    TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
     required TResult orElse(),
   }) {
-    if (topicsLoaded != null) {
-      return topicsLoaded(this);
+    if (getQuestionsList != null) {
+      return getQuestionsList(this);
     }
     return orElse();
   }
 }
 
-abstract class QuizzesStateTopicsLoaded implements QuizzesState {
-  const factory QuizzesStateTopicsLoaded({required final List<Topic> topics}) =
-      _$QuizzesStateTopicsLoaded;
+abstract class _QuizzesEventGetQuestionsList implements QuizzesEvent {
+  const factory _QuizzesEventGetQuestionsList(
+      {required final String topic,
+      required final int count}) = _$_QuizzesEventGetQuestionsList;
 
-  List<Topic> get topics;
+  String get topic;
+  int get count;
   @JsonKey(ignore: true)
-  _$$QuizzesStateTopicsLoadedCopyWith<_$QuizzesStateTopicsLoaded>
+  _$$_QuizzesEventGetQuestionsListCopyWith<_$_QuizzesEventGetQuestionsList>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$QuizzesStateErrorCopyWith<$Res> {
-  factory _$$QuizzesStateErrorCopyWith(
-          _$QuizzesStateError value, $Res Function(_$QuizzesStateError) then) =
-      __$$QuizzesStateErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$QuizzesStateErrorCopyWithImpl<$Res>
-    extends _$QuizzesStateCopyWithImpl<$Res, _$QuizzesStateError>
-    implements _$$QuizzesStateErrorCopyWith<$Res> {
-  __$$QuizzesStateErrorCopyWithImpl(
-      _$QuizzesStateError _value, $Res Function(_$QuizzesStateError) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$QuizzesStateError implements QuizzesStateError {
-  const _$QuizzesStateError();
-
-  @override
-  String toString() {
-    return 'QuizzesState.error()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$QuizzesStateError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(TopSelected topSelected) topSelectedLoaded,
-    required TResult Function(List<Topic> topics) topicsLoaded,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult? Function(List<Topic> topics)? topicsLoaded,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(TopSelected topSelected)? topSelectedLoaded,
-    TResult Function(List<Topic> topics)? topicsLoaded,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(QuizzesStateLoading value) loading,
-    required TResult Function(QuizzesStateTopSelectedLoaded value)
-        topSelectedLoaded,
-    required TResult Function(QuizzesStateTopicsLoaded value) topicsLoaded,
-    required TResult Function(QuizzesStateError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(QuizzesStateLoading value)? loading,
-    TResult? Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult? Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult? Function(QuizzesStateError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(QuizzesStateLoading value)? loading,
-    TResult Function(QuizzesStateTopSelectedLoaded value)? topSelectedLoaded,
-    TResult Function(QuizzesStateTopicsLoaded value)? topicsLoaded,
-    TResult Function(QuizzesStateError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class QuizzesStateError implements QuizzesState {
-  const factory QuizzesStateError() = _$QuizzesStateError;
 }
