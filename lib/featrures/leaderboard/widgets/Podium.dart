@@ -30,9 +30,15 @@ class _PodiumState extends State<Podium> {
     List<Leader> leaderboard = widget.podium;
 
     List<Position> positions = [
-      Position(left: 50, top: 60),
-      Position(left: Device.screenWidth / 2.5, top: 15),
-      Position(right: 50, top: 80),
+      Position(
+          left: Device.get().isTablet ? 0 : 50,
+          top: Device.get().isTablet ? 120 : 60),
+      Position(
+          left: Device.get().isTablet ? 240 : Device.screenWidth / 2.5,
+          top: Device.get().isTablet ? 0 : 15),
+      Position(
+          right: Device.get().isTablet ? 0 : 50,
+          top: Device.get().isTablet ? 170 : 80),
     ];
 
     return SizedBox(
@@ -52,13 +58,13 @@ class _PodiumState extends State<Podium> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(100)),
                           child: Container(
-                            height: 60,
-                            width: 60,
+                            width: Device.get().isTablet ? 120 : 60,
+                            height: Device.get().isTablet ? 120 : 60,
                             color: Colors.white,
                             child: Image.memory(
                               base64Decode(leaderboard[index].avatar),
-                              width: 60,
-                              height: 60,
+                              width: Device.get().isTablet ? 120 : 60,
+                              height: Device.get().isTablet ? 120 : 60,
                               fit: BoxFit.cover,
                             ),
                           )),

@@ -116,3 +116,16 @@ class ReviewQuizScreenArgs with _$ReviewQuizScreenArgs {
   factory ReviewQuizScreenArgs.fromJson(Map<String, dynamic> json) =>
       _$ReviewQuizScreenArgsFromJson(json);
 }
+
+@freezed
+class CompletedQuiz with _$CompletedQuiz {
+  const factory CompletedQuiz({
+    required String category,
+    required int donePercentage,
+    required int questionsTotal,
+    required int questionsAnswered,
+  }) = _CompletedQuiz;
+
+  factory CompletedQuiz.fromJson(Map<String, dynamic> json) =>
+      _$CompletedQuizFromJson(json);
+}

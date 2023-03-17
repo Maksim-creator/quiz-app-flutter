@@ -1985,3 +1985,219 @@ abstract class _ReviewQuizScreenArgs implements ReviewQuizScreenArgs {
   _$$_ReviewQuizScreenArgsCopyWith<_$_ReviewQuizScreenArgs> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+CompletedQuiz _$CompletedQuizFromJson(Map<String, dynamic> json) {
+  return _CompletedQuiz.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CompletedQuiz {
+  String get category => throw _privateConstructorUsedError;
+  int get donePercentage => throw _privateConstructorUsedError;
+  int get questionsTotal => throw _privateConstructorUsedError;
+  int get questionsAnswered => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CompletedQuizCopyWith<CompletedQuiz> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CompletedQuizCopyWith<$Res> {
+  factory $CompletedQuizCopyWith(
+          CompletedQuiz value, $Res Function(CompletedQuiz) then) =
+      _$CompletedQuizCopyWithImpl<$Res, CompletedQuiz>;
+  @useResult
+  $Res call(
+      {String category,
+      int donePercentage,
+      int questionsTotal,
+      int questionsAnswered});
+}
+
+/// @nodoc
+class _$CompletedQuizCopyWithImpl<$Res, $Val extends CompletedQuiz>
+    implements $CompletedQuizCopyWith<$Res> {
+  _$CompletedQuizCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? donePercentage = null,
+    Object? questionsTotal = null,
+    Object? questionsAnswered = null,
+  }) {
+    return _then(_value.copyWith(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      donePercentage: null == donePercentage
+          ? _value.donePercentage
+          : donePercentage // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsTotal: null == questionsTotal
+          ? _value.questionsTotal
+          : questionsTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsAnswered: null == questionsAnswered
+          ? _value.questionsAnswered
+          : questionsAnswered // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CompletedQuizCopyWith<$Res>
+    implements $CompletedQuizCopyWith<$Res> {
+  factory _$$_CompletedQuizCopyWith(
+          _$_CompletedQuiz value, $Res Function(_$_CompletedQuiz) then) =
+      __$$_CompletedQuizCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String category,
+      int donePercentage,
+      int questionsTotal,
+      int questionsAnswered});
+}
+
+/// @nodoc
+class __$$_CompletedQuizCopyWithImpl<$Res>
+    extends _$CompletedQuizCopyWithImpl<$Res, _$_CompletedQuiz>
+    implements _$$_CompletedQuizCopyWith<$Res> {
+  __$$_CompletedQuizCopyWithImpl(
+      _$_CompletedQuiz _value, $Res Function(_$_CompletedQuiz) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? donePercentage = null,
+    Object? questionsTotal = null,
+    Object? questionsAnswered = null,
+  }) {
+    return _then(_$_CompletedQuiz(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      donePercentage: null == donePercentage
+          ? _value.donePercentage
+          : donePercentage // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsTotal: null == questionsTotal
+          ? _value.questionsTotal
+          : questionsTotal // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsAnswered: null == questionsAnswered
+          ? _value.questionsAnswered
+          : questionsAnswered // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CompletedQuiz with DiagnosticableTreeMixin implements _CompletedQuiz {
+  const _$_CompletedQuiz(
+      {required this.category,
+      required this.donePercentage,
+      required this.questionsTotal,
+      required this.questionsAnswered});
+
+  factory _$_CompletedQuiz.fromJson(Map<String, dynamic> json) =>
+      _$$_CompletedQuizFromJson(json);
+
+  @override
+  final String category;
+  @override
+  final int donePercentage;
+  @override
+  final int questionsTotal;
+  @override
+  final int questionsAnswered;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CompletedQuiz(category: $category, donePercentage: $donePercentage, questionsTotal: $questionsTotal, questionsAnswered: $questionsAnswered)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CompletedQuiz'))
+      ..add(DiagnosticsProperty('category', category))
+      ..add(DiagnosticsProperty('donePercentage', donePercentage))
+      ..add(DiagnosticsProperty('questionsTotal', questionsTotal))
+      ..add(DiagnosticsProperty('questionsAnswered', questionsAnswered));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CompletedQuiz &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.donePercentage, donePercentage) ||
+                other.donePercentage == donePercentage) &&
+            (identical(other.questionsTotal, questionsTotal) ||
+                other.questionsTotal == questionsTotal) &&
+            (identical(other.questionsAnswered, questionsAnswered) ||
+                other.questionsAnswered == questionsAnswered));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, category, donePercentage, questionsTotal, questionsAnswered);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CompletedQuizCopyWith<_$_CompletedQuiz> get copyWith =>
+      __$$_CompletedQuizCopyWithImpl<_$_CompletedQuiz>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CompletedQuizToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CompletedQuiz implements CompletedQuiz {
+  const factory _CompletedQuiz(
+      {required final String category,
+      required final int donePercentage,
+      required final int questionsTotal,
+      required final int questionsAnswered}) = _$_CompletedQuiz;
+
+  factory _CompletedQuiz.fromJson(Map<String, dynamic> json) =
+      _$_CompletedQuiz.fromJson;
+
+  @override
+  String get category;
+  @override
+  int get donePercentage;
+  @override
+  int get questionsTotal;
+  @override
+  int get questionsAnswered;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CompletedQuizCopyWith<_$_CompletedQuiz> get copyWith =>
+      throw _privateConstructorUsedError;
+}

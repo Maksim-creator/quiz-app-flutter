@@ -91,7 +91,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                 : QuizWidget(
                     topic: widget.topic,
                     questions: state.questions,
-                  ));
+                    category: state.questions[0].category));
       },
     );
   }
