@@ -14,6 +14,8 @@ import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 import 'package:quizz_app/featrures/repositories/categories_repo.dart';
 import 'package:quizz_app/featrures/repositories/leaderboard_repo.dart';
 import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
+import 'package:quizz_app/featrures/repositories/user_repo.dart';
+import 'package:quizz_app/featrures/user/bloc/user_bloc.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'featrures/auth/screens/InitialScreen.dart';
@@ -44,6 +46,7 @@ class _MyAppState extends State<MyApp> {
     final categoriesRepository = CategoriesRepo();
     final quizzesRepository = QuizzesRepo();
     final leaderboardRepo = LeaderboardRepo();
+    final userRepo = UserRepo();
 
     return MultiBlocProvider(
       providers: [
@@ -59,6 +62,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
             create: (BuildContext context) =>
                 LeaderboardBloc(leaderboardRepo: leaderboardRepo)),
+        BlocProvider(
+            create: (BuildContext conttext) => UserBloc(userRepo: userRepo))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

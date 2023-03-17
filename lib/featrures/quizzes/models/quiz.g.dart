@@ -158,3 +158,19 @@ Map<String, dynamic> _$$_ReviewQuizScreenArgsToJson(
       'incorrectAnswers': instance.incorrectAnswers,
       'topic': instance.topic,
     };
+
+_$_CompletedQuiz _$$_CompletedQuizFromJson(Map<String, dynamic> json) =>
+    _$_CompletedQuiz(
+      category: json['category'] as String,
+      donePercentage: json['donePercentage'] as int,
+      questionsTotal: json['questionsTotal'] as int,
+      questionsAnswered: json['questionsAnswered'] as int,
+    );
+
+Map<String, dynamic> _$$_CompletedQuizToJson(_$_CompletedQuiz instance) =>
+    <String, dynamic>{
+      'category': instance.category,
+      'donePercentage': instance.donePercentage,
+      'questionsTotal': instance.questionsTotal,
+      'questionsAnswered': instance.questionsAnswered,
+    };

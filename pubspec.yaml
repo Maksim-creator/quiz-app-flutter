@@ -48,6 +48,8 @@ dependencies:
   shared_preferences: ^2.0.18
   flutter_share: ^2.0.0
   image_picker: ^0.8.6
+  indexed: ^0.0.8
+  fl_chart: ^0.61.0
 
 dev_dependencies:
   flutter_test:

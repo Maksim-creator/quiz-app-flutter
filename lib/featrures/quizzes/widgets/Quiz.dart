@@ -11,8 +11,13 @@ import 'QuizHeader.dart';
 class QuizWidget extends StatefulWidget {
   final List<Question>? questions;
   final String topic;
+  final String category;
 
-  const QuizWidget({super.key, required this.questions, required this.topic});
+  const QuizWidget(
+      {super.key,
+      required this.questions,
+      required this.topic,
+      required this.category});
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -66,17 +71,27 @@ class _QuizWidgetState extends State<QuizWidget> {
   }
 
   void finishQuiz() {
-    UserRepo().updateUserPoints(_points).then((value) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (BuildContext context) => ReviewQuiz(
-                questions: widget.questions!,
-                score: score,
-                skipped: skipped,
-                incorrectAnswers: _incorrectAnswers,
-                topic: widget.topic),
-          ),
-          (route) => false);
+    UserRepo().updateUserPoints(_points).then((value) {}).then((value) {
+      UserRepo()
+          .postCompletedQuiz(
+              completedQuiz: CompletedQuiz(
+                  category: widget.category,
+                  donePercentage:
+                      ((score / widget.questions!.length) * 100).floor(),
+                  questionsTotal: widget.questions!.length,
+                  questionsAnswered: score))
+          .then((value) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (BuildContext context) => ReviewQuiz(
+                  questions: widget.questions!,
+                  score: score,
+                  skipped: skipped,
+                  incorrectAnswers: _incorrectAnswers,
+                  topic: widget.topic),
+            ),
+            (route) => false);
+      });
     });
   }
 
