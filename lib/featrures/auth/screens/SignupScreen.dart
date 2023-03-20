@@ -36,14 +36,8 @@ class SignupScreenState extends State<SignupScreen> {
           confirmPassword: confirmPassword.text,
           name: name.text);
 
-      context
-          .read<AuthBloc>()
-          .add(AuthEvent.registration(signUpData: signUpData));
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomTabs()),
-      );
+      context.read<AuthBloc>().add(
+          AuthEvent.registration(signUpData: signUpData, context: context));
     } catch (e) {
       throw Exception();
     }
