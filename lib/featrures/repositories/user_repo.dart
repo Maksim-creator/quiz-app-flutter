@@ -83,7 +83,7 @@ class UserRepo {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String? token = prefs.getString('token');
-    print(token);
+
     if (token != null) {
       http.Response response = await http.get(url, headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ class UserRepo {
       final dynamic data = jsonDecode(response.body);
 
       UserQuizData quizData = UserQuizData.fromJson(data);
-      print(quizData);
+
       return quizData;
     }
 

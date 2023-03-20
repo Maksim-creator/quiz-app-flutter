@@ -37,19 +37,25 @@ class _ProfileState extends State<Profile> {
                 padding: Device.get().isIphoneX
                     ? const EdgeInsets.symmetric(vertical: 50)
                     : const EdgeInsets.symmetric(vertical: 40),
-                child: const Row(
+                child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.chevron_left,
                         size: 32,
                         color: Colors.white,
                       ),
-                      Icon(
-                        Icons.settings,
-                        size: 25,
-                        color: Colors.white,
-                      )
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              '/main_screen/settings',
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.settings,
+                            size: 25,
+                            color: Colors.white,
+                          ))
                     ]),
               ),
               Positioned(
@@ -60,8 +66,8 @@ class _ProfileState extends State<Profile> {
                     child: SvgPicture.asset(circleAsset),
                   )),
               Positioned(
-                  right: -30,
-                  top: -40,
+                  right: -70,
+                  top: 100,
                   child: Transform.scale(
                     scale: 0.9,
                     child: SvgPicture.asset(circleAsset),

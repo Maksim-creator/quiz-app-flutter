@@ -28,7 +28,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         context.read<AuthBloc>().add(AuthEvent.uploadAvatar(avatar: file));
       }
     } catch (e) {
-      print(e);
+      throw Exception();
     }
   }
 
