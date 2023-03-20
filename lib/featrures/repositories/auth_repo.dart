@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:either_dart/either.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizz_app/featrures/auth/utils/entities.dart';
 import 'package:quizz_app/featrures/repositories/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/models/user_data.dart';
 
+typedef EitherData<T> = Future<Either<String, T>>;
+
 class AuthRepo {
-  Future<UserData> signIn(SignInData signInData) async {
+  EitherData<UserData> signIn(SignInData signInData) async {
     final url = Uri.parse('$baseUrl/auth/login');
 
     try {
@@ -17,17 +19,22 @@ class AuthRepo {
           body: {'email': signInData.email, 'password': signInData.password});
 
       final Map<String, dynamic> jsonData = json.decode(response.body);
+
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      prefs.setString('token', jsonData['token']);
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return Left(jsonData['message']);
+      } else {
+        prefs.setString('token', jsonData['token']);
 
-      return UserData.fromJson(jsonData);
+        return Right(UserData.fromJson(jsonData));
+      }
     } catch (e) {
       throw Exception(e.toString());
     }
   }
 
-  Future<UserData> signUp(SignUpData signUpData) async {
+  EitherData<UserData> signUp(SignUpData signUpData) async {
     final url = Uri.parse('$baseUrl/auth/registration');
 
     try {
@@ -41,9 +48,13 @@ class AuthRepo {
       final Map<String, dynamic> jsonData = json.decode(response.body);
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      prefs.setString('token', jsonData['token']);
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return Left(jsonData['message']);
+      } else {
+        prefs.setString('token', jsonData['token']);
 
-      return UserData.fromJson(jsonData);
+        return Right(UserData.fromJson(jsonData));
+      }
     } catch (e) {
       throw Exception(e.toString());
     }

@@ -16,6 +16,8 @@ class CircularGraph extends StatefulWidget {
 class _CircularGraphState extends State<CircularGraph> {
   @override
   Widget build(BuildContext context) {
+    bool isNaN = (widget.playedQuizzes / widget.totalQuizzes).isNaN;
+
     return Expanded(
         child: Stack(children: [
       Center(
@@ -24,7 +26,7 @@ class _CircularGraphState extends State<CircularGraph> {
           child: CircularProgressIndicator(
             color: ColorConstants.violet,
             backgroundColor: Colors.white,
-            value: widget.playedQuizzes / widget.totalQuizzes,
+            value: isNaN ? 0 : widget.playedQuizzes / widget.totalQuizzes,
             strokeWidth: 3,
           ),
         ),

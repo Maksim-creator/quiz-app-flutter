@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/user/home/widgets/BarGraphLegend.dart';
 import 'package:quizz_app/featrures/user/models/chartData.dart';
@@ -22,6 +23,9 @@ class BarGraphWidget extends StatefulWidget {
 }
 
 class _BarGraphWidgetState extends State<BarGraphWidget> {
+  String notFoundQuizData =
+      'lib/assets/lottieAnimations/completedQuizzesNotFound.json';
+
   BarChartGroupData generateGroupData(int x, double y, Color color) {
     return BarChartGroupData(
       x: x,
@@ -70,7 +74,7 @@ class _BarGraphWidgetState extends State<BarGraphWidget> {
                 (e) => Legend(color: e.color, label: e.category),
               )
               .toList();
-
+          print(chartData);
           return Column(children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,102 +110,133 @@ class _BarGraphWidgetState extends State<BarGraphWidget> {
                       backgroundColor: ColorConstants.darkViolet,
                     ),
                   )
-                : Column(
-                    children: [
-                      BarGraphLegend(legendLabels: legendLabels),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        padding: const EdgeInsets.only(bottom: 30),
-                        height: 290,
-                        child: BarChart(
-                          BarChartData(
-                            maxY: 100,
-                            minY: 0,
-                            barTouchData: BarTouchData(enabled: false),
-                            titlesData: FlTitlesData(
-                                rightTitles:
-                                    AxisTitles(drawBehindEverything: false),
-                                topTitles:
-                                    AxisTitles(drawBehindEverything: false),
-                                leftTitles: AxisTitles(
-                                  axisNameSize: 25,
-                                  axisNameWidget: const Text(
-                                    'Average done percentage',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 10),
-                                  ),
-                                  sideTitles: SideTitles(
-                                    showTitles: true,
-                                    interval: 25,
-                                    reservedSize: 50,
-                                    getTitlesWidget: (value, meta) {
-                                      return Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          '${meta.formattedValue}%',
-                                          style: const TextStyle(
+                : chartData.isNotEmpty
+                    ? Column(
+                        children: [
+                          BarGraphLegend(legendLabels: legendLabels),
+                          Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            padding: const EdgeInsets.only(bottom: 30),
+                            height: 290,
+                            child: BarChart(
+                              BarChartData(
+                                maxY: 100,
+                                minY: 0,
+                                barTouchData: BarTouchData(enabled: false),
+                                titlesData: FlTitlesData(
+                                    rightTitles:
+                                        AxisTitles(drawBehindEverything: false),
+                                    topTitles:
+                                        AxisTitles(drawBehindEverything: false),
+                                    leftTitles: AxisTitles(
+                                      axisNameSize: 25,
+                                      axisNameWidget: const Text(
+                                        'Average done percentage',
+                                        style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                bottomTitles: AxisTitles(
-                                    sideTitles: SideTitles(
-                                  reservedSize: 54,
-                                  showTitles: true,
-                                  getTitlesWidget: (value, meta) {
-                                    return Column(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5),
-                                          child: Text(
-                                            '${chartData[int.parse(meta.formattedValue)].averageAnsweredQuestions}/${chartData[int.parse(meta.formattedValue)].averageTotalQuestions}',
-                                            style: const TextStyle(
+                                            fontSize: 10),
+                                      ),
+                                      sideTitles: SideTitles(
+                                        showTitles: true,
+                                        interval: 25,
+                                        reservedSize: 50,
+                                        getTitlesWidget: (value, meta) {
+                                          return Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              '${meta.formattedValue}%',
+                                              style: const TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 2),
-                                          child: Column(children: [
-                                            Text(
-                                              'Questions',
-                                              style: TextStyle(
-                                                  color: Colors.grey.shade400,
-                                                  fontSize: 10),
+                                              ),
                                             ),
-                                            Text(
-                                              'Answered',
-                                              style: TextStyle(
-                                                  color: Colors.grey.shade400,
-                                                  fontSize: 10),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    bottomTitles: AxisTitles(
+                                        sideTitles: SideTitles(
+                                      reservedSize: 54,
+                                      showTitles: true,
+                                      getTitlesWidget: (value, meta) {
+                                        return Column(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: Text(
+                                                '${chartData[int.parse(meta.formattedValue)].averageAnsweredQuestions}/${chartData[int.parse(meta.formattedValue)].averageTotalQuestions}',
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 13),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 2),
+                                              child: Column(children: [
+                                                Text(
+                                                  'Questions',
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      fontSize: 10),
+                                                ),
+                                                Text(
+                                                  'Answered',
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      fontSize: 10),
+                                                )
+                                              ]),
                                             )
-                                          ]),
-                                        )
-                                      ],
-                                    );
-                                  },
-                                ))),
-                            extraLinesData: ExtraLinesData(
-                              extraLinesOnTop: false,
-                              horizontalLines: renderHorizontalLines(),
+                                          ],
+                                        );
+                                      },
+                                    ))),
+                                extraLinesData: ExtraLinesData(
+                                  extraLinesOnTop: false,
+                                  horizontalLines: renderHorizontalLines(),
+                                ),
+                                borderData: FlBorderData(show: false),
+                                backgroundColor: Colors.transparent,
+                                barGroups: renderChartItems(chartData),
+                              ),
                             ),
-                            borderData: FlBorderData(show: false),
-                            backgroundColor: Colors.transparent,
-                            barGroups: renderChartItems(chartData),
                           ),
-                        ),
-                      ),
-                    ],
-                  )
+                        ],
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 40),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color:
+                                    ColorConstants.lightViolet.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 20),
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Try to participate in quizzes to find out the data on completed quizzes',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  LottieBuilder.asset(
+                                    notFoundQuizData,
+                                    height: 200,
+                                    width: 200,
+                                  )
+                                ],
+                              ),
+                            )),
+                      )
           ]);
         },
       ),

@@ -24,15 +24,12 @@ class _InitialScreenState extends State<InitialScreen> {
     String? login = await storage.read(key: "KEY_USERNAME");
     String? password = await storage.read(key: "KEY_PASSWORD");
 
-    if (login != null && password != null) {
+    if (login != null && password != null && context.mounted) {
       SignInData signInData = SignInData(email: login, password: password);
 
-      context.read<AuthBloc>().add(AuthEvent.login(signInData: signInData));
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomTabs()),
-      );
+      context
+          .read<AuthBloc>()
+          .add(AuthEvent.login(signInData: signInData, context: context));
     }
   }
 
@@ -41,7 +38,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
     super.initState();
-    _readFromStorage();
+    // _readFromStorage();
   }
 
   @override

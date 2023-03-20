@@ -29,7 +29,7 @@ class _CircularGraphWidgetState extends State<CircularGraphWidget> {
             decoration: BoxDecoration(
                 color: ColorConstants.lightViolet,
                 borderRadius: BorderRadius.circular(20)),
-            child: isLoading || quizData.favoriteTopic.isEmpty
+            child: isLoading
                 ? Center(
                     child: CircularProgressIndicator(
                       color: Colors.grey.shade200,

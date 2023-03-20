@@ -21,6 +21,7 @@ mixin _$AuthState {
   String get token => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
+  String get error => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,6 +40,7 @@ abstract class $AuthStateCopyWith<$Res> {
       String token,
       String name,
       String avatar,
+      String error,
       bool isLoading});
 
   $UserGameDataCopyWith<$Res> get data;
@@ -62,6 +64,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? token = null,
     Object? name = null,
     Object? avatar = null,
+    Object? error = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
@@ -84,6 +87,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       avatar: null == avatar
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -114,6 +121,7 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       String token,
       String name,
       String avatar,
+      String error,
       bool isLoading});
 
   @override
@@ -136,6 +144,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? token = null,
     Object? name = null,
     Object? avatar = null,
+    Object? error = null,
     Object? isLoading = null,
   }) {
     return _then(_$_AuthState(
@@ -159,6 +168,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -176,6 +189,7 @@ class _$_AuthState implements _AuthState {
       required this.token,
       required this.name,
       required this.avatar,
+      this.error = '',
       this.isLoading = false});
 
   @override
@@ -190,11 +204,14 @@ class _$_AuthState implements _AuthState {
   final String avatar;
   @override
   @JsonKey()
+  final String error;
+  @override
+  @JsonKey()
   final bool isLoading;
 
   @override
   String toString() {
-    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, isLoading: $isLoading)';
+    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, error: $error, isLoading: $isLoading)';
   }
 
   @override
@@ -207,13 +224,14 @@ class _$_AuthState implements _AuthState {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.error, error) || other.error == error) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, data, email, token, name, avatar, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType, data, email, token, name, avatar, error, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -229,6 +247,7 @@ abstract class _AuthState implements AuthState {
       required final String token,
       required final String name,
       required final String avatar,
+      final String error,
       final bool isLoading}) = _$_AuthState;
 
   @override
@@ -242,6 +261,8 @@ abstract class _AuthState implements AuthState {
   @override
   String get avatar;
   @override
+  String get error;
+  @override
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
@@ -253,22 +274,25 @@ abstract class _AuthState implements AuthState {
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInData signInData) login,
-    required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(SignInData signInData, BuildContext context)
+        login,
+    required TResult Function(SignUpData signUpData, BuildContext context)
+        registration,
     required TResult Function(File avatar) uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInData signInData)? login,
-    TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(SignInData signInData, BuildContext context)? login,
+    TResult? Function(SignUpData signUpData, BuildContext context)?
+        registration,
     TResult? Function(File avatar)? uploadAvatar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInData signInData)? login,
-    TResult Function(SignUpData signUpData)? registration,
+    TResult Function(SignInData signInData, BuildContext context)? login,
+    TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) =>
@@ -320,7 +344,7 @@ abstract class _$$_AuthEventLoginCopyWith<$Res> {
           _$_AuthEventLogin value, $Res Function(_$_AuthEventLogin) then) =
       __$$_AuthEventLoginCopyWithImpl<$Res>;
   @useResult
-  $Res call({SignInData signInData});
+  $Res call({SignInData signInData, BuildContext context});
 }
 
 /// @nodoc
@@ -335,12 +359,17 @@ class __$$_AuthEventLoginCopyWithImpl<$Res>
   @override
   $Res call({
     Object? signInData = null,
+    Object? context = null,
   }) {
     return _then(_$_AuthEventLogin(
       signInData: null == signInData
           ? _value.signInData
           : signInData // ignore: cast_nullable_to_non_nullable
               as SignInData,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ));
   }
 }
@@ -348,14 +377,16 @@ class __$$_AuthEventLoginCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthEventLogin implements _AuthEventLogin {
-  const _$_AuthEventLogin({required this.signInData});
+  const _$_AuthEventLogin({required this.signInData, required this.context});
 
   @override
   final SignInData signInData;
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'AuthEvent.login(signInData: $signInData)';
+    return 'AuthEvent.login(signInData: $signInData, context: $context)';
   }
 
   @override
@@ -364,11 +395,12 @@ class _$_AuthEventLogin implements _AuthEventLogin {
         (other.runtimeType == runtimeType &&
             other is _$_AuthEventLogin &&
             (identical(other.signInData, signInData) ||
-                other.signInData == signInData));
+                other.signInData == signInData) &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, signInData);
+  int get hashCode => Object.hash(runtimeType, signInData, context);
 
   @JsonKey(ignore: true)
   @override
@@ -379,33 +411,36 @@ class _$_AuthEventLogin implements _AuthEventLogin {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInData signInData) login,
-    required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(SignInData signInData, BuildContext context)
+        login,
+    required TResult Function(SignUpData signUpData, BuildContext context)
+        registration,
     required TResult Function(File avatar) uploadAvatar,
   }) {
-    return login(signInData);
+    return login(signInData, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInData signInData)? login,
-    TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(SignInData signInData, BuildContext context)? login,
+    TResult? Function(SignUpData signUpData, BuildContext context)?
+        registration,
     TResult? Function(File avatar)? uploadAvatar,
   }) {
-    return login?.call(signInData);
+    return login?.call(signInData, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInData signInData)? login,
-    TResult Function(SignUpData signUpData)? registration,
+    TResult Function(SignInData signInData, BuildContext context)? login,
+    TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (login != null) {
-      return login(signInData);
+      return login(signInData, context);
     }
     return orElse();
   }
@@ -446,10 +481,12 @@ class _$_AuthEventLogin implements _AuthEventLogin {
 }
 
 abstract class _AuthEventLogin implements AuthEvent {
-  const factory _AuthEventLogin({required final SignInData signInData}) =
-      _$_AuthEventLogin;
+  const factory _AuthEventLogin(
+      {required final SignInData signInData,
+      required final BuildContext context}) = _$_AuthEventLogin;
 
   SignInData get signInData;
+  BuildContext get context;
   @JsonKey(ignore: true)
   _$$_AuthEventLoginCopyWith<_$_AuthEventLogin> get copyWith =>
       throw _privateConstructorUsedError;
@@ -461,7 +498,7 @@ abstract class _$$_AuthEventRegistrationCopyWith<$Res> {
           $Res Function(_$_AuthEventRegistration) then) =
       __$$_AuthEventRegistrationCopyWithImpl<$Res>;
   @useResult
-  $Res call({SignUpData signUpData});
+  $Res call({SignUpData signUpData, BuildContext context});
 }
 
 /// @nodoc
@@ -476,12 +513,17 @@ class __$$_AuthEventRegistrationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? signUpData = null,
+    Object? context = null,
   }) {
     return _then(_$_AuthEventRegistration(
       signUpData: null == signUpData
           ? _value.signUpData
           : signUpData // ignore: cast_nullable_to_non_nullable
               as SignUpData,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ));
   }
 }
@@ -489,14 +531,17 @@ class __$$_AuthEventRegistrationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthEventRegistration implements _AuthEventRegistration {
-  const _$_AuthEventRegistration({required this.signUpData});
+  const _$_AuthEventRegistration(
+      {required this.signUpData, required this.context});
 
   @override
   final SignUpData signUpData;
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'AuthEvent.registration(signUpData: $signUpData)';
+    return 'AuthEvent.registration(signUpData: $signUpData, context: $context)';
   }
 
   @override
@@ -505,11 +550,12 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
         (other.runtimeType == runtimeType &&
             other is _$_AuthEventRegistration &&
             (identical(other.signUpData, signUpData) ||
-                other.signUpData == signUpData));
+                other.signUpData == signUpData) &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, signUpData);
+  int get hashCode => Object.hash(runtimeType, signUpData, context);
 
   @JsonKey(ignore: true)
   @override
@@ -521,33 +567,36 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInData signInData) login,
-    required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(SignInData signInData, BuildContext context)
+        login,
+    required TResult Function(SignUpData signUpData, BuildContext context)
+        registration,
     required TResult Function(File avatar) uploadAvatar,
   }) {
-    return registration(signUpData);
+    return registration(signUpData, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInData signInData)? login,
-    TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(SignInData signInData, BuildContext context)? login,
+    TResult? Function(SignUpData signUpData, BuildContext context)?
+        registration,
     TResult? Function(File avatar)? uploadAvatar,
   }) {
-    return registration?.call(signUpData);
+    return registration?.call(signUpData, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInData signInData)? login,
-    TResult Function(SignUpData signUpData)? registration,
+    TResult Function(SignInData signInData, BuildContext context)? login,
+    TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {
     if (registration != null) {
-      return registration(signUpData);
+      return registration(signUpData, context);
     }
     return orElse();
   }
@@ -588,10 +637,12 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
 }
 
 abstract class _AuthEventRegistration implements AuthEvent {
-  const factory _AuthEventRegistration({required final SignUpData signUpData}) =
-      _$_AuthEventRegistration;
+  const factory _AuthEventRegistration(
+      {required final SignUpData signUpData,
+      required final BuildContext context}) = _$_AuthEventRegistration;
 
   SignUpData get signUpData;
+  BuildContext get context;
   @JsonKey(ignore: true)
   _$$_AuthEventRegistrationCopyWith<_$_AuthEventRegistration> get copyWith =>
       throw _privateConstructorUsedError;
@@ -662,8 +713,10 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SignInData signInData) login,
-    required TResult Function(SignUpData signUpData) registration,
+    required TResult Function(SignInData signInData, BuildContext context)
+        login,
+    required TResult Function(SignUpData signUpData, BuildContext context)
+        registration,
     required TResult Function(File avatar) uploadAvatar,
   }) {
     return uploadAvatar(avatar);
@@ -672,8 +725,9 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SignInData signInData)? login,
-    TResult? Function(SignUpData signUpData)? registration,
+    TResult? Function(SignInData signInData, BuildContext context)? login,
+    TResult? Function(SignUpData signUpData, BuildContext context)?
+        registration,
     TResult? Function(File avatar)? uploadAvatar,
   }) {
     return uploadAvatar?.call(avatar);
@@ -682,8 +736,8 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SignInData signInData)? login,
-    TResult Function(SignUpData signUpData)? registration,
+    TResult Function(SignInData signInData, BuildContext context)? login,
+    TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
     required TResult orElse(),
   }) {

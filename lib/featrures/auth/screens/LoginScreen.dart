@@ -33,14 +33,14 @@ class LoginScreenState extends State<LoginScreen> {
       SignInData signInData = SignInData(
           email: loginController.text, password: passwordController.text);
 
-      context.read<AuthBloc>().add(AuthEvent.login(signInData: signInData));
-
-      Navigator.pushReplacementNamed(context, '/main_screen');
+      context
+          .read<AuthBloc>()
+          .add(AuthEvent.login(signInData: signInData, context: context));
 
       await storage.write(key: "KEY_USERNAME", value: loginController.text);
       await storage.write(key: "KEY_PASSWORD", value: passwordController.text);
     } catch (e) {
-      print(e);
+      print('${e.toString()} fgfg');
       throw Exception();
     }
   }
