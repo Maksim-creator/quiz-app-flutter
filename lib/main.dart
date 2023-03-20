@@ -17,6 +17,7 @@ import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/user/bloc/user_bloc.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
+import 'package:quizz_app/featrures/user/screens/Settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'featrures/auth/screens/InitialScreen.dart';
 import './featrures/quizzes/screens/CountSelection.dart';
@@ -106,7 +107,8 @@ class _MyAppState extends State<MyApp> {
               incorrectAnswers: args.incorrectAnswers,
               topic: args.topic,
             );
-          })
+          }),
+          '/main_screen/settings': ((context) => const Settings())
         },
         theme: ThemeData(scaffoldBackgroundColor: ColorConstants.violet),
       ),

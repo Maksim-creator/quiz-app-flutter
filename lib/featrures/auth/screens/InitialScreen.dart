@@ -38,7 +38,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   void initState() {
     super.initState();
-    // _readFromStorage();
+    _readFromStorage();
   }
 
   @override

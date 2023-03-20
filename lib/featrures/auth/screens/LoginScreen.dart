@@ -40,7 +40,6 @@ class LoginScreenState extends State<LoginScreen> {
       await storage.write(key: "KEY_USERNAME", value: loginController.text);
       await storage.write(key: "KEY_PASSWORD", value: passwordController.text);
     } catch (e) {
-      print('${e.toString()} fgfg');
       throw Exception();
     }
   }

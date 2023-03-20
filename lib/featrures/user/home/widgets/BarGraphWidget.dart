@@ -74,7 +74,7 @@ class _BarGraphWidgetState extends State<BarGraphWidget> {
                 (e) => Legend(color: e.color, label: e.category),
               )
               .toList();
-          print(chartData);
+
           return Column(children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
