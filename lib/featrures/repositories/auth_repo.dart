@@ -83,4 +83,64 @@ class AuthRepo {
       return newAvatar['data'];
     }
   }
+
+  EitherData<String> updateUsername(String username) async {
+    final url = Uri.parse('$baseUrl/users/updateUsername');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      final response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          },
+          body: jsonEncode({'username': username}));
+
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return Left(jsonData['message']);
+      } else {
+        return Right(jsonData['username']);
+      }
+    } else {
+      return const Left('Failed to get authorization');
+    }
+  }
+
+  Future<bool> checkIsPasswordValid(String password) async {
+    final url = Uri.parse('$baseUrl/users/checkIsPasswordValid');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString('token');
+    if (token != null) {
+      final response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          },
+          body: jsonEncode({'password': password}));
+
+      return json.decode(response.body);
+    }
+    return false;
+  }
+
+  EitherData<List<dynamic>> getAllCountries() async {
+    final url = Uri.parse('https://restcountries.com/v3.1/all?fields=cca2');
+
+    final response = await http.get(url);
+
+    final dynamic jsonData = json.decode(response.body);
+
+    if (response.statusCode >= 400 && response.statusCode < 500) {
+      return Left(jsonData['message']);
+    } else {
+      return Right(jsonData);
+    }
+  }
 }

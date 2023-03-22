@@ -19,7 +19,6 @@ class _SettingItemState extends State<SettingItem> {
       margin: EdgeInsets.symmetric(vertical: 7),
       child: TextButton(
           style: TextButton.styleFrom(
-              minimumSize: Size.zero,
               padding: EdgeInsets.zero,
               foregroundColor: Colors.transparent,
               shape: RoundedRectangleBorder(
@@ -27,7 +26,7 @@ class _SettingItemState extends State<SettingItem> {
               ),
               side: const BorderSide(width: 0, color: Colors.transparent),
               tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-          onPressed: () {},
+          onPressed: widget.settingTextItem.onPress,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             decoration: BoxDecoration(

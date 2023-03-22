@@ -7,8 +7,6 @@ import 'package:quizz_app/featrures/auth/models/user_data.dart';
 import 'package:quizz_app/featrures/auth/utils/entities.dart';
 import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 
-import '../../user/screens/BottomTabsNavigation.dart';
-
 part 'auth_bloc.freezed.dart';
 // part 'auth_bloc.g.dart';
 part 'auth_event.dart';
@@ -21,6 +19,8 @@ abstract class AuthState with _$AuthState {
     required String token,
     required String name,
     required String avatar,
+    @Default(false) bool isAvatarLoading,
+    @Default(false) bool isUsernameLoading,
     @Default('') String error,
     @Default(false) bool isLoading,
   }) = _AuthState;
@@ -103,15 +103,40 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       });
     }, uploadAvatar: (avatarFile) async* {
       final currentState = state;
-      final loadingState = currentState.copyWith(isLoading: true);
+      final loadingState = currentState.copyWith(isAvatarLoading: true);
       yield loadingState;
 
       String avatar = await authRepo.uploadUserAvatar(avatarFile);
 
       final updatedState =
-          currentState.copyWith(avatar: avatar, isLoading: false);
+          currentState.copyWith(avatar: avatar, isAvatarLoading: false);
 
       yield updatedState;
+    }, updateUsername: (newUsername, context) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isUsernameLoading: true);
+
+      yield loadingState;
+
+      Either<String, String> updatedUsername =
+          await authRepo.updateUsername(newUsername);
+
+      yield* updatedUsername.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          error: error,
+          isUsernameLoading: false,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red.shade600,
+          duration: const Duration(seconds: 2),
+          content: Text(error),
+        ));
+        yield updatedState;
+      }, (updatedUsername) async* {
+        final updatedState = loadingState.copyWith(
+            isUsernameLoading: false, name: updatedUsername);
+        yield updatedState;
+      });
     });
   }
 }

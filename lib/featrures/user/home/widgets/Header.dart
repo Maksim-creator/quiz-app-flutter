@@ -36,7 +36,7 @@ class _HomeHeaderState extends State<HomeHeader> {
   Widget build(BuildContext context) {
     Greeting greetingMessage = defineTimePeriod(DateTime.now().hour);
     return BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-      return state.isLoading
+      return state.isLoading || state.isAvatarLoading
           ? Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: Center(

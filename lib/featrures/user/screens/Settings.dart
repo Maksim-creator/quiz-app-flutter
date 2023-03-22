@@ -23,11 +23,13 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading: const Icon(
-            Icons.chevron_left,
-            color: Colors.black,
-            size: 32,
-          ),
+          leading: IconButton(
+              onPressed: () => Navigator.of(context).pushNamed('/main_screen'),
+              icon: const Icon(
+                Icons.chevron_left,
+                color: Colors.black,
+                size: 32,
+              )),
           title: const Text(
             'Settings',
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),

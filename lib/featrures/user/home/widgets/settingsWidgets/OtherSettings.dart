@@ -11,20 +11,27 @@ class OtherSettings extends StatefulWidget {
 }
 
 class _OtherSettingsState extends State<OtherSettings> {
-  List<SettingTextItem> otherSettings = [
-    SettingTextItem(
-        subtitle: 'Easy, normal, hard',
-        title: 'Change Difficulty',
-        icon: Icon(Icons.extension_outlined,
-            size: 27, color: ColorConstants.violet)),
-    SettingTextItem(
-        subtitle: 'Most frequently asked question',
-        title: 'FAQ',
-        icon: Icon(Icons.question_mark, size: 27, color: ColorConstants.violet))
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<SettingTextItem> otherSettings = [
+      SettingTextItem(
+          onPress: () => Navigator.of(context).pushNamed(
+                '/main_screen/settings',
+              ),
+          subtitle: 'Easy, normal, hard',
+          title: 'Change Difficulty',
+          icon: Icon(Icons.extension_outlined,
+              size: 27, color: ColorConstants.violet)),
+      SettingTextItem(
+          onPress: () => Navigator.of(context).pushNamed(
+                '/main_screen/settings',
+              ),
+          subtitle: 'Most frequently asked question',
+          title: 'FAQ',
+          icon:
+              Icon(Icons.question_mark, size: 27, color: ColorConstants.violet))
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(

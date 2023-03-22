@@ -18,6 +18,9 @@ import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/user/bloc/user_bloc.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
 import 'package:quizz_app/featrures/user/screens/Settings.dart';
+import 'package:quizz_app/featrures/user/screens/SettingsScreens/PassCheck.dart';
+import 'package:quizz_app/featrures/user/screens/SettingsScreens/UpdateProfile.dart';
+import 'package:quizz_app/featrures/user/screens/SettingsScreens/UsernameChange.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'featrures/auth/screens/InitialScreen.dart';
 import './featrures/quizzes/screens/CountSelection.dart';
@@ -108,7 +111,13 @@ class _MyAppState extends State<MyApp> {
               topic: args.topic,
             );
           }),
-          '/main_screen/settings': ((context) => const Settings())
+          '/main_screen/settings': ((context) => const Settings()),
+          '/main_screen/settings/update_profile': ((context) =>
+              const UpdateProfile()),
+          '/main_screen/settings/update_profile/password_check': ((context) =>
+              const PassCheck()),
+          '/main_screen/settings/update_profile/password_check/username_change':
+              ((context) => const UsernameChange())
         },
         theme: ThemeData(scaffoldBackgroundColor: ColorConstants.violet),
       ),

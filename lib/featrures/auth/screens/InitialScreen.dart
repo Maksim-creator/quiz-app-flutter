@@ -5,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
-
 import '../../../assets/colors.dart';
-import '../../user/screens/BottomTabsNavigation.dart';
 import '../utils/entities.dart';
 
 class InitialScreen extends StatefulWidget {

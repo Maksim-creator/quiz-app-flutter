@@ -10,4 +10,7 @@ class AuthEvent with _$AuthEvent {
       required BuildContext context}) = _AuthEventRegistration;
   const factory AuthEvent.uploadAvatar({required File avatar}) =
       _AuthEventUploadAvatar;
+  const factory AuthEvent.updateUsername(
+      {required String username,
+      required BuildContext context}) = _AuthEventUpdateUsername;
 }
