@@ -21,6 +21,8 @@ mixin _$AuthState {
   String get token => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get avatar => throw _privateConstructorUsedError;
+  bool get isAvatarLoading => throw _privateConstructorUsedError;
+  bool get isUsernameLoading => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
@@ -40,6 +42,8 @@ abstract class $AuthStateCopyWith<$Res> {
       String token,
       String name,
       String avatar,
+      bool isAvatarLoading,
+      bool isUsernameLoading,
       String error,
       bool isLoading});
 
@@ -64,6 +68,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? token = null,
     Object? name = null,
     Object? avatar = null,
+    Object? isAvatarLoading = null,
+    Object? isUsernameLoading = null,
     Object? error = null,
     Object? isLoading = null,
   }) {
@@ -88,6 +94,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      isAvatarLoading: null == isAvatarLoading
+          ? _value.isAvatarLoading
+          : isAvatarLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUsernameLoading: null == isUsernameLoading
+          ? _value.isUsernameLoading
+          : isUsernameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -121,6 +135,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       String token,
       String name,
       String avatar,
+      bool isAvatarLoading,
+      bool isUsernameLoading,
       String error,
       bool isLoading});
 
@@ -144,6 +160,8 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? token = null,
     Object? name = null,
     Object? avatar = null,
+    Object? isAvatarLoading = null,
+    Object? isUsernameLoading = null,
     Object? error = null,
     Object? isLoading = null,
   }) {
@@ -168,6 +186,14 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      isAvatarLoading: null == isAvatarLoading
+          ? _value.isAvatarLoading
+          : isAvatarLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUsernameLoading: null == isUsernameLoading
+          ? _value.isUsernameLoading
+          : isUsernameLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -189,6 +215,8 @@ class _$_AuthState implements _AuthState {
       required this.token,
       required this.name,
       required this.avatar,
+      this.isAvatarLoading = false,
+      this.isUsernameLoading = false,
       this.error = '',
       this.isLoading = false});
 
@@ -204,6 +232,12 @@ class _$_AuthState implements _AuthState {
   final String avatar;
   @override
   @JsonKey()
+  final bool isAvatarLoading;
+  @override
+  @JsonKey()
+  final bool isUsernameLoading;
+  @override
+  @JsonKey()
   final String error;
   @override
   @JsonKey()
@@ -211,7 +245,7 @@ class _$_AuthState implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, error: $error, isLoading: $isLoading)';
+    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, isAvatarLoading: $isAvatarLoading, isUsernameLoading: $isUsernameLoading, error: $error, isLoading: $isLoading)';
   }
 
   @override
@@ -224,14 +258,18 @@ class _$_AuthState implements _AuthState {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.isAvatarLoading, isAvatarLoading) ||
+                other.isAvatarLoading == isAvatarLoading) &&
+            (identical(other.isUsernameLoading, isUsernameLoading) ||
+                other.isUsernameLoading == isUsernameLoading) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, data, email, token, name, avatar, error, isLoading);
+  int get hashCode => Object.hash(runtimeType, data, email, token, name, avatar,
+      isAvatarLoading, isUsernameLoading, error, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -247,6 +285,8 @@ abstract class _AuthState implements AuthState {
       required final String token,
       required final String name,
       required final String avatar,
+      final bool isAvatarLoading,
+      final bool isUsernameLoading,
       final String error,
       final bool isLoading}) = _$_AuthState;
 
@@ -260,6 +300,10 @@ abstract class _AuthState implements AuthState {
   String get name;
   @override
   String get avatar;
+  @override
+  bool get isAvatarLoading;
+  @override
+  bool get isUsernameLoading;
   @override
   String get error;
   @override
@@ -279,6 +323,8 @@ mixin _$AuthEvent {
     required TResult Function(SignUpData signUpData, BuildContext context)
         registration,
     required TResult Function(File avatar) uploadAvatar,
+    required TResult Function(String username, BuildContext context)
+        updateUsername,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -287,6 +333,7 @@ mixin _$AuthEvent {
     TResult? Function(SignUpData signUpData, BuildContext context)?
         registration,
     TResult? Function(File avatar)? uploadAvatar,
+    TResult? Function(String username, BuildContext context)? updateUsername,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -294,6 +341,7 @@ mixin _$AuthEvent {
     TResult Function(SignInData signInData, BuildContext context)? login,
     TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
+    TResult Function(String username, BuildContext context)? updateUsername,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -302,6 +350,7 @@ mixin _$AuthEvent {
     required TResult Function(_AuthEventLogin value) login,
     required TResult Function(_AuthEventRegistration value) registration,
     required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
+    required TResult Function(_AuthEventUpdateUsername value) updateUsername,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -309,6 +358,7 @@ mixin _$AuthEvent {
     TResult? Function(_AuthEventLogin value)? login,
     TResult? Function(_AuthEventRegistration value)? registration,
     TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult? Function(_AuthEventUpdateUsername value)? updateUsername,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -316,6 +366,7 @@ mixin _$AuthEvent {
     TResult Function(_AuthEventLogin value)? login,
     TResult Function(_AuthEventRegistration value)? registration,
     TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult Function(_AuthEventUpdateUsername value)? updateUsername,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -416,6 +467,8 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     required TResult Function(SignUpData signUpData, BuildContext context)
         registration,
     required TResult Function(File avatar) uploadAvatar,
+    required TResult Function(String username, BuildContext context)
+        updateUsername,
   }) {
     return login(signInData, context);
   }
@@ -427,6 +480,7 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     TResult? Function(SignUpData signUpData, BuildContext context)?
         registration,
     TResult? Function(File avatar)? uploadAvatar,
+    TResult? Function(String username, BuildContext context)? updateUsername,
   }) {
     return login?.call(signInData, context);
   }
@@ -437,6 +491,7 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     TResult Function(SignInData signInData, BuildContext context)? login,
     TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
+    TResult Function(String username, BuildContext context)? updateUsername,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -451,6 +506,7 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     required TResult Function(_AuthEventLogin value) login,
     required TResult Function(_AuthEventRegistration value) registration,
     required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
+    required TResult Function(_AuthEventUpdateUsername value) updateUsername,
   }) {
     return login(this);
   }
@@ -461,6 +517,7 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     TResult? Function(_AuthEventLogin value)? login,
     TResult? Function(_AuthEventRegistration value)? registration,
     TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult? Function(_AuthEventUpdateUsername value)? updateUsername,
   }) {
     return login?.call(this);
   }
@@ -471,6 +528,7 @@ class _$_AuthEventLogin implements _AuthEventLogin {
     TResult Function(_AuthEventLogin value)? login,
     TResult Function(_AuthEventRegistration value)? registration,
     TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult Function(_AuthEventUpdateUsername value)? updateUsername,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -572,6 +630,8 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     required TResult Function(SignUpData signUpData, BuildContext context)
         registration,
     required TResult Function(File avatar) uploadAvatar,
+    required TResult Function(String username, BuildContext context)
+        updateUsername,
   }) {
     return registration(signUpData, context);
   }
@@ -583,6 +643,7 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     TResult? Function(SignUpData signUpData, BuildContext context)?
         registration,
     TResult? Function(File avatar)? uploadAvatar,
+    TResult? Function(String username, BuildContext context)? updateUsername,
   }) {
     return registration?.call(signUpData, context);
   }
@@ -593,6 +654,7 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     TResult Function(SignInData signInData, BuildContext context)? login,
     TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
+    TResult Function(String username, BuildContext context)? updateUsername,
     required TResult orElse(),
   }) {
     if (registration != null) {
@@ -607,6 +669,7 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     required TResult Function(_AuthEventLogin value) login,
     required TResult Function(_AuthEventRegistration value) registration,
     required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
+    required TResult Function(_AuthEventUpdateUsername value) updateUsername,
   }) {
     return registration(this);
   }
@@ -617,6 +680,7 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     TResult? Function(_AuthEventLogin value)? login,
     TResult? Function(_AuthEventRegistration value)? registration,
     TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult? Function(_AuthEventUpdateUsername value)? updateUsername,
   }) {
     return registration?.call(this);
   }
@@ -627,6 +691,7 @@ class _$_AuthEventRegistration implements _AuthEventRegistration {
     TResult Function(_AuthEventLogin value)? login,
     TResult Function(_AuthEventRegistration value)? registration,
     TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult Function(_AuthEventUpdateUsername value)? updateUsername,
     required TResult orElse(),
   }) {
     if (registration != null) {
@@ -718,6 +783,8 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     required TResult Function(SignUpData signUpData, BuildContext context)
         registration,
     required TResult Function(File avatar) uploadAvatar,
+    required TResult Function(String username, BuildContext context)
+        updateUsername,
   }) {
     return uploadAvatar(avatar);
   }
@@ -729,6 +796,7 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     TResult? Function(SignUpData signUpData, BuildContext context)?
         registration,
     TResult? Function(File avatar)? uploadAvatar,
+    TResult? Function(String username, BuildContext context)? updateUsername,
   }) {
     return uploadAvatar?.call(avatar);
   }
@@ -739,6 +807,7 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     TResult Function(SignInData signInData, BuildContext context)? login,
     TResult Function(SignUpData signUpData, BuildContext context)? registration,
     TResult Function(File avatar)? uploadAvatar,
+    TResult Function(String username, BuildContext context)? updateUsername,
     required TResult orElse(),
   }) {
     if (uploadAvatar != null) {
@@ -753,6 +822,7 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     required TResult Function(_AuthEventLogin value) login,
     required TResult Function(_AuthEventRegistration value) registration,
     required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
+    required TResult Function(_AuthEventUpdateUsername value) updateUsername,
   }) {
     return uploadAvatar(this);
   }
@@ -763,6 +833,7 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     TResult? Function(_AuthEventLogin value)? login,
     TResult? Function(_AuthEventRegistration value)? registration,
     TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult? Function(_AuthEventUpdateUsername value)? updateUsername,
   }) {
     return uploadAvatar?.call(this);
   }
@@ -773,6 +844,7 @@ class _$_AuthEventUploadAvatar implements _AuthEventUploadAvatar {
     TResult Function(_AuthEventLogin value)? login,
     TResult Function(_AuthEventRegistration value)? registration,
     TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult Function(_AuthEventUpdateUsername value)? updateUsername,
     required TResult orElse(),
   }) {
     if (uploadAvatar != null) {
@@ -790,4 +862,168 @@ abstract class _AuthEventUploadAvatar implements AuthEvent {
   @JsonKey(ignore: true)
   _$$_AuthEventUploadAvatarCopyWith<_$_AuthEventUploadAvatar> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AuthEventUpdateUsernameCopyWith<$Res> {
+  factory _$$_AuthEventUpdateUsernameCopyWith(_$_AuthEventUpdateUsername value,
+          $Res Function(_$_AuthEventUpdateUsername) then) =
+      __$$_AuthEventUpdateUsernameCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String username, BuildContext context});
+}
+
+/// @nodoc
+class __$$_AuthEventUpdateUsernameCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_AuthEventUpdateUsername>
+    implements _$$_AuthEventUpdateUsernameCopyWith<$Res> {
+  __$$_AuthEventUpdateUsernameCopyWithImpl(_$_AuthEventUpdateUsername _value,
+      $Res Function(_$_AuthEventUpdateUsername) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+    Object? context = null,
+  }) {
+    return _then(_$_AuthEventUpdateUsername(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthEventUpdateUsername implements _AuthEventUpdateUsername {
+  const _$_AuthEventUpdateUsername(
+      {required this.username, required this.context});
+
+  @override
+  final String username;
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'AuthEvent.updateUsername(username: $username, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AuthEventUpdateUsername &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, username, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AuthEventUpdateUsernameCopyWith<_$_AuthEventUpdateUsername>
+      get copyWith =>
+          __$$_AuthEventUpdateUsernameCopyWithImpl<_$_AuthEventUpdateUsername>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SignInData signInData, BuildContext context)
+        login,
+    required TResult Function(SignUpData signUpData, BuildContext context)
+        registration,
+    required TResult Function(File avatar) uploadAvatar,
+    required TResult Function(String username, BuildContext context)
+        updateUsername,
+  }) {
+    return updateUsername(username, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SignInData signInData, BuildContext context)? login,
+    TResult? Function(SignUpData signUpData, BuildContext context)?
+        registration,
+    TResult? Function(File avatar)? uploadAvatar,
+    TResult? Function(String username, BuildContext context)? updateUsername,
+  }) {
+    return updateUsername?.call(username, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SignInData signInData, BuildContext context)? login,
+    TResult Function(SignUpData signUpData, BuildContext context)? registration,
+    TResult Function(File avatar)? uploadAvatar,
+    TResult Function(String username, BuildContext context)? updateUsername,
+    required TResult orElse(),
+  }) {
+    if (updateUsername != null) {
+      return updateUsername(username, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AuthEventLogin value) login,
+    required TResult Function(_AuthEventRegistration value) registration,
+    required TResult Function(_AuthEventUploadAvatar value) uploadAvatar,
+    required TResult Function(_AuthEventUpdateUsername value) updateUsername,
+  }) {
+    return updateUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AuthEventLogin value)? login,
+    TResult? Function(_AuthEventRegistration value)? registration,
+    TResult? Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult? Function(_AuthEventUpdateUsername value)? updateUsername,
+  }) {
+    return updateUsername?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AuthEventLogin value)? login,
+    TResult Function(_AuthEventRegistration value)? registration,
+    TResult Function(_AuthEventUploadAvatar value)? uploadAvatar,
+    TResult Function(_AuthEventUpdateUsername value)? updateUsername,
+    required TResult orElse(),
+  }) {
+    if (updateUsername != null) {
+      return updateUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthEventUpdateUsername implements AuthEvent {
+  const factory _AuthEventUpdateUsername(
+      {required final String username,
+      required final BuildContext context}) = _$_AuthEventUpdateUsername;
+
+  String get username;
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$_AuthEventUpdateUsernameCopyWith<_$_AuthEventUpdateUsername>
+      get copyWith => throw _privateConstructorUsedError;
 }

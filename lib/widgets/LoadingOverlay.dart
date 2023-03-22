@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/assets/colors.dart';
 
 class LoadingOverlay extends StatelessWidget {
   Widget child;
@@ -17,8 +18,11 @@ class LoadingOverlay extends StatelessWidget {
             child: ModalBarrier(dismissible: false, color: Colors.black),
           ),
         if (loading)
-          const Center(
-            child: CircularProgressIndicator(),
+          Center(
+            child: CircularProgressIndicator(
+              color: ColorConstants.violet,
+              backgroundColor: Colors.white,
+            ),
           ),
       ],
     );
