@@ -26,6 +26,7 @@ class _LiveQuizzesListState extends State<LiveQuizzesList> {
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
         return Container(
+          height: Device.screenHeight / 1.5,
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
           decoration: const BoxDecoration(
             color: Colors.white,
