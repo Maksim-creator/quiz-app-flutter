@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserState {
   List<Badge> get badges => throw _privateConstructorUsedError;
   UserQuizData get quizData => throw _privateConstructorUsedError;
+  RecentQuiz get recentQuiz => throw _privateConstructorUsedError;
+  String get error => throw _privateConstructorUsedError;
+  bool get isRecentQuizLoading => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,9 +33,16 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({List<Badge> badges, UserQuizData quizData, bool isLoading});
+  $Res call(
+      {List<Badge> badges,
+      UserQuizData quizData,
+      RecentQuiz recentQuiz,
+      String error,
+      bool isRecentQuizLoading,
+      bool isLoading});
 
   $UserQuizDataCopyWith<$Res> get quizData;
+  $RecentQuizCopyWith<$Res> get recentQuiz;
 }
 
 /// @nodoc
@@ -50,6 +60,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? badges = null,
     Object? quizData = null,
+    Object? recentQuiz = null,
+    Object? error = null,
+    Object? isRecentQuizLoading = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
@@ -61,6 +74,18 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.quizData
           : quizData // ignore: cast_nullable_to_non_nullable
               as UserQuizData,
+      recentQuiz: null == recentQuiz
+          ? _value.recentQuiz
+          : recentQuiz // ignore: cast_nullable_to_non_nullable
+              as RecentQuiz,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+      isRecentQuizLoading: null == isRecentQuizLoading
+          ? _value.isRecentQuizLoading
+          : isRecentQuizLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -75,6 +100,14 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       return _then(_value.copyWith(quizData: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RecentQuizCopyWith<$Res> get recentQuiz {
+    return $RecentQuizCopyWith<$Res>(_value.recentQuiz, (value) {
+      return _then(_value.copyWith(recentQuiz: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -84,10 +117,18 @@ abstract class _$$_UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
       __$$_UserStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Badge> badges, UserQuizData quizData, bool isLoading});
+  $Res call(
+      {List<Badge> badges,
+      UserQuizData quizData,
+      RecentQuiz recentQuiz,
+      String error,
+      bool isRecentQuizLoading,
+      bool isLoading});
 
   @override
   $UserQuizDataCopyWith<$Res> get quizData;
+  @override
+  $RecentQuizCopyWith<$Res> get recentQuiz;
 }
 
 /// @nodoc
@@ -103,6 +144,9 @@ class __$$_UserStateCopyWithImpl<$Res>
   $Res call({
     Object? badges = null,
     Object? quizData = null,
+    Object? recentQuiz = null,
+    Object? error = null,
+    Object? isRecentQuizLoading = null,
     Object? isLoading = null,
   }) {
     return _then(_$_UserState(
@@ -114,6 +158,18 @@ class __$$_UserStateCopyWithImpl<$Res>
           ? _value.quizData
           : quizData // ignore: cast_nullable_to_non_nullable
               as UserQuizData,
+      recentQuiz: null == recentQuiz
+          ? _value.recentQuiz
+          : recentQuiz // ignore: cast_nullable_to_non_nullable
+              as RecentQuiz,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+      isRecentQuizLoading: null == isRecentQuizLoading
+          ? _value.isRecentQuizLoading
+          : isRecentQuizLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -128,6 +184,9 @@ class _$_UserState implements _UserState {
   const _$_UserState(
       {required final List<Badge> badges,
       required this.quizData,
+      required this.recentQuiz,
+      this.error = '',
+      this.isRecentQuizLoading = false,
       this.isLoading = false})
       : _badges = badges;
 
@@ -142,12 +201,20 @@ class _$_UserState implements _UserState {
   @override
   final UserQuizData quizData;
   @override
+  final RecentQuiz recentQuiz;
+  @override
+  @JsonKey()
+  final String error;
+  @override
+  @JsonKey()
+  final bool isRecentQuizLoading;
+  @override
   @JsonKey()
   final bool isLoading;
 
   @override
   String toString() {
-    return 'UserState(badges: $badges, quizData: $quizData, isLoading: $isLoading)';
+    return 'UserState(badges: $badges, quizData: $quizData, recentQuiz: $recentQuiz, error: $error, isRecentQuizLoading: $isRecentQuizLoading, isLoading: $isLoading)';
   }
 
   @override
@@ -158,13 +225,24 @@ class _$_UserState implements _UserState {
             const DeepCollectionEquality().equals(other._badges, _badges) &&
             (identical(other.quizData, quizData) ||
                 other.quizData == quizData) &&
+            (identical(other.recentQuiz, recentQuiz) ||
+                other.recentQuiz == recentQuiz) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.isRecentQuizLoading, isRecentQuizLoading) ||
+                other.isRecentQuizLoading == isRecentQuizLoading) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_badges), quizData, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_badges),
+      quizData,
+      recentQuiz,
+      error,
+      isRecentQuizLoading,
+      isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -177,12 +255,21 @@ abstract class _UserState implements UserState {
   const factory _UserState(
       {required final List<Badge> badges,
       required final UserQuizData quizData,
+      required final RecentQuiz recentQuiz,
+      final String error,
+      final bool isRecentQuizLoading,
       final bool isLoading}) = _$_UserState;
 
   @override
   List<Badge> get badges;
   @override
   UserQuizData get quizData;
+  @override
+  RecentQuiz get recentQuiz;
+  @override
+  String get error;
+  @override
+  bool get isRecentQuizLoading;
   @override
   bool get isLoading;
   @override
@@ -197,18 +284,28 @@ mixin _$UserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getBadges,
     required TResult Function() getUserQuizDetails,
+    required TResult Function(Material.BuildContext context) getRecentQuiz,
+    required TResult Function(
+            RecentQuiz recentQuiz, Material.BuildContext context)
+        postRecentQuiz,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getBadges,
     TResult? Function()? getUserQuizDetails,
+    TResult? Function(Material.BuildContext context)? getRecentQuiz,
+    TResult? Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getBadges,
     TResult Function()? getUserQuizDetails,
+    TResult Function(Material.BuildContext context)? getRecentQuiz,
+    TResult Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -217,18 +314,24 @@ mixin _$UserEvent {
     required TResult Function(_UserEventGetBadges value) getBadges,
     required TResult Function(_UserEventGetUserQuizDetails value)
         getUserQuizDetails,
+    required TResult Function(_UserEventGetRecentQuiz value) getRecentQuiz,
+    required TResult Function(_UserEventPostRecentQuiz value) postRecentQuiz,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UserEventGetBadges value)? getBadges,
     TResult? Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult? Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult? Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserEventGetBadges value)? getBadges,
     TResult Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -291,6 +394,10 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
   TResult when<TResult extends Object?>({
     required TResult Function() getBadges,
     required TResult Function() getUserQuizDetails,
+    required TResult Function(Material.BuildContext context) getRecentQuiz,
+    required TResult Function(
+            RecentQuiz recentQuiz, Material.BuildContext context)
+        postRecentQuiz,
   }) {
     return getBadges();
   }
@@ -300,6 +407,9 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getBadges,
     TResult? Function()? getUserQuizDetails,
+    TResult? Function(Material.BuildContext context)? getRecentQuiz,
+    TResult? Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
   }) {
     return getBadges?.call();
   }
@@ -309,6 +419,9 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getBadges,
     TResult Function()? getUserQuizDetails,
+    TResult Function(Material.BuildContext context)? getRecentQuiz,
+    TResult Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
     required TResult orElse(),
   }) {
     if (getBadges != null) {
@@ -323,6 +436,8 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
     required TResult Function(_UserEventGetBadges value) getBadges,
     required TResult Function(_UserEventGetUserQuizDetails value)
         getUserQuizDetails,
+    required TResult Function(_UserEventGetRecentQuiz value) getRecentQuiz,
+    required TResult Function(_UserEventPostRecentQuiz value) postRecentQuiz,
   }) {
     return getBadges(this);
   }
@@ -332,6 +447,8 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UserEventGetBadges value)? getBadges,
     TResult? Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult? Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult? Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
   }) {
     return getBadges?.call(this);
   }
@@ -341,6 +458,8 @@ class _$_UserEventGetBadges implements _UserEventGetBadges {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserEventGetBadges value)? getBadges,
     TResult Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
     required TResult orElse(),
   }) {
     if (getBadges != null) {
@@ -397,6 +516,10 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
   TResult when<TResult extends Object?>({
     required TResult Function() getBadges,
     required TResult Function() getUserQuizDetails,
+    required TResult Function(Material.BuildContext context) getRecentQuiz,
+    required TResult Function(
+            RecentQuiz recentQuiz, Material.BuildContext context)
+        postRecentQuiz,
   }) {
     return getUserQuizDetails();
   }
@@ -406,6 +529,9 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getBadges,
     TResult? Function()? getUserQuizDetails,
+    TResult? Function(Material.BuildContext context)? getRecentQuiz,
+    TResult? Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
   }) {
     return getUserQuizDetails?.call();
   }
@@ -415,6 +541,9 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getBadges,
     TResult Function()? getUserQuizDetails,
+    TResult Function(Material.BuildContext context)? getRecentQuiz,
+    TResult Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
     required TResult orElse(),
   }) {
     if (getUserQuizDetails != null) {
@@ -429,6 +558,8 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
     required TResult Function(_UserEventGetBadges value) getBadges,
     required TResult Function(_UserEventGetUserQuizDetails value)
         getUserQuizDetails,
+    required TResult Function(_UserEventGetRecentQuiz value) getRecentQuiz,
+    required TResult Function(_UserEventPostRecentQuiz value) postRecentQuiz,
   }) {
     return getUserQuizDetails(this);
   }
@@ -438,6 +569,8 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UserEventGetBadges value)? getBadges,
     TResult? Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult? Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult? Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
   }) {
     return getUserQuizDetails?.call(this);
   }
@@ -447,6 +580,8 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserEventGetBadges value)? getBadges,
     TResult Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
     required TResult orElse(),
   }) {
     if (getUserQuizDetails != null) {
@@ -458,4 +593,330 @@ class _$_UserEventGetUserQuizDetails implements _UserEventGetUserQuizDetails {
 
 abstract class _UserEventGetUserQuizDetails implements UserEvent {
   const factory _UserEventGetUserQuizDetails() = _$_UserEventGetUserQuizDetails;
+}
+
+/// @nodoc
+abstract class _$$_UserEventGetRecentQuizCopyWith<$Res> {
+  factory _$$_UserEventGetRecentQuizCopyWith(_$_UserEventGetRecentQuiz value,
+          $Res Function(_$_UserEventGetRecentQuiz) then) =
+      __$$_UserEventGetRecentQuizCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Material.BuildContext context});
+}
+
+/// @nodoc
+class __$$_UserEventGetRecentQuizCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_UserEventGetRecentQuiz>
+    implements _$$_UserEventGetRecentQuizCopyWith<$Res> {
+  __$$_UserEventGetRecentQuizCopyWithImpl(_$_UserEventGetRecentQuiz _value,
+      $Res Function(_$_UserEventGetRecentQuiz) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$_UserEventGetRecentQuiz(
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as Material.BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserEventGetRecentQuiz implements _UserEventGetRecentQuiz {
+  const _$_UserEventGetRecentQuiz(this.context);
+
+  @override
+  final Material.BuildContext context;
+
+  @override
+  String toString() {
+    return 'UserEvent.getRecentQuiz(context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserEventGetRecentQuiz &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserEventGetRecentQuizCopyWith<_$_UserEventGetRecentQuiz> get copyWith =>
+      __$$_UserEventGetRecentQuizCopyWithImpl<_$_UserEventGetRecentQuiz>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getBadges,
+    required TResult Function() getUserQuizDetails,
+    required TResult Function(Material.BuildContext context) getRecentQuiz,
+    required TResult Function(
+            RecentQuiz recentQuiz, Material.BuildContext context)
+        postRecentQuiz,
+  }) {
+    return getRecentQuiz(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getBadges,
+    TResult? Function()? getUserQuizDetails,
+    TResult? Function(Material.BuildContext context)? getRecentQuiz,
+    TResult? Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
+  }) {
+    return getRecentQuiz?.call(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getBadges,
+    TResult Function()? getUserQuizDetails,
+    TResult Function(Material.BuildContext context)? getRecentQuiz,
+    TResult Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
+    required TResult orElse(),
+  }) {
+    if (getRecentQuiz != null) {
+      return getRecentQuiz(context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventGetBadges value) getBadges,
+    required TResult Function(_UserEventGetUserQuizDetails value)
+        getUserQuizDetails,
+    required TResult Function(_UserEventGetRecentQuiz value) getRecentQuiz,
+    required TResult Function(_UserEventPostRecentQuiz value) postRecentQuiz,
+  }) {
+    return getRecentQuiz(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventGetBadges value)? getBadges,
+    TResult? Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult? Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult? Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
+  }) {
+    return getRecentQuiz?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventGetBadges value)? getBadges,
+    TResult Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
+    required TResult orElse(),
+  }) {
+    if (getRecentQuiz != null) {
+      return getRecentQuiz(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventGetRecentQuiz implements UserEvent {
+  const factory _UserEventGetRecentQuiz(final Material.BuildContext context) =
+      _$_UserEventGetRecentQuiz;
+
+  Material.BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$_UserEventGetRecentQuizCopyWith<_$_UserEventGetRecentQuiz> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UserEventPostRecentQuizCopyWith<$Res> {
+  factory _$$_UserEventPostRecentQuizCopyWith(_$_UserEventPostRecentQuiz value,
+          $Res Function(_$_UserEventPostRecentQuiz) then) =
+      __$$_UserEventPostRecentQuizCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RecentQuiz recentQuiz, Material.BuildContext context});
+
+  $RecentQuizCopyWith<$Res> get recentQuiz;
+}
+
+/// @nodoc
+class __$$_UserEventPostRecentQuizCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_UserEventPostRecentQuiz>
+    implements _$$_UserEventPostRecentQuizCopyWith<$Res> {
+  __$$_UserEventPostRecentQuizCopyWithImpl(_$_UserEventPostRecentQuiz _value,
+      $Res Function(_$_UserEventPostRecentQuiz) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recentQuiz = null,
+    Object? context = null,
+  }) {
+    return _then(_$_UserEventPostRecentQuiz(
+      null == recentQuiz
+          ? _value.recentQuiz
+          : recentQuiz // ignore: cast_nullable_to_non_nullable
+              as RecentQuiz,
+      null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as Material.BuildContext,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RecentQuizCopyWith<$Res> get recentQuiz {
+    return $RecentQuizCopyWith<$Res>(_value.recentQuiz, (value) {
+      return _then(_value.copyWith(recentQuiz: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UserEventPostRecentQuiz implements _UserEventPostRecentQuiz {
+  const _$_UserEventPostRecentQuiz(this.recentQuiz, this.context);
+
+  @override
+  final RecentQuiz recentQuiz;
+  @override
+  final Material.BuildContext context;
+
+  @override
+  String toString() {
+    return 'UserEvent.postRecentQuiz(recentQuiz: $recentQuiz, context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserEventPostRecentQuiz &&
+            (identical(other.recentQuiz, recentQuiz) ||
+                other.recentQuiz == recentQuiz) &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, recentQuiz, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserEventPostRecentQuizCopyWith<_$_UserEventPostRecentQuiz>
+      get copyWith =>
+          __$$_UserEventPostRecentQuizCopyWithImpl<_$_UserEventPostRecentQuiz>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getBadges,
+    required TResult Function() getUserQuizDetails,
+    required TResult Function(Material.BuildContext context) getRecentQuiz,
+    required TResult Function(
+            RecentQuiz recentQuiz, Material.BuildContext context)
+        postRecentQuiz,
+  }) {
+    return postRecentQuiz(recentQuiz, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getBadges,
+    TResult? Function()? getUserQuizDetails,
+    TResult? Function(Material.BuildContext context)? getRecentQuiz,
+    TResult? Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
+  }) {
+    return postRecentQuiz?.call(recentQuiz, context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getBadges,
+    TResult Function()? getUserQuizDetails,
+    TResult Function(Material.BuildContext context)? getRecentQuiz,
+    TResult Function(RecentQuiz recentQuiz, Material.BuildContext context)?
+        postRecentQuiz,
+    required TResult orElse(),
+  }) {
+    if (postRecentQuiz != null) {
+      return postRecentQuiz(recentQuiz, context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserEventGetBadges value) getBadges,
+    required TResult Function(_UserEventGetUserQuizDetails value)
+        getUserQuizDetails,
+    required TResult Function(_UserEventGetRecentQuiz value) getRecentQuiz,
+    required TResult Function(_UserEventPostRecentQuiz value) postRecentQuiz,
+  }) {
+    return postRecentQuiz(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserEventGetBadges value)? getBadges,
+    TResult? Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult? Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult? Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
+  }) {
+    return postRecentQuiz?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserEventGetBadges value)? getBadges,
+    TResult Function(_UserEventGetUserQuizDetails value)? getUserQuizDetails,
+    TResult Function(_UserEventGetRecentQuiz value)? getRecentQuiz,
+    TResult Function(_UserEventPostRecentQuiz value)? postRecentQuiz,
+    required TResult orElse(),
+  }) {
+    if (postRecentQuiz != null) {
+      return postRecentQuiz(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserEventPostRecentQuiz implements UserEvent {
+  const factory _UserEventPostRecentQuiz(
+          final RecentQuiz recentQuiz, final Material.BuildContext context) =
+      _$_UserEventPostRecentQuiz;
+
+  RecentQuiz get recentQuiz;
+  Material.BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$_UserEventPostRecentQuizCopyWith<_$_UserEventPostRecentQuiz>
+      get copyWith => throw _privateConstructorUsedError;
 }

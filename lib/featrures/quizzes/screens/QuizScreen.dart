@@ -4,13 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/models/quiz.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/Quiz.dart';
-import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
 
 class QuizScreen extends StatefulWidget {
   final String topic;
   final int count;
+  final String icon;
+  final String id;
 
-  const QuizScreen({super.key, required this.topic, required this.count});
+  const QuizScreen(
+      {super.key,
+      required this.topic,
+      required this.count,
+      required this.id,
+      required this.icon});
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -90,6 +96,8 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                   )
                 : QuizWidget(
                     topic: widget.topic,
+                    icon: widget.icon,
+                    quizId: widget.id,
                     questions: state.questions,
                     category: state.questions[0].category));
       },

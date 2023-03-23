@@ -1,6 +1,8 @@
+import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart' as Material;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:quizz_app/featrures/user/models/chartData.dart';
+import 'package:quizz_app/featrures/user/models/RecentQuiz/recentQuiz.dart';
 import 'package:quizz_app/featrures/user/models/userQuizData.dart';
 
 import '../../repositories/user_repo.dart';
@@ -14,6 +16,9 @@ abstract class UserState with _$UserState {
   const factory UserState({
     required List<Badge> badges,
     required UserQuizData quizData,
+    required RecentQuiz recentQuiz,
+    @Default('') String error,
+    @Default(false) bool isRecentQuizLoading,
     @Default(false) bool isLoading,
   }) = _UserState;
 }
@@ -23,6 +28,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userRepo})
       : super(const UserState(
             badges: [],
+            recentQuiz:
+                RecentQuiz(topic: '', icon: '', donePercentage: 0, id: ''),
             quizData: UserQuizData(
                 createdQuizzes: 0,
                 totalQuizzes: 0,
@@ -56,6 +63,43 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           loadingState.copyWith(isLoading: false, quizData: data);
 
       yield updatedState;
+    }, getRecentQuiz: (context) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isRecentQuizLoading: true);
+      yield loadingState;
+
+      Either<String, RecentQuiz> data = await userRepo.getRecentQuiz();
+
+      yield* data.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          error: error,
+          isRecentQuizLoading: false,
+        );
+        yield updatedState;
+      }, (recentQuiz) async* {
+        final updatedState = currentState.copyWith(
+            error: '', isRecentQuizLoading: false, recentQuiz: recentQuiz);
+        yield updatedState;
+      });
+    }, postRecentQuiz: (recent, context) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isRecentQuizLoading: true);
+      yield loadingState;
+
+      Either<String, RecentQuiz> recentQuiz =
+          await userRepo.postRecentQuiz(recent);
+
+      yield* recentQuiz.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          error: error,
+          isRecentQuizLoading: false,
+        );
+        yield updatedState;
+      }, (quiz) async* {
+        final updatedState = currentState.copyWith(
+            error: '', isRecentQuizLoading: false, recentQuiz: quiz);
+        yield updatedState;
+      });
     });
   }
 }

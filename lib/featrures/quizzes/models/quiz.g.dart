@@ -129,12 +129,16 @@ _$_QuizScreenArgs _$$_QuizScreenArgsFromJson(Map<String, dynamic> json) =>
     _$_QuizScreenArgs(
       topic: json['topic'] as String,
       count: json['count'] as int,
+      icon: json['icon'] as String,
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$$_QuizScreenArgsToJson(_$_QuizScreenArgs instance) =>
     <String, dynamic>{
       'topic': instance.topic,
       'count': instance.count,
+      'icon': instance.icon,
+      'id': instance.id,
     };
 
 _$_ReviewQuizScreenArgs _$$_ReviewQuizScreenArgsFromJson(

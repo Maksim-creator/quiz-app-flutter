@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
+import 'package:quizz_app/featrures/user/models/RecentQuiz/recentQuiz.dart';
 import '../../../assets/colors.dart';
 import '../models/quiz.dart';
 import '../utils/utils.dart';
@@ -12,12 +13,16 @@ class QuizWidget extends StatefulWidget {
   final List<Question>? questions;
   final String topic;
   final String category;
+  final String icon;
+  final String quizId;
 
   const QuizWidget(
       {super.key,
+      required this.icon,
       required this.questions,
       required this.topic,
-      required this.category});
+      required this.category,
+      required this.quizId});
 
   @override
   State<QuizWidget> createState() => _QuizWidgetState();
@@ -81,16 +86,25 @@ class _QuizWidgetState extends State<QuizWidget> {
                   questionsTotal: widget.questions!.length,
                   questionsAnswered: score))
           .then((value) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (BuildContext context) => ReviewQuiz(
-                  questions: widget.questions!,
-                  score: score,
-                  skipped: skipped,
-                  incorrectAnswers: _incorrectAnswers,
-                  topic: widget.topic),
-            ),
-            (route) => false);
+        UserRepo()
+            .postRecentQuiz(RecentQuiz(
+                id: widget.quizId,
+                topic: widget.topic,
+                icon: widget.icon,
+                donePercentage:
+                    ((score / widget.questions!.length) * 100).floor()))
+            .then((value) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (BuildContext context) => ReviewQuiz(
+                    questions: widget.questions!,
+                    score: score,
+                    skipped: skipped,
+                    incorrectAnswers: _incorrectAnswers,
+                    topic: widget.topic),
+              ),
+              (route) => false);
+        });
       });
     });
   }

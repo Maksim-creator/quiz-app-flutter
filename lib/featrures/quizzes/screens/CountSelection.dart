@@ -34,8 +34,11 @@ class _CountSelectionState extends State<CountSelection> {
   @override
   Widget build(BuildContext context) {
     final Topic args = ModalRoute.of(context)!.settings.arguments as Topic;
-    final QuizScreenArgs screenArgs =
-        QuizScreenArgs(topic: args.topic, count: countQuestions);
+    final QuizScreenArgs screenArgs = QuizScreenArgs(
+        topic: args.topic,
+        count: countQuestions,
+        icon: widget.topic.icon,
+        id: widget.topic.id);
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(
