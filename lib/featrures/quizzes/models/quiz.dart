@@ -97,6 +97,8 @@ class QuizScreenArgs with _$QuizScreenArgs {
   const factory QuizScreenArgs({
     required String topic,
     required int count,
+    required String icon,
+    required String id,
   }) = _QuizScreenArgs;
 
   factory QuizScreenArgs.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:either_dart/either.dart';
 import 'package:http/http.dart' as http;
+import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 import 'package:quizz_app/featrures/repositories/constants.dart';
+import 'package:quizz_app/featrures/user/models/RecentQuiz/recentQuiz.dart';
 import 'package:quizz_app/featrures/user/models/userQuizData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -105,5 +108,57 @@ class UserRepo {
         averageCompletion: 0,
         quizzesWon: 0,
         chartData: []);
+  }
+
+  EitherData<RecentQuiz> getRecentQuiz() async {
+    Uri url = Uri.parse('$baseUrl/user/recentQuiz');
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      http.Response response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      final Map<String, dynamic> jsonData = jsonDecode(response.body);
+
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return Left(jsonData['message']);
+      } else {
+        return Right(RecentQuiz.fromJson(jsonData));
+      }
+    }
+
+    return Left('Unauthorized');
+  }
+
+  EitherData<RecentQuiz> postRecentQuiz(RecentQuiz recentQuiz) async {
+    Uri url = Uri.parse('$baseUrl/user/recentQuiz');
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      http.Response response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          },
+          body: jsonEncode({'recentQuiz': recentQuiz}));
+
+      final Map<String, dynamic> jsonData = jsonDecode(response.body);
+
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return Left(jsonData['message']);
+      } else {
+        return Right(RecentQuiz.fromJson(jsonData));
+      }
+    }
+    return Left('Unauthorized');
   }
 }

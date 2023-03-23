@@ -29,7 +29,6 @@ class _AccountSettingsState extends State<AccountSettings> {
       SettingTextItem(
           subtitle: 'Update username, country, etc.',
           onPress: () {
-            print(1);
             return Navigator.of(context).pushNamed(
               '/main_screen/settings/update_profile',
             );

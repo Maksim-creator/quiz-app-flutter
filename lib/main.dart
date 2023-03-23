@@ -96,8 +96,10 @@ class _MyAppState extends State<MyApp> {
                 ModalRoute.of(context)!.settings.arguments as QuizScreenArgs;
 
             return QuizScreen(
+              id: args.id,
               topic: args.topic,
               count: args.count,
+              icon: args.icon,
             );
           },
           '/main_screen/review_quiz_screen': ((context) {

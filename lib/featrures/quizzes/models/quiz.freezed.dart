@@ -1578,6 +1578,8 @@ QuizScreenArgs _$QuizScreenArgsFromJson(Map<String, dynamic> json) {
 mixin _$QuizScreenArgs {
   String get topic => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1591,7 +1593,7 @@ abstract class $QuizScreenArgsCopyWith<$Res> {
           QuizScreenArgs value, $Res Function(QuizScreenArgs) then) =
       _$QuizScreenArgsCopyWithImpl<$Res, QuizScreenArgs>;
   @useResult
-  $Res call({String topic, int count});
+  $Res call({String topic, int count, String icon, String id});
 }
 
 /// @nodoc
@@ -1609,6 +1611,8 @@ class _$QuizScreenArgsCopyWithImpl<$Res, $Val extends QuizScreenArgs>
   $Res call({
     Object? topic = null,
     Object? count = null,
+    Object? icon = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       topic: null == topic
@@ -1619,6 +1623,14 @@ class _$QuizScreenArgsCopyWithImpl<$Res, $Val extends QuizScreenArgs>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1631,7 +1643,7 @@ abstract class _$$_QuizScreenArgsCopyWith<$Res>
       __$$_QuizScreenArgsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String topic, int count});
+  $Res call({String topic, int count, String icon, String id});
 }
 
 /// @nodoc
@@ -1647,6 +1659,8 @@ class __$$_QuizScreenArgsCopyWithImpl<$Res>
   $Res call({
     Object? topic = null,
     Object? count = null,
+    Object? icon = null,
+    Object? id = null,
   }) {
     return _then(_$_QuizScreenArgs(
       topic: null == topic
@@ -1657,6 +1671,14 @@ class __$$_QuizScreenArgsCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1666,7 +1688,11 @@ class __$$_QuizScreenArgsCopyWithImpl<$Res>
 class _$_QuizScreenArgs
     with DiagnosticableTreeMixin
     implements _QuizScreenArgs {
-  const _$_QuizScreenArgs({required this.topic, required this.count});
+  const _$_QuizScreenArgs(
+      {required this.topic,
+      required this.count,
+      required this.icon,
+      required this.id});
 
   factory _$_QuizScreenArgs.fromJson(Map<String, dynamic> json) =>
       _$$_QuizScreenArgsFromJson(json);
@@ -1675,10 +1701,14 @@ class _$_QuizScreenArgs
   final String topic;
   @override
   final int count;
+  @override
+  final String icon;
+  @override
+  final String id;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QuizScreenArgs(topic: $topic, count: $count)';
+    return 'QuizScreenArgs(topic: $topic, count: $count, icon: $icon, id: $id)';
   }
 
   @override
@@ -1687,7 +1717,9 @@ class _$_QuizScreenArgs
     properties
       ..add(DiagnosticsProperty('type', 'QuizScreenArgs'))
       ..add(DiagnosticsProperty('topic', topic))
-      ..add(DiagnosticsProperty('count', count));
+      ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('icon', icon))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -1696,12 +1728,14 @@ class _$_QuizScreenArgs
         (other.runtimeType == runtimeType &&
             other is _$_QuizScreenArgs &&
             (identical(other.topic, topic) || other.topic == topic) &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, topic, count);
+  int get hashCode => Object.hash(runtimeType, topic, count, icon, id);
 
   @JsonKey(ignore: true)
   @override
@@ -1720,7 +1754,9 @@ class _$_QuizScreenArgs
 abstract class _QuizScreenArgs implements QuizScreenArgs {
   const factory _QuizScreenArgs(
       {required final String topic,
-      required final int count}) = _$_QuizScreenArgs;
+      required final int count,
+      required final String icon,
+      required final String id}) = _$_QuizScreenArgs;
 
   factory _QuizScreenArgs.fromJson(Map<String, dynamic> json) =
       _$_QuizScreenArgs.fromJson;
@@ -1729,6 +1765,10 @@ abstract class _QuizScreenArgs implements QuizScreenArgs {
   String get topic;
   @override
   int get count;
+  @override
+  String get icon;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$_QuizScreenArgsCopyWith<_$_QuizScreenArgs> get copyWith =>

@@ -37,4 +37,14 @@ class QuizzesRepo {
 
     return list;
   }
+
+  Future<Topic> getQuizById(String id) async {
+    Uri url = Uri.parse('$baseUrl/quizzes/quizById');
+
+    final response = await http.post(url, body: {'id': id});
+
+    final Map<String, dynamic> data = json.decode(response.body);
+
+    return Topic.fromJson(data);
+  }
 }
