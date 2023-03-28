@@ -58,6 +58,7 @@ _$_Question _$$_QuestionFromJson(Map<String, dynamic> json) => _$_Question(
       tip: json['tip'] as String?,
       category: json['category'] as String,
       difficulty: json['difficulty'] as String,
+      type: json['type'] as String,
     );
 
 Map<String, dynamic> _$$_QuestionToJson(_$_Question instance) =>
@@ -72,6 +73,7 @@ Map<String, dynamic> _$$_QuestionToJson(_$_Question instance) =>
       'tip': instance.tip,
       'category': instance.category,
       'difficulty': instance.difficulty,
+      'type': instance.type,
     };
 
 _$_Answers _$$_AnswersFromJson(Map<String, dynamic> json) => _$_Answers(

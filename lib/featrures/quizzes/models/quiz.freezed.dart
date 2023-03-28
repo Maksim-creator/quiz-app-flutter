@@ -541,6 +541,7 @@ mixin _$Question {
   String? get tip => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get difficulty => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -563,7 +564,8 @@ abstract class $QuestionCopyWith<$Res> {
       String? explanation,
       String? tip,
       String category,
-      String difficulty});
+      String difficulty,
+      String type});
 
   $AnswersCopyWith<$Res> get answers;
   $CorrectAnswersCopyWith<$Res> get correctAnswers;
@@ -592,6 +594,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
     Object? tip = freezed,
     Object? category = null,
     Object? difficulty = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -634,6 +637,10 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -671,7 +678,8 @@ abstract class _$$_QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       String? explanation,
       String? tip,
       String category,
-      String difficulty});
+      String difficulty,
+      String type});
 
   @override
   $AnswersCopyWith<$Res> get answers;
@@ -700,6 +708,7 @@ class __$$_QuestionCopyWithImpl<$Res>
     Object? tip = freezed,
     Object? category = null,
     Object? difficulty = null,
+    Object? type = null,
   }) {
     return _then(_$_Question(
       id: null == id
@@ -742,6 +751,10 @@ class __$$_QuestionCopyWithImpl<$Res>
           ? _value.difficulty
           : difficulty // ignore: cast_nullable_to_non_nullable
               as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -759,7 +772,8 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
       required this.explanation,
       required this.tip,
       required this.category,
-      required this.difficulty});
+      required this.difficulty,
+      required this.type});
 
   factory _$_Question.fromJson(Map<String, dynamic> json) =>
       _$$_QuestionFromJson(json);
@@ -784,10 +798,12 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
   final String category;
   @override
   final String difficulty;
+  @override
+  final String type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Question(id: $id, question: $question, description: $description, answers: $answers, multipleCorrectAnswers: $multipleCorrectAnswers, correctAnswers: $correctAnswers, explanation: $explanation, tip: $tip, category: $category, difficulty: $difficulty)';
+    return 'Question(id: $id, question: $question, description: $description, answers: $answers, multipleCorrectAnswers: $multipleCorrectAnswers, correctAnswers: $correctAnswers, explanation: $explanation, tip: $tip, category: $category, difficulty: $difficulty, type: $type)';
   }
 
   @override
@@ -805,7 +821,8 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
       ..add(DiagnosticsProperty('explanation', explanation))
       ..add(DiagnosticsProperty('tip', tip))
       ..add(DiagnosticsProperty('category', category))
-      ..add(DiagnosticsProperty('difficulty', difficulty));
+      ..add(DiagnosticsProperty('difficulty', difficulty))
+      ..add(DiagnosticsProperty('type', type));
   }
 
   @override
@@ -829,7 +846,8 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.difficulty, difficulty) ||
-                other.difficulty == difficulty));
+                other.difficulty == difficulty) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
@@ -845,7 +863,8 @@ class _$_Question with DiagnosticableTreeMixin implements _Question {
       explanation,
       tip,
       category,
-      difficulty);
+      difficulty,
+      type);
 
   @JsonKey(ignore: true)
   @override
@@ -872,7 +891,8 @@ abstract class _Question implements Question {
       required final String? explanation,
       required final String? tip,
       required final String category,
-      required final String difficulty}) = _$_Question;
+      required final String difficulty,
+      required final String type}) = _$_Question;
 
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
 
@@ -896,6 +916,8 @@ abstract class _Question implements Question {
   String get category;
   @override
   String get difficulty;
+  @override
+  String get type;
   @override
   @JsonKey(ignore: true)
   _$$_QuestionCopyWith<_$_Question> get copyWith =>
