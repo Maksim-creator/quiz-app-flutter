@@ -121,7 +121,9 @@ class _MyAppState extends State<MyApp> {
           '/main_screen/settings/update_profile/password_check/username_change':
               ((context) => const UsernameChange())
         },
-        theme: ThemeData(scaffoldBackgroundColor: ColorConstants.violet),
+        theme: ThemeData(
+            scaffoldBackgroundColor: ColorConstants.violet,
+            fontFamily: 'Rubik'),
       ),
     );
   }
