@@ -5,7 +5,7 @@ class SingleAnswerButton extends StatefulWidget {
   final dynamic answer;
   final String? selectedAnswer;
   final String correctAnswerKey;
-  final Color Function() renderButtonBg;
+  final bool? isAnswerRight;
   final Function(String answerKey, String answerValue, String correctAnswerKey)
       handleAnswerSelect;
 
@@ -13,7 +13,7 @@ class SingleAnswerButton extends StatefulWidget {
       {super.key,
       required this.answer,
       this.selectedAnswer,
-      required this.renderButtonBg,
+      required this.isAnswerRight,
       required this.handleAnswerSelect,
       required this.correctAnswerKey});
 
@@ -22,6 +22,18 @@ class SingleAnswerButton extends StatefulWidget {
 }
 
 class _SingleAnswerButtonState extends State<SingleAnswerButton> {
+  Color renderButtonBg() {
+    if (widget.selectedAnswer != null) {
+      if (widget.isAnswerRight == true) {
+        return Colors.green.shade300;
+      } else {
+        return Colors.red.shade300;
+      }
+    } else {
+      return Colors.white;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -30,7 +42,7 @@ class _SingleAnswerButtonState extends State<SingleAnswerButton> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             padding: const EdgeInsets.symmetric(vertical: 10),
             backgroundColor: widget.answer!['key'] == widget.selectedAnswer
-                ? widget.renderButtonBg()
+                ? renderButtonBg()
                 : Colors.white),
         onPressed: () {
           widget.handleAnswerSelect(

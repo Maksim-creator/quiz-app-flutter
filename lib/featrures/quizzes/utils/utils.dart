@@ -29,3 +29,5 @@ MultipleAnswers transformMultipleAnswers(
           (correctAnsweredCountList.length * 100) / correct.length,
       answeredCorrect: correctAnsweredCountList.length);
 }
+
+enum QuestionTypes { common, multiple, truefalse }

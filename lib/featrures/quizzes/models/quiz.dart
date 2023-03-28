@@ -46,6 +46,7 @@ class Question with _$Question {
     required String? tip,
     required String category,
     required String difficulty,
+    required String type,
   }) = _Question;
 
   factory Question.fromJson(Map<String, dynamic> json) =>

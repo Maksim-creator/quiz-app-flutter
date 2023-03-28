@@ -11,8 +11,10 @@ import 'package:quizz_app/featrures/user/models/RecentQuiz/recentQuiz.dart';
 import 'package:quizz_app/widgets/Button.dart';
 import '../models/quiz.dart';
 import '../utils/utils.dart';
+import 'AnswerButtons/TrueFalseButtons.dart';
 import 'QuizHeader.dart';
 import './QuizScreenWidgets/Timer.dart' as timer_widget;
+import '../utils/constants.dart' as QuestionTypes;
 
 class MultipleAnswers {
   final double correctAnswersInPerc;
@@ -188,18 +190,6 @@ class _QuizWidgetState extends State<QuizWidget> {
     });
   }
 
-  Color renderButtonBg() {
-    if (selectedAnswer != null) {
-      if (isAnswerRight == true) {
-        return Colors.green.shade300;
-      } else {
-        return Colors.red.shade300;
-      }
-    } else {
-      return Colors.white;
-    }
-  }
-
   void resetAnswers() {
     setState(() {
       selectedAnswers = [];
@@ -267,31 +257,44 @@ class _QuizWidgetState extends State<QuizWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   QuestionName(question: question.question),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: transformedAnswers.length,
-                                      itemBuilder: ((context, index) {
-                                        if (!question.multipleCorrectAnswers) {
-                                          return SingleAnswerButton(
-                                              answer: transformedAnswers[index],
-                                              handleAnswerSelect:
-                                                  handleAnswerSelect,
-                                              renderButtonBg: renderButtonBg,
-                                              selectedAnswer: selectedAnswer,
-                                              correctAnswerKey:
-                                                  correctAnswers![0].key);
-                                        } else {
-                                          return MultipleAnswersButton(
-                                              answer: transformedAnswers[index],
-                                              selectedAnswers: selectedAnswers,
-                                              renderButtonBg: renderButtonBg,
-                                              correctAnswers: correctAnswers!
-                                                  .map((e) => e.key)
-                                                  .toList(),
-                                              isConfirmed: isConfirmed);
-                                        }
-                                      })),
-                                  if (question.multipleCorrectAnswers)
+                                  if (question.type == QuestionTypes.TRUEFALSE)
+                                    TrueFalseButtons(
+                                        answers: transformedAnswers,
+                                        handleAnswerSelect: handleAnswerSelect,
+                                        correctAnswerKey:
+                                            correctAnswers![0].key),
+                                  if (question.type != QuestionTypes.TRUEFALSE)
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: transformedAnswers.length,
+                                        itemBuilder: ((context, index) {
+                                          switch (question.type) {
+                                            case QuestionTypes.COMMON:
+                                              return SingleAnswerButton(
+                                                  answer:
+                                                      transformedAnswers[index],
+                                                  handleAnswerSelect:
+                                                      handleAnswerSelect,
+                                                  isAnswerRight: isAnswerRight,
+                                                  selectedAnswer:
+                                                      selectedAnswer,
+                                                  correctAnswerKey:
+                                                      correctAnswers![0].key);
+                                            case QuestionTypes.MULTIPLE:
+                                              return MultipleAnswersButton(
+                                                  answer:
+                                                      transformedAnswers[index],
+                                                  selectedAnswers:
+                                                      selectedAnswers,
+                                                  correctAnswers:
+                                                      correctAnswers!
+                                                          .map((e) => e.key)
+                                                          .toList(),
+                                                  isConfirmed: isConfirmed);
+                                          }
+                                          return null;
+                                        })),
+                                  if (question.type == QuestionTypes.MULTIPLE)
                                     Padding(
                                       padding: const EdgeInsets.only(top: 15),
                                       child: Button(

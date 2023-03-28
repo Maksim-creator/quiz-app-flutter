@@ -4,7 +4,6 @@ import 'package:quizz_app/assets/colors.dart';
 class MultipleAnswersButton extends StatefulWidget {
   final dynamic answer;
   final List<MapEntry<String, dynamic>> selectedAnswers;
-  final Color Function() renderButtonBg;
   final bool isConfirmed;
   final List<String> correctAnswers;
 
@@ -12,7 +11,6 @@ class MultipleAnswersButton extends StatefulWidget {
       {super.key,
       required this.answer,
       required this.selectedAnswers,
-      required this.renderButtonBg,
       required this.correctAnswers,
       required this.isConfirmed});
 
