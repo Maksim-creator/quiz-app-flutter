@@ -2,12 +2,25 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
+import 'package:quizz_app/featrures/quizzes/widgets/AnswerButtons/MultipleAnswerButton.dart';
+import 'package:quizz_app/featrures/quizzes/widgets/AnswerButtons/SingleAnswerButton.dart';
+import 'package:quizz_app/featrures/quizzes/widgets/QuizScreenWidgets/QuestionCount.dart';
+import 'package:quizz_app/featrures/quizzes/widgets/QuizScreenWidgets/QuestionName.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/user/models/RecentQuiz/recentQuiz.dart';
-import '../../../assets/colors.dart';
+import 'package:quizz_app/widgets/Button.dart';
 import '../models/quiz.dart';
 import '../utils/utils.dart';
 import 'QuizHeader.dart';
+import './QuizScreenWidgets/Timer.dart' as timer_widget;
+
+class MultipleAnswers {
+  final double correctAnswersInPerc;
+  final int answeredCorrect;
+
+  MultipleAnswers(
+      {required this.answeredCorrect, required this.correctAnswersInPerc});
+}
 
 class QuizWidget extends StatefulWidget {
   final List<Question>? questions;
@@ -39,6 +52,8 @@ class _QuizWidgetState extends State<QuizWidget> {
   int score = 0;
   int skipped = 0;
   int _incorrectAnswers = 0;
+  List<MapEntry<String, dynamic>> selectedAnswers = [];
+  bool isConfirmed = false;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -50,22 +65,8 @@ class _QuizWidgetState extends State<QuizWidget> {
             timer.cancel();
             skipped = skipped + 1;
           });
-          if (_lives != 1) {
-            setState(() {
-              _lives = _lives - 1;
-            });
-          } else {
-            finishQuiz();
-            return;
-          }
-          if (_currentQuestinIdx != widget.questions!.length - 1) {
-            setState(() {
-              _currentQuestinIdx = _currentQuestinIdx + 1;
-            });
-            restartTimer();
-          } else {
-            finishQuiz();
-          }
+          handleIncorrectAnswer();
+          handleNextIndexChange();
         } else {
           setState(() {
             _seconds--;
@@ -119,6 +120,7 @@ class _QuizWidgetState extends State<QuizWidget> {
 
   void handleAnswerSelect(
       String key, String value, String correctAnswerKey) async {
+    _timer.cancel();
     setState(() {
       selectedAnswer = key;
       isAnswerRight = key == correctAnswerKey;
@@ -128,16 +130,53 @@ class _QuizWidgetState extends State<QuizWidget> {
       _points = _points + 5;
       score = score + 1;
     } else {
-      _incorrectAnswers = _incorrectAnswers + 1;
-      if (_lives == 1) {
-        finishQuiz();
-        return;
-      } else {
-        setState(() {
-          _lives = _lives - 1;
-        });
-      }
+      handleIncorrectAnswer();
     }
+    handleNextIndexChange();
+  }
+
+  void confirmMultipleAnswer(
+      List<MapEntry<String, dynamic>> correctAnswers) async {
+    setState(() {
+      isConfirmed = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 1000));
+    List<String> correctKeys = correctAnswers.map((e) => e.key).toList();
+    List<String> answeredKeys = selectedAnswers.map((e) => e.key).toList();
+
+    correctKeys.sort((a, b) => a.toString().compareTo(b.toString()));
+    answeredKeys.sort((a, b) => a.toString().compareTo(b.toString()));
+    MultipleAnswers transformedAnswers =
+        transformMultipleAnswers(correctKeys, answeredKeys);
+
+    setState(() {
+      _points = _points + (transformedAnswers.answeredCorrect * 5);
+    });
+
+    if (transformedAnswers.correctAnswersInPerc >= 50) {
+      setState(() {
+        score = score + 1;
+      });
+    } else {
+      handleIncorrectAnswer();
+    }
+
+    handleNextIndexChange();
+  }
+
+  void handleIncorrectAnswer() {
+    _incorrectAnswers = _incorrectAnswers + 1;
+    if (_lives == 1) {
+      finishQuiz();
+      return;
+    } else {
+      setState(() {
+        _lives = _lives - 1;
+      });
+    }
+  }
+
+  void handleNextIndexChange() {
     if (_currentQuestinIdx == widget.questions!.length - 1) {
       finishQuiz();
       return;
@@ -163,8 +202,10 @@ class _QuizWidgetState extends State<QuizWidget> {
 
   void resetAnswers() {
     setState(() {
+      selectedAnswers = [];
       selectedAnswer = null;
       isAnswerRight = null;
+      isConfirmed = false;
     });
   }
 
@@ -185,11 +226,15 @@ class _QuizWidgetState extends State<QuizWidget> {
     Question? question = widget.questions?.length != null
         ? widget.questions![_currentQuestinIdx]
         : null;
+
     List<dynamic> transformedAnswers = transformAnswers(question?.answers);
-    MapEntry<String, dynamic>? correctAnswer = question?.correctAnswers
+
+    List<MapEntry<String, dynamic>>? correctAnswers = question?.correctAnswers
         .toJson()
         .entries
-        .firstWhere((element) => element.value);
+        .where((element) => element.value != null && element.value)
+        .toList();
+
     double progress = _currentQuestinIdx / widget.questions!.length;
 
     return SafeArea(
@@ -205,50 +250,13 @@ class _QuizWidgetState extends State<QuizWidget> {
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
-                _seconds == 0
-                    ? Container(
-                        margin: const EdgeInsets.symmetric(vertical: 20),
-                        child: Center(
-                          child: Text(
-                            "Time's up!",
-                            style: TextStyle(
-                                color: ColorConstants.pink,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 19),
-                          ),
-                        ),
-                      )
-                    : Container(
-                        margin: const EdgeInsets.symmetric(vertical: 20),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border:
-                              Border.all(color: ColorConstants.pink, width: 3),
-                        ),
-                        child: Center(
-                            child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Text(
-                                  _seconds.toString(),
-                                  style: TextStyle(
-                                      color: ColorConstants.pink,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 19),
-                                ))),
-                      ),
+                timer_widget.Timer(seconds: _seconds),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        'QUESTION ${_currentQuestinIdx + 1} OF ${widget.questions!.length}',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w800,
-                            fontSize: Device.get().isTablet ? 22 : 17),
-                      ),
-                    ),
+                    QuestionCountWidget(
+                        currentIdx: _currentQuestinIdx,
+                        questionsLength: widget.questions!.length),
                     widget.questions != null && question != null
                         ? Container(
                             padding: const EdgeInsets.symmetric(
@@ -258,67 +266,42 @@ class _QuizWidgetState extends State<QuizWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 20),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        question.question,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: Device.get().isTablet
-                                                ? 22
-                                                : 17),
-                                      ),
-                                    ),
-                                  ),
+                                  QuestionName(question: question.question),
                                   ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: transformedAnswers.length,
                                       itemBuilder: ((context, index) {
-                                        return OutlinedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      transformedAnswers[
-                                                                      index]![
-                                                                  'key'] ==
-                                                              selectedAnswer
-                                                          ? renderButtonBg()
-                                                          : Colors.white),
-                                              padding:
-                                                  MaterialStateProperty.all(
-                                                      const EdgeInsets
-                                                              .symmetric(
-                                                          vertical: 10)),
-                                              shape: MaterialStateProperty.all(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.0))),
-                                            ),
-                                            onPressed: () {
-                                              handleAnswerSelect(
-                                                transformedAnswers[index]![
-                                                    'key'],
-                                                transformedAnswers[index]![
-                                                    'value'],
-                                                correctAnswer!.key,
-                                              );
-                                            },
-                                            child: Text(
-                                              transformedAnswers[index]![
-                                                      'value']
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize:
-                                                      Device.get().isTablet
-                                                          ? 17
-                                                          : 14),
-                                            ));
-                                      }))
+                                        if (!question.multipleCorrectAnswers) {
+                                          return SingleAnswerButton(
+                                              answer: transformedAnswers[index],
+                                              handleAnswerSelect:
+                                                  handleAnswerSelect,
+                                              renderButtonBg: renderButtonBg,
+                                              selectedAnswer: selectedAnswer,
+                                              correctAnswerKey:
+                                                  correctAnswers![0].key);
+                                        } else {
+                                          return MultipleAnswersButton(
+                                              answer: transformedAnswers[index],
+                                              selectedAnswers: selectedAnswers,
+                                              renderButtonBg: renderButtonBg,
+                                              correctAnswers: correctAnswers!
+                                                  .map((e) => e.key)
+                                                  .toList(),
+                                              isConfirmed: isConfirmed);
+                                        }
+                                      })),
+                                  if (question.multipleCorrectAnswers)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: Button(
+                                          buttonText: 'Confirm',
+                                          onPress: () {
+                                            confirmMultipleAnswer(
+                                                correctAnswers!);
+                                          },
+                                          disabled: selectedAnswers.isEmpty),
+                                    )
                                 ]),
                           )
                         : const Center(
