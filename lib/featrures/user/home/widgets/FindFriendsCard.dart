@@ -66,7 +66,9 @@ class _FindFriendsCardState extends State<FindFriendsCard> {
               ),
               Button(
                 buttonText: 'Find Friends',
-                onPress: () {},
+                onPress: () {
+                  Navigator.pushNamed(context, '/main_screen/find_friends');
+                },
                 disabled: false,
                 leftIcon: Icon(
                   Icons.travel_explore,

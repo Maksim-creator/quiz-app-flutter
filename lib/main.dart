@@ -17,6 +17,7 @@ import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/user/bloc/user_bloc.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
+import 'package:quizz_app/featrures/user/screens/FindFriends.dart';
 import 'package:quizz_app/featrures/user/screens/Settings.dart';
 import 'package:quizz_app/featrures/user/screens/SettingsScreens/PassCheck.dart';
 import 'package:quizz_app/featrures/user/screens/SettingsScreens/UpdateProfile.dart';
@@ -119,7 +120,8 @@ class _MyAppState extends State<MyApp> {
           '/main_screen/settings/update_profile/password_check': ((context) =>
               const PassCheck()),
           '/main_screen/settings/update_profile/password_check/username_change':
-              ((context) => const UsernameChange())
+              ((context) => const UsernameChange()),
+          '/main_screen/find_friends': ((context) => const FindFriends())
         },
         theme: ThemeData(
             scaffoldBackgroundColor: ColorConstants.violet,
