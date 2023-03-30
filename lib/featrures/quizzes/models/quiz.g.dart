@@ -115,6 +115,7 @@ _$_Topic _$$_TopicFromJson(Map<String, dynamic> json) => _$_Topic(
       author: json['author'] as String,
       selectedTimes: json['selectedTimes'] as int,
       description: json['description'] as String,
+      tipLink: json['tipLink'] as String,
     );
 
 Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
@@ -125,6 +126,7 @@ Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
       'author': instance.author,
       'selectedTimes': instance.selectedTimes,
       'description': instance.description,
+      'tipLink': instance.tipLink,
     };
 
 _$_QuizScreenArgs _$$_QuizScreenArgsFromJson(Map<String, dynamic> json) =>

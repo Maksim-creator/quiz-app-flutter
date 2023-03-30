@@ -1334,6 +1334,7 @@ mixin _$Topic {
   String get author => throw _privateConstructorUsedError;
   int get selectedTimes => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get tipLink => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1352,7 +1353,8 @@ abstract class $TopicCopyWith<$Res> {
       String icon,
       String author,
       int selectedTimes,
-      String description});
+      String description,
+      String tipLink});
 }
 
 /// @nodoc
@@ -1375,6 +1377,7 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
     Object? author = null,
     Object? selectedTimes = null,
     Object? description = null,
+    Object? tipLink = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1405,6 +1408,10 @@ class _$TopicCopyWithImpl<$Res, $Val extends Topic>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      tipLink: null == tipLink
+          ? _value.tipLink
+          : tipLink // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1422,7 +1429,8 @@ abstract class _$$_TopicCopyWith<$Res> implements $TopicCopyWith<$Res> {
       String icon,
       String author,
       int selectedTimes,
-      String description});
+      String description,
+      String tipLink});
 }
 
 /// @nodoc
@@ -1441,6 +1449,7 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res, _$_Topic>
     Object? author = null,
     Object? selectedTimes = null,
     Object? description = null,
+    Object? tipLink = null,
   }) {
     return _then(_$_Topic(
       id: null == id
@@ -1471,6 +1480,10 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res, _$_Topic>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      tipLink: null == tipLink
+          ? _value.tipLink
+          : tipLink // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1485,7 +1498,8 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       required this.icon,
       required this.author,
       required this.selectedTimes,
-      required this.description});
+      required this.description,
+      required this.tipLink});
 
   factory _$_Topic.fromJson(Map<String, dynamic> json) =>
       _$$_TopicFromJson(json);
@@ -1504,10 +1518,12 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
   final int selectedTimes;
   @override
   final String description;
+  @override
+  final String tipLink;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Topic(id: $id, category: $category, topic: $topic, icon: $icon, author: $author, selectedTimes: $selectedTimes, description: $description)';
+    return 'Topic(id: $id, category: $category, topic: $topic, icon: $icon, author: $author, selectedTimes: $selectedTimes, description: $description, tipLink: $tipLink)';
   }
 
   @override
@@ -1521,7 +1537,8 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       ..add(DiagnosticsProperty('icon', icon))
       ..add(DiagnosticsProperty('author', author))
       ..add(DiagnosticsProperty('selectedTimes', selectedTimes))
-      ..add(DiagnosticsProperty('description', description));
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('tipLink', tipLink));
   }
 
   @override
@@ -1538,13 +1555,14 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
             (identical(other.selectedTimes, selectedTimes) ||
                 other.selectedTimes == selectedTimes) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.tipLink, tipLink) || other.tipLink == tipLink));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, category, topic, icon,
-      author, selectedTimes, description);
+      author, selectedTimes, description, tipLink);
 
   @JsonKey(ignore: true)
   @override
@@ -1568,7 +1586,8 @@ abstract class _Topic implements Topic {
       required final String icon,
       required final String author,
       required final int selectedTimes,
-      required final String description}) = _$_Topic;
+      required final String description,
+      required final String tipLink}) = _$_Topic;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$_Topic.fromJson;
 
@@ -1586,6 +1605,8 @@ abstract class _Topic implements Topic {
   int get selectedTimes;
   @override
   String get description;
+  @override
+  String get tipLink;
   @override
   @JsonKey(ignore: true)
   _$$_TopicCopyWith<_$_Topic> get copyWith =>

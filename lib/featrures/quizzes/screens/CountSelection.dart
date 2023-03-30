@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:quizz_app/featrures/quizzes/models/quiz.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/AuthorWidget.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/CountSelectionWidget.dart';
+import 'package:quizz_app/featrures/quizzes/widgets/Divider.dart';
 import 'package:quizz_app/featrures/quizzes/widgets/PointsCard.dart';
 import 'package:quizz_app/widgets/Button.dart';
 
@@ -29,6 +31,15 @@ class _CountSelectionState extends State<CountSelection> {
     setState(() {
       countQuestions = countQuestions - 5;
     });
+  }
+
+  lounchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -74,61 +85,82 @@ class _CountSelectionState extends State<CountSelection> {
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      args.category.toUpperCase(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 17,
-                          color: ColorConstants.grey.withOpacity(0.6)),
-                    ),
-                    Text(
-                      args.topic,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w800, fontSize: 24),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Column(children: [
-                        CountSelectionWidget(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        args.category.toUpperCase(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 17,
+                            color: ColorConstants.grey.withOpacity(0.6)),
+                      ),
+                      Text(
+                        args.topic,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w800, fontSize: 24),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Column(children: [
+                          CountSelectionWidget(
+                              count: countQuestions,
+                              increment: incrementCount,
+                              decrement: decrementCount),
+                          PointsCard(
                             count: countQuestions,
-                            increment: incrementCount,
-                            decrement: decrementCount),
-                        PointsCard(
-                          count: countQuestions,
-                        )
-                      ]),
-                    ),
-                    Text(
-                      'DESCRIPTION',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 17,
-                          color: ColorConstants.grey.withOpacity(0.6)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(args.description),
-                    ),
-                    AuthorWidget(
-                      author: args.author,
-                    ),
-                  ],
-                ),
-                Button(
-                    buttonText: 'Start',
-                    onPress: () {
-                      Navigator.of(context).pushReplacementNamed(
-                          '/main_screen/quiz_screen',
-                          arguments: screenArgs);
-                    },
-                    disabled: false)
-              ],
+                          )
+                        ]),
+                      ),
+                      Text(
+                        'DESCRIPTION',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 17,
+                            color: ColorConstants.grey.withOpacity(0.6)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text(args.description),
+                      ),
+                      AuthorWidget(
+                        author: args.author,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const DividerWidget(
+                          text:
+                              'Not ready to start? Check out the theory below.'),
+                      Button(
+                          backgroundColor: Colors.deepPurple.shade300,
+                          leftIcon: const Icon(
+                            Icons.book,
+                            size: 20,
+                          ),
+                          buttonText: 'Check theory',
+                          onPress: () => lounchUrl(widget.topic.tipLink),
+                          disabled: false),
+                      const DividerWidget(
+                        text: 'or',
+                      ),
+                      Button(
+                          buttonText: 'Start',
+                          onPress: () {
+                            Navigator.of(context).pushReplacementNamed(
+                                '/main_screen/quiz_screen',
+                                arguments: screenArgs);
+                          },
+                          disabled: false)
+                    ],
+                  )
+                ],
+              ),
             ),
           )
         ]));

@@ -51,6 +51,7 @@ class _RecentQuizState extends State<RecentQuiz> {
                           icon: quiz.icon,
                           author: quiz.author,
                           selectedTimes: quiz.selectedTimes,
+                          tipLink: quiz.tipLink,
                           description: quiz.description));
                 });
               },
