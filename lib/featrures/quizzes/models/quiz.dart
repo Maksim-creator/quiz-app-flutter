@@ -88,6 +88,7 @@ class Topic with _$Topic {
     required String author,
     required int selectedTimes,
     required String description,
+    required String tipLink,
   }) = _Topic;
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
