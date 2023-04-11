@@ -78,38 +78,30 @@ class _QuizWidgetState extends State<QuizWidget> {
     );
   }
 
-  void finishQuiz() {
-    UserRepo().updateUserPoints(_points).then((value) {}).then((value) {
-      UserRepo()
-          .postCompletedQuiz(
-              completedQuiz: CompletedQuiz(
-                  category: widget.category,
-                  donePercentage:
-                      ((score / widget.questions!.length) * 100).floor(),
-                  questionsTotal: widget.questions!.length,
-                  questionsAnswered: score))
-          .then((value) {
-        UserRepo()
-            .postRecentQuiz(RecentQuiz(
-                id: widget.quizId,
-                topic: widget.topic,
-                icon: widget.icon,
-                donePercentage:
-                    ((score / widget.questions!.length) * 100).floor()))
-            .then((value) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (BuildContext context) => ReviewQuiz(
-                    questions: widget.questions!,
-                    score: score,
-                    skipped: skipped,
-                    incorrectAnswers: _incorrectAnswers,
-                    topic: widget.topic),
-              ),
-              (route) => false);
-        });
-      });
-    });
+  void finishQuiz() async {
+    await UserRepo().updateUserPoints(_points);
+    await UserRepo().postCompletedQuiz(
+        completedQuiz: CompletedQuiz(
+            category: widget.category,
+            donePercentage: ((score / widget.questions!.length) * 100).floor(),
+            questionsTotal: widget.questions!.length,
+            questionsAnswered: score));
+    await UserRepo().postRecentQuiz(RecentQuiz(
+        id: widget.quizId,
+        topic: widget.topic,
+        icon: widget.icon,
+        donePercentage: ((score / widget.questions!.length) * 100).floor()));
+
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (BuildContext context) => ReviewQuiz(
+              questions: widget.questions!,
+              score: score,
+              skipped: skipped,
+              incorrectAnswers: _incorrectAnswers,
+              topic: widget.topic),
+        ),
+        (route) => false);
   }
 
   void restartTimer() {

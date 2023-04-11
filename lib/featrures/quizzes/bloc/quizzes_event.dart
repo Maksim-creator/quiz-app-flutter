@@ -8,4 +8,6 @@ class QuizzesEvent with _$QuizzesEvent {
   const factory QuizzesEvent.getQuestionsList(
       {required String topic,
       required int count}) = _QuizzesEventGetQuestionsList;
+  const factory QuizzesEvent.getAllTopics({required BuildContext context}) =
+      _QuizzesEventGetAllTopics;
 }

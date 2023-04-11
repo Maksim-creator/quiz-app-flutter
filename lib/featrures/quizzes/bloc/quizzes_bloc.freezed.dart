@@ -20,6 +20,7 @@ mixin _$QuizzesState {
   List<Topic> get topics => throw _privateConstructorUsedError;
   List<Question> get questions => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  dynamic get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuizzesStateCopyWith<QuizzesState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $QuizzesStateCopyWith<$Res> {
       {TopSelected topSelected,
       List<Topic> topics,
       List<Question> questions,
-      bool isLoading});
+      bool isLoading,
+      dynamic error});
 
   $TopSelectedCopyWith<$Res> get topSelected;
 }
@@ -58,6 +60,7 @@ class _$QuizzesStateCopyWithImpl<$Res, $Val extends QuizzesState>
     Object? topics = null,
     Object? questions = null,
     Object? isLoading = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       topSelected: null == topSelected
@@ -76,6 +79,10 @@ class _$QuizzesStateCopyWithImpl<$Res, $Val extends QuizzesState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 
@@ -100,7 +107,8 @@ abstract class _$$_QuizzesStateCopyWith<$Res>
       {TopSelected topSelected,
       List<Topic> topics,
       List<Question> questions,
-      bool isLoading});
+      bool isLoading,
+      dynamic error});
 
   @override
   $TopSelectedCopyWith<$Res> get topSelected;
@@ -121,6 +129,7 @@ class __$$_QuizzesStateCopyWithImpl<$Res>
     Object? topics = null,
     Object? questions = null,
     Object? isLoading = null,
+    Object? error = freezed,
   }) {
     return _then(_$_QuizzesState(
       topSelected: null == topSelected
@@ -139,6 +148,7 @@ class __$$_QuizzesStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      error: freezed == error ? _value.error! : error,
     ));
   }
 }
@@ -150,7 +160,8 @@ class _$_QuizzesState implements _QuizzesState {
       {required this.topSelected,
       required final List<Topic> topics,
       required final List<Question> questions,
-      this.isLoading = false})
+      this.isLoading = false,
+      this.error = ''})
       : _topics = topics,
         _questions = questions;
 
@@ -175,10 +186,13 @@ class _$_QuizzesState implements _QuizzesState {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final dynamic error;
 
   @override
   String toString() {
-    return 'QuizzesState(topSelected: $topSelected, topics: $topics, questions: $questions, isLoading: $isLoading)';
+    return 'QuizzesState(topSelected: $topSelected, topics: $topics, questions: $questions, isLoading: $isLoading, error: $error)';
   }
 
   @override
@@ -192,7 +206,8 @@ class _$_QuizzesState implements _QuizzesState {
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
@@ -201,7 +216,8 @@ class _$_QuizzesState implements _QuizzesState {
       topSelected,
       const DeepCollectionEquality().hash(_topics),
       const DeepCollectionEquality().hash(_questions),
-      isLoading);
+      isLoading,
+      const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +231,8 @@ abstract class _QuizzesState implements QuizzesState {
       {required final TopSelected topSelected,
       required final List<Topic> topics,
       required final List<Question> questions,
-      final bool isLoading}) = _$_QuizzesState;
+      final bool isLoading,
+      final dynamic error}) = _$_QuizzesState;
 
   @override
   TopSelected get topSelected;
@@ -225,6 +242,8 @@ abstract class _QuizzesState implements QuizzesState {
   List<Question> get questions;
   @override
   bool get isLoading;
+  @override
+  dynamic get error;
   @override
   @JsonKey(ignore: true)
   _$$_QuizzesStateCopyWith<_$_QuizzesState> get copyWith =>
@@ -238,6 +257,7 @@ mixin _$QuizzesEvent {
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
     required TResult Function(String topic, int count) getQuestionsList,
+    required TResult Function(BuildContext context) getAllTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -245,6 +265,7 @@ mixin _$QuizzesEvent {
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
     TResult? Function(String topic, int count)? getQuestionsList,
+    TResult? Function(BuildContext context)? getAllTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -252,6 +273,7 @@ mixin _$QuizzesEvent {
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
     TResult Function(String topic, int count)? getQuestionsList,
+    TResult Function(BuildContext context)? getAllTopics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -261,6 +283,7 @@ mixin _$QuizzesEvent {
     required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
     required TResult Function(_QuizzesEventGetQuestionsList value)
         getQuestionsList,
+    required TResult Function(_QuizzesEventGetAllTopics value) getAllTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -268,6 +291,7 @@ mixin _$QuizzesEvent {
     TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult? Function(_QuizzesEventGetAllTopics value)? getAllTopics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -275,6 +299,7 @@ mixin _$QuizzesEvent {
     TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult Function(_QuizzesEventGetAllTopics value)? getAllTopics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -342,6 +367,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
     required TResult Function(String topic, int count) getQuestionsList,
+    required TResult Function(BuildContext context) getAllTopics,
   }) {
     return getTopSelected();
   }
@@ -352,6 +378,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
     TResult? Function(String topic, int count)? getQuestionsList,
+    TResult? Function(BuildContext context)? getAllTopics,
   }) {
     return getTopSelected?.call();
   }
@@ -362,6 +389,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
     TResult Function(String topic, int count)? getQuestionsList,
+    TResult Function(BuildContext context)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -377,6 +405,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
     required TResult Function(_QuizzesEventGetQuestionsList value)
         getQuestionsList,
+    required TResult Function(_QuizzesEventGetAllTopics value) getAllTopics,
   }) {
     return getTopSelected(this);
   }
@@ -387,6 +416,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult? Function(_QuizzesEventGetAllTopics value)? getAllTopics,
   }) {
     return getTopSelected?.call(this);
   }
@@ -397,6 +427,7 @@ class _$_QuizzesEventGetTopSelected implements _QuizzesEventGetTopSelected {
     TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult Function(_QuizzesEventGetAllTopics value)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getTopSelected != null) {
@@ -481,6 +512,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
     required TResult Function(String topic, int count) getQuestionsList,
+    required TResult Function(BuildContext context) getAllTopics,
   }) {
     return getTopicsList(category);
   }
@@ -491,6 +523,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
     TResult? Function(String topic, int count)? getQuestionsList,
+    TResult? Function(BuildContext context)? getAllTopics,
   }) {
     return getTopicsList?.call(category);
   }
@@ -501,6 +534,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
     TResult Function(String topic, int count)? getQuestionsList,
+    TResult Function(BuildContext context)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getTopicsList != null) {
@@ -516,6 +550,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
     required TResult Function(_QuizzesEventGetQuestionsList value)
         getQuestionsList,
+    required TResult Function(_QuizzesEventGetAllTopics value) getAllTopics,
   }) {
     return getTopicsList(this);
   }
@@ -526,6 +561,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult? Function(_QuizzesEventGetAllTopics value)? getAllTopics,
   }) {
     return getTopicsList?.call(this);
   }
@@ -536,6 +572,7 @@ class _$_QuizzesEventGetTopicsList implements _QuizzesEventGetTopicsList {
     TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult Function(_QuizzesEventGetAllTopics value)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getTopicsList != null) {
@@ -634,6 +671,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     required TResult Function() getTopSelected,
     required TResult Function(String category) getTopicsList,
     required TResult Function(String topic, int count) getQuestionsList,
+    required TResult Function(BuildContext context) getAllTopics,
   }) {
     return getQuestionsList(topic, count);
   }
@@ -644,6 +682,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     TResult? Function()? getTopSelected,
     TResult? Function(String category)? getTopicsList,
     TResult? Function(String topic, int count)? getQuestionsList,
+    TResult? Function(BuildContext context)? getAllTopics,
   }) {
     return getQuestionsList?.call(topic, count);
   }
@@ -654,6 +693,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     TResult Function()? getTopSelected,
     TResult Function(String category)? getTopicsList,
     TResult Function(String topic, int count)? getQuestionsList,
+    TResult Function(BuildContext context)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getQuestionsList != null) {
@@ -669,6 +709,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
     required TResult Function(_QuizzesEventGetQuestionsList value)
         getQuestionsList,
+    required TResult Function(_QuizzesEventGetAllTopics value) getAllTopics,
   }) {
     return getQuestionsList(this);
   }
@@ -679,6 +720,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult? Function(_QuizzesEventGetAllTopics value)? getAllTopics,
   }) {
     return getQuestionsList?.call(this);
   }
@@ -689,6 +731,7 @@ class _$_QuizzesEventGetQuestionsList implements _QuizzesEventGetQuestionsList {
     TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
     TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
     TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult Function(_QuizzesEventGetAllTopics value)? getAllTopics,
     required TResult orElse(),
   }) {
     if (getQuestionsList != null) {
@@ -707,5 +750,154 @@ abstract class _QuizzesEventGetQuestionsList implements QuizzesEvent {
   int get count;
   @JsonKey(ignore: true)
   _$$_QuizzesEventGetQuestionsListCopyWith<_$_QuizzesEventGetQuestionsList>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_QuizzesEventGetAllTopicsCopyWith<$Res> {
+  factory _$$_QuizzesEventGetAllTopicsCopyWith(
+          _$_QuizzesEventGetAllTopics value,
+          $Res Function(_$_QuizzesEventGetAllTopics) then) =
+      __$$_QuizzesEventGetAllTopicsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context});
+}
+
+/// @nodoc
+class __$$_QuizzesEventGetAllTopicsCopyWithImpl<$Res>
+    extends _$QuizzesEventCopyWithImpl<$Res, _$_QuizzesEventGetAllTopics>
+    implements _$$_QuizzesEventGetAllTopicsCopyWith<$Res> {
+  __$$_QuizzesEventGetAllTopicsCopyWithImpl(_$_QuizzesEventGetAllTopics _value,
+      $Res Function(_$_QuizzesEventGetAllTopics) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+  }) {
+    return _then(_$_QuizzesEventGetAllTopics(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_QuizzesEventGetAllTopics implements _QuizzesEventGetAllTopics {
+  const _$_QuizzesEventGetAllTopics({required this.context});
+
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'QuizzesEvent.getAllTopics(context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_QuizzesEventGetAllTopics &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_QuizzesEventGetAllTopicsCopyWith<_$_QuizzesEventGetAllTopics>
+      get copyWith => __$$_QuizzesEventGetAllTopicsCopyWithImpl<
+          _$_QuizzesEventGetAllTopics>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getTopSelected,
+    required TResult Function(String category) getTopicsList,
+    required TResult Function(String topic, int count) getQuestionsList,
+    required TResult Function(BuildContext context) getAllTopics,
+  }) {
+    return getAllTopics(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getTopSelected,
+    TResult? Function(String category)? getTopicsList,
+    TResult? Function(String topic, int count)? getQuestionsList,
+    TResult? Function(BuildContext context)? getAllTopics,
+  }) {
+    return getAllTopics?.call(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getTopSelected,
+    TResult Function(String category)? getTopicsList,
+    TResult Function(String topic, int count)? getQuestionsList,
+    TResult Function(BuildContext context)? getAllTopics,
+    required TResult orElse(),
+  }) {
+    if (getAllTopics != null) {
+      return getAllTopics(context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_QuizzesEventGetTopSelected value) getTopSelected,
+    required TResult Function(_QuizzesEventGetTopicsList value) getTopicsList,
+    required TResult Function(_QuizzesEventGetQuestionsList value)
+        getQuestionsList,
+    required TResult Function(_QuizzesEventGetAllTopics value) getAllTopics,
+  }) {
+    return getAllTopics(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult? Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult? Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult? Function(_QuizzesEventGetAllTopics value)? getAllTopics,
+  }) {
+    return getAllTopics?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QuizzesEventGetTopSelected value)? getTopSelected,
+    TResult Function(_QuizzesEventGetTopicsList value)? getTopicsList,
+    TResult Function(_QuizzesEventGetQuestionsList value)? getQuestionsList,
+    TResult Function(_QuizzesEventGetAllTopics value)? getAllTopics,
+    required TResult orElse(),
+  }) {
+    if (getAllTopics != null) {
+      return getAllTopics(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _QuizzesEventGetAllTopics implements QuizzesEvent {
+  const factory _QuizzesEventGetAllTopics(
+      {required final BuildContext context}) = _$_QuizzesEventGetAllTopics;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  _$$_QuizzesEventGetAllTopicsCopyWith<_$_QuizzesEventGetAllTopics>
       get copyWith => throw _privateConstructorUsedError;
 }

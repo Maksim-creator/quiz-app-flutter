@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/categories/bloc/categories_bloc.dart';
+import 'package:quizz_app/featrures/user/discover/widgets/ExpandedSheet.dart';
+import 'package:quizz_app/featrures/user/discover/widgets/Stick.dart';
+import 'package:quizz_app/featrures/user/discover/widgets/DiscoverContent.dart';
 import 'package:quizz_app/featrures/user/discover/widgets/TopPicksCard.dart';
-import 'package:quizz_app/featrures/user/discover/widgets/TopPlayer.dart';
 import 'package:quizz_app/widgets/TextInput.dart';
 import '../../../categories/models/category.dart';
 
@@ -15,30 +17,28 @@ class Discover extends StatefulWidget {
   State<Discover> createState() => _DiscoverState();
 }
 
-class _DiscoverState extends State<Discover> {
+class _DiscoverState extends State<Discover>
+    with SingleTickerProviderStateMixin {
   TextEditingController search = TextEditingController();
   List<Category> filteredCategories = [];
+  double containerHeight = Device.screenHeight;
+  double minTopPosition = Device.get().isTablet
+      ? Device.screenHeight / 5
+      : Device.screenHeight / 3.3;
+  double maxTopPosition = 75;
+  bool expanded = false;
 
   void filterCategories(List<Category> categories, String search) {
     if (search.isEmpty) {
       setState(() {
         filteredCategories = categories;
+        expanded = false;
       });
     } else {
-      List<Category> filtered = categories
-          .where((category) =>
-              category.category.toLowerCase().contains(search.toLowerCase()))
-          .toList();
-
       setState(() {
-        filteredCategories = filtered;
+        expanded = true;
       });
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -61,12 +61,13 @@ class _DiscoverState extends State<Discover> {
       ),
       body: BlocBuilder<CategoriesBloc, CategoriesState>(
         builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: Device.get().isTablet ? 50 : 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+          return SizedBox(
+            height: Device.screenHeight,
+            width: Device.screenWidth,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Device.get().isTablet ? 50 : 0),
+              child: Stack(children: [
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: IntrinsicHeight(
@@ -86,155 +87,45 @@ class _DiscoverState extends State<Discover> {
                                 filterCategories(filteredCategories, value),
                           ),
                         ),
-                        const TopPicksCard()
+                        expanded
+                            ? const SizedBox.shrink()
+                            : const TopPicksCard()
                       ]),
                     )),
-                Expanded(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Top player in the game',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 18),
+                AnimatedPositioned(
+                    duration: const Duration(milliseconds: 200),
+                    top: expanded ? maxTopPosition : minTopPosition,
+                    child: Column(
+                      children: [
+                        const Stick(),
+                        Container(
+                            width: Device.get().isTablet
+                                ? Device.screenWidth - 100
+                                : Device.screenWidth,
+                            height: containerHeight,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: expanded ? 0 : 25),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20)),
                             ),
-                            const TopPlayerCard(),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              child: Text(
-                                'Categories',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w800, fontSize: 18),
-                              ),
-                            ),
-                            state.isLoading
-                                ? Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                      backgroundColor:
-                                          ColorConstants.darkViolet,
-                                    ),
-                                  )
-                                : Flexible(
-                                    child: GridView.count(
-                                    crossAxisCount: 2,
-                                    children: List.generate(
-                                        filteredCategories.length, (index) {
-                                      Category category =
-                                          filteredCategories[index];
-                                      return Container(
-                                          margin: EdgeInsets.all(
-                                              Device.get().isTablet ? 30 : 8),
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
-                                                  spreadRadius: 1,
-                                                  blurRadius: 4,
-                                                  offset: const Offset(2, 3),
-                                                ),
-                                              ],
-                                              color: Color(int.parse(
-                                                  '0xFF${category.color}')),
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                          child: OutlinedButton(
-                                            style: OutlinedButton.styleFrom(
-                                              foregroundColor: Colors.white,
-                                              side: const BorderSide(
-                                                color: Colors.transparent,
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pushNamed(
-                                                  '/main_screen/topics_list_screen',
-                                                  arguments: category.category);
-                                            },
-                                            child: Center(
-                                              child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      padding: EdgeInsets.all(
-                                                          Device.get().isTablet
-                                                              ? 20
-                                                              : 8),
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.white
-                                                              .withOpacity(0.3),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
-                                                      child: Icon(
-                                                        IconData(
-                                                            int.parse(
-                                                                category.icon),
-                                                            fontFamily:
-                                                                'MaterialIcons'),
-                                                        color: Colors.white,
-                                                        size: Device.get()
-                                                                .isTablet
-                                                            ? 50
-                                                            : 30,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 12,
-                                                              bottom: 5),
-                                                      child: Text(
-                                                        category.category,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            fontSize: Device
-                                                                        .get()
-                                                                    .isTablet
-                                                                ? 20
-                                                                : 16),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                        '${category.quizzesCount} quizzes',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: Device
-                                                                        .get()
-                                                                    .isTablet
-                                                                ? 15
-                                                                : 10))
-                                                  ]),
-                                            ),
-                                          ));
-                                    }),
-                                  ))
-                          ]),
-                    ),
-                  ),
-                )
-              ],
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: expanded ? 0 : 20),
+                              child: expanded
+                                  ? ExpandedSheet(
+                                      filteredCategories: filteredCategories,
+                                      searchValue: search.text,
+                                      isLoading: state.isLoading)
+                                  : DiscoverContent(
+                                      filteredCategories: filteredCategories,
+                                      isLoading: state.isLoading),
+                            ))
+                      ],
+                    ))
+              ]),
             ),
           );
         },

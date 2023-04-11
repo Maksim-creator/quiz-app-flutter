@@ -58,7 +58,8 @@ class _CountSelectionState extends State<CountSelection> {
           backgroundColor: ColorConstants.violet,
           elevation: 0,
         ),
-        body: Stack(children: [
+        body: SafeArea(
+            child: Stack(children: [
           Positioned(
             left: -75,
             child: SvgPicture.asset(assetName),
@@ -79,90 +80,95 @@ class _CountSelectionState extends State<CountSelection> {
               child: SvgPicture.asset(assetName),
             ),
           ),
-          Container(
-            margin:
-                const EdgeInsets.only(top: 50, left: 10, right: 10, bottom: 40),
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(30)),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        args.category.toUpperCase(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
-                            color: ColorConstants.grey.withOpacity(0.6)),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            args.category.toUpperCase(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                                color: ColorConstants.grey.withOpacity(0.6)),
+                          ),
+                          Text(
+                            args.topic,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 24),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Column(children: [
+                              CountSelectionWidget(
+                                  count: countQuestions,
+                                  increment: incrementCount,
+                                  decrement: decrementCount),
+                              PointsCard(
+                                count: countQuestions,
+                              )
+                            ]),
+                          ),
+                          Text(
+                            'DESCRIPTION',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                                color: ColorConstants.grey.withOpacity(0.6)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(args.description),
+                          ),
+                          AuthorWidget(
+                            author: args.author,
+                          ),
+                        ],
                       ),
-                      Text(
-                        args.topic,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 24),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Column(children: [
-                          CountSelectionWidget(
-                              count: countQuestions,
-                              increment: incrementCount,
-                              decrement: decrementCount),
-                          PointsCard(
-                            count: countQuestions,
-                          )
-                        ]),
-                      ),
-                      Text(
-                        'DESCRIPTION',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
-                            color: ColorConstants.grey.withOpacity(0.6)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(args.description),
-                      ),
-                      AuthorWidget(
-                        author: args.author,
-                      ),
+                      Column(
+                        children: [
+                          const DividerWidget(
+                              text:
+                                  'Not ready to start? Check out the theory below.'),
+                          Button(
+                              backgroundColor: Colors.deepPurple.shade300,
+                              leftIcon: const Icon(
+                                Icons.book,
+                                size: 20,
+                              ),
+                              buttonText: 'Check theory',
+                              onPress: () => lounchUrl(widget.topic.tipLink),
+                              disabled: false),
+                          const DividerWidget(
+                            text: 'or',
+                          ),
+                          Button(
+                              buttonText: 'Start',
+                              onPress: () {
+                                Navigator.of(context).pushReplacementNamed(
+                                    '/main_screen/quiz_screen',
+                                    arguments: screenArgs);
+                              },
+                              disabled: false)
+                        ],
+                      )
                     ],
                   ),
-                  Column(
-                    children: [
-                      const DividerWidget(
-                          text:
-                              'Not ready to start? Check out the theory below.'),
-                      Button(
-                          backgroundColor: Colors.deepPurple.shade300,
-                          leftIcon: const Icon(
-                            Icons.book,
-                            size: 20,
-                          ),
-                          buttonText: 'Check theory',
-                          onPress: () => lounchUrl(widget.topic.tipLink),
-                          disabled: false),
-                      const DividerWidget(
-                        text: 'or',
-                      ),
-                      Button(
-                          buttonText: 'Start',
-                          onPress: () {
-                            Navigator.of(context).pushReplacementNamed(
-                                '/main_screen/quiz_screen',
-                                arguments: screenArgs);
-                          },
-                          disabled: false)
-                    ],
-                  )
-                ],
-              ),
-            ),
-          )
-        ]));
+                ),
+              ))
+        ])));
   }
 }
