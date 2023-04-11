@@ -1,3 +1,5 @@
+import 'package:either_dart/src/either.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,6 +16,7 @@ abstract class QuizzesState with _$QuizzesState {
     required List<Topic> topics,
     required List<Question> questions,
     @Default(false) bool isLoading,
+    @Default('') error,
   }) = _QuizzesState;
 }
 
@@ -61,6 +64,33 @@ class QuizzesBloc extends Bloc<QuizzesEvent, QuizzesState> {
       final updatedState =
           loadingState.copyWith(isLoading: false, questions: questions);
       yield updatedState;
+    }, getAllTopics: (context) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isLoading: true);
+      yield loadingState;
+
+      final Either<String, List<Topic>> result =
+          await quizzesRepo.getAllTopics();
+
+      yield* result.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          error: error,
+          isLoading: false,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red.shade600,
+          duration: const Duration(seconds: 2),
+          content: Text(error),
+        ));
+        yield updatedState;
+      }, (topics) async* {
+        topics.sort(
+            (prev, next) => next.selectedTimes.compareTo(prev.selectedTimes));
+
+        final updatedState =
+            currentState.copyWith(isLoading: false, topics: topics);
+        yield updatedState;
+      });
     });
   }
 }
