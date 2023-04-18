@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app/featrures/user/screens/Home.dart';
+import 'package:quizz_app/featrures/user/home/screens/Home.dart';
 import 'package:quizz_app/featrures/leaderboard/screen/Leaderboard.dart';
-import 'package:quizz_app/featrures/user/screens/Profile.dart';
+import 'package:quizz_app/featrures/user/profile/screens/Profile.dart';
 import 'package:quizz_app/featrures/user/discover/screens/Discover.dart';
 
 class TabItem {
@@ -37,8 +37,8 @@ class BottomTabsState extends State<BottomTabs> {
   final List<Widget> _widgetOptions = <Widget>[
     const Home(),
     const Discover(),
-    Leaderboard(),
-    Profile()
+    const Leaderboard(),
+    const Profile()
   ];
 
   void _onItemTapped(int index) {

@@ -14,6 +14,7 @@ part 'auth_event.dart';
 @freezed
 abstract class AuthState with _$AuthState {
   const factory AuthState({
+    required int id,
     required UserGameData data,
     required String email,
     required String token,
@@ -30,6 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo authRepo;
   AuthBloc({required this.authRepo})
       : super(const AuthState(
+            id: 0,
             email: '',
             token: '',
             name: '',
@@ -57,6 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield updatedState;
       }, (user) async* {
         final updatedState = currentState.copyWith(
+            id: user.id,
             name: user.name,
             email: user.email,
             avatar: user.avatar,
@@ -89,6 +92,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield updatedState;
       }, (user) async* {
         final updatedState = currentState.copyWith(
+            id: user.id,
             name: user.name,
             email: user.email,
             avatar: user.avatar,

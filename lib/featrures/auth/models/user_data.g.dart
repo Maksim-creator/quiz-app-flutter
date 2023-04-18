@@ -7,6 +7,7 @@ part of 'user_data.dart';
 // **************************************************************************
 
 _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
+      id: json['id'] as int,
       data: UserGameData.fromJson(json['data'] as Map<String, dynamic>),
       email: json['email'] as String,
       token: json['token'] as String,
@@ -16,6 +17,7 @@ _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
 
 Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'data': instance.data,
       'email': instance.email,
       'token': instance.token,
@@ -37,4 +39,18 @@ Map<String, dynamic> _$$_UserGameDataToJson(_$_UserGameData instance) =>
       'totalExperience': instance.totalExperience,
       'rank': instance.rank,
       'balance': instance.balance,
+    };
+
+_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      avatar: json['avatar'] as String,
+      totalExperience: json['totalExperience'] as int,
+    );
+
+Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'avatar': instance.avatar,
+      'totalExperience': instance.totalExperience,
     };

@@ -5,7 +5,7 @@ extension extString on String {
   }
 
   bool get isValidName {
-    final nameRegExp = new RegExp("[a-zA-Z]");
+    final nameRegExp = RegExp("[a-zA-Z]");
     return nameRegExp.hasMatch(this);
   }
 

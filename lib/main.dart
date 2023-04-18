@@ -6,22 +6,25 @@ import 'package:quizz_app/featrures/auth/screens/LoginScreen.dart';
 import 'package:quizz_app/featrures/auth/screens/SignupScreen.dart';
 import 'package:quizz_app/featrures/categories/bloc/categories_bloc.dart';
 import 'package:quizz_app/featrures/categories/screens/TopicsListScreen.dart';
+import 'package:quizz_app/featrures/friends/bloc/friends_bloc.dart';
 import 'package:quizz_app/featrures/leaderboard/bloc/leaderboard_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
 import 'package:quizz_app/featrures/quizzes/screens/QuizScreen.dart';
 import 'package:quizz_app/featrures/quizzes/screens/ReviewQuiz.dart';
 import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 import 'package:quizz_app/featrures/repositories/categories_repo.dart';
+import 'package:quizz_app/featrures/repositories/friends_repo.dart';
 import 'package:quizz_app/featrures/repositories/leaderboard_repo.dart';
 import 'package:quizz_app/featrures/repositories/quizzes_repo.dart';
 import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/user/bloc/user_bloc.dart';
 import 'package:quizz_app/featrures/user/screens/BottomTabsNavigation.dart';
-import 'package:quizz_app/featrures/user/screens/FindFriends.dart';
-import 'package:quizz_app/featrures/user/screens/Settings.dart';
-import 'package:quizz_app/featrures/user/screens/SettingsScreens/PassCheck.dart';
-import 'package:quizz_app/featrures/user/screens/SettingsScreens/UpdateProfile.dart';
-import 'package:quizz_app/featrures/user/screens/SettingsScreens/UsernameChange.dart';
+import 'package:quizz_app/featrures/friends/screens/FindFriends.dart';
+import 'package:quizz_app/featrures/friends/screens/FindFriendsSearch.dart';
+import 'package:quizz_app/featrures/user/profile/screens/SettingsScreens/Settings.dart';
+import 'package:quizz_app/featrures/user/profile/screens/SettingsScreens/PassCheck.dart';
+import 'package:quizz_app/featrures/user/profile/screens/SettingsScreens/UpdateProfile.dart';
+import 'package:quizz_app/featrures/user/profile/screens/SettingsScreens/UsernameChange.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'featrures/auth/screens/InitialScreen.dart';
 import './featrures/quizzes/screens/CountSelection.dart';
@@ -52,6 +55,7 @@ class _MyAppState extends State<MyApp> {
     final quizzesRepository = QuizzesRepo();
     final leaderboardRepo = LeaderboardRepo();
     final userRepo = UserRepo();
+    final friendsRepo = FriendsRepo();
 
     return MultiBlocProvider(
       providers: [
@@ -68,7 +72,10 @@ class _MyAppState extends State<MyApp> {
             create: (BuildContext context) =>
                 LeaderboardBloc(leaderboardRepo: leaderboardRepo)),
         BlocProvider(
-            create: (BuildContext conttext) => UserBloc(userRepo: userRepo))
+            create: (BuildContext conttext) => UserBloc(userRepo: userRepo)),
+        BlocProvider(
+            create: (BuildContext context) =>
+                FriendsBloc(friendsRepo: friendsRepo))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -121,7 +128,9 @@ class _MyAppState extends State<MyApp> {
               const PassCheck()),
           '/main_screen/settings/update_profile/password_check/username_change':
               ((context) => const UsernameChange()),
-          '/main_screen/find_friends': ((context) => const FindFriends())
+          '/main_screen/find_friends': ((context) => const FindFriends()),
+          '/main_screen/find_friends/search_users': ((context) =>
+              const FindFriendsSearch())
         },
         theme: ThemeData(
             scaffoldBackgroundColor: ColorConstants.violet,

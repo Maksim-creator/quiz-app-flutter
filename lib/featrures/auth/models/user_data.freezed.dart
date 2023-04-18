@@ -20,6 +20,7 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
+  int get id => throw _privateConstructorUsedError;
   UserGameData get data => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {UserGameData data,
+      {int id,
+      UserGameData data,
       String email,
       String token,
       String name,
@@ -60,6 +62,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? data = null,
     Object? email = null,
     Object? token = null,
@@ -67,6 +70,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? avatar = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -107,7 +114,8 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {UserGameData data,
+      {int id,
+      UserGameData data,
       String email,
       String token,
       String name,
@@ -128,6 +136,7 @@ class __$$_UserDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? data = null,
     Object? email = null,
     Object? token = null,
@@ -135,6 +144,10 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? avatar = null,
   }) {
     return _then(_$_UserData(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -163,7 +176,8 @@ class __$$_UserDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   const _$_UserData(
-      {required this.data,
+      {required this.id,
+      required this.data,
       required this.email,
       required this.token,
       required this.name,
@@ -172,6 +186,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
 
+  @override
+  final int id;
   @override
   final UserGameData data;
   @override
@@ -185,7 +201,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(data: $data, email: $email, token: $token, name: $name, avatar: $avatar)';
+    return 'UserData(id: $id, data: $data, email: $email, token: $token, name: $name, avatar: $avatar)';
   }
 
   @override
@@ -193,6 +209,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserData'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('data', data))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('token', token))
@@ -205,6 +222,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserData &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.token, token) || other.token == token) &&
@@ -215,7 +233,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, data, email, token, name, avatar);
+      Object.hash(runtimeType, id, data, email, token, name, avatar);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +251,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {required final UserGameData data,
+      {required final int id,
+      required final UserGameData data,
       required final String email,
       required final String token,
       required final String name,
@@ -241,6 +260,8 @@ abstract class _UserData implements UserData {
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
+  @override
+  int get id;
   @override
   UserGameData get data;
   @override
@@ -687,4 +708,200 @@ abstract class _AuthBlocState implements AuthBlocState {
   @JsonKey(ignore: true)
   _$$_AuthBlocStateCopyWith<_$_AuthBlocState> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
+/// @nodoc
+mixin _$User {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
+  int get totalExperience => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
+  $Res call({int id, String name, String avatar, int totalExperience});
+}
+
+/// @nodoc
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? totalExperience = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExperience: null == totalExperience
+          ? _value.totalExperience
+          : totalExperience // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
+      __$$_UserCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String name, String avatar, int totalExperience});
+}
+
+/// @nodoc
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
+    implements _$$_UserCopyWith<$Res> {
+  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? totalExperience = null,
+  }) {
+    return _then(_$_User(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalExperience: null == totalExperience
+          ? _value.totalExperience
+          : totalExperience // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_User with DiagnosticableTreeMixin implements _User {
+  const _$_User(
+      {required this.id,
+      required this.name,
+      required this.avatar,
+      required this.totalExperience});
+
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+  @override
+  final String avatar;
+  @override
+  final int totalExperience;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'User(id: $id, name: $name, avatar: $avatar, totalExperience: $totalExperience)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('avatar', avatar))
+      ..add(DiagnosticsProperty('totalExperience', totalExperience));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_User &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.totalExperience, totalExperience) ||
+                other.totalExperience == totalExperience));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, avatar, totalExperience);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserCopyWith<_$_User> get copyWith =>
+      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserToJson(
+      this,
+    );
+  }
+}
+
+abstract class _User implements User {
+  const factory _User(
+      {required final int id,
+      required final String name,
+      required final String avatar,
+      required final int totalExperience}) = _$_User;
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+  @override
+  String get avatar;
+  @override
+  int get totalExperience;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
 }
