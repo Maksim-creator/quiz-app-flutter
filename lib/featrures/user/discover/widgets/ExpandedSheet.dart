@@ -4,9 +4,9 @@ import 'package:quizz_app/featrures/user/discover/widgets/TopContent.dart';
 
 import '../../../../assets/colors.dart';
 import '../../../categories/models/category.dart';
-import '../../home/widgets/CircleTabIndicator.dart';
+import '../../profile/widgets/CircleTabIndicator.dart';
 import 'CategoryContent.dart';
-import 'FriendsContent.dart';
+import '../../../friends/widgets/FriendsContent.dart';
 import 'QuizContent/QuizContent.dart';
 
 class ExpandedSheet extends StatefulWidget {
@@ -63,7 +63,7 @@ class _ExpandedSheetState extends State<ExpandedSheet> {
                   searchValue: widget.searchValue,
                   filteredCtegories: widget.filteredCategories,
                   isLoading: widget.isLoading),
-              FriendsContent()
+              const FriendsContent()
             ]),
           ),
         ],

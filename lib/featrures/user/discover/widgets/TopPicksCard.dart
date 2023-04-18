@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/quizzes/bloc/quizzes_bloc.dart';
 
-import '../../../quizzes/models/quiz.dart';
 
 class TopPicksCard extends StatefulWidget {
   const TopPicksCard({super.key});

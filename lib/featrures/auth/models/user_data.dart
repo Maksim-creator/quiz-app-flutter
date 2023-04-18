@@ -7,6 +7,7 @@ part 'user_data.g.dart';
 @freezed
 class UserData with _$UserData {
   const factory UserData({
+    required int id,
     required UserGameData data,
     required String email,
     required String token,
@@ -40,4 +41,16 @@ class AuthBlocState with _$AuthBlocState {
     String? name,
     String? avatar,
   }) = _AuthBlocState;
+}
+
+@freezed
+class User with _$User {
+  const factory User({
+    required int id,
+    required String name,
+    required String avatar,
+    required int totalExperience,
+  }) = _User;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

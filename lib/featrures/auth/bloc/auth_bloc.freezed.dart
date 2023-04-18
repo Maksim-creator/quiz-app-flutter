@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
+  int get id => throw _privateConstructorUsedError;
   UserGameData get data => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
@@ -37,7 +38,8 @@ abstract class $AuthStateCopyWith<$Res> {
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
   $Res call(
-      {UserGameData data,
+      {int id,
+      UserGameData data,
       String email,
       String token,
       String name,
@@ -63,6 +65,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? data = null,
     Object? email = null,
     Object? token = null,
@@ -74,6 +77,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -130,7 +137,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {UserGameData data,
+      {int id,
+      UserGameData data,
       String email,
       String token,
       String name,
@@ -155,6 +163,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? data = null,
     Object? email = null,
     Object? token = null,
@@ -166,6 +175,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? isLoading = null,
   }) {
     return _then(_$_AuthState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -210,7 +223,8 @@ class __$$_AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState implements _AuthState {
   const _$_AuthState(
-      {required this.data,
+      {required this.id,
+      required this.data,
       required this.email,
       required this.token,
       required this.name,
@@ -220,6 +234,8 @@ class _$_AuthState implements _AuthState {
       this.error = '',
       this.isLoading = false});
 
+  @override
+  final int id;
   @override
   final UserGameData data;
   @override
@@ -245,7 +261,7 @@ class _$_AuthState implements _AuthState {
 
   @override
   String toString() {
-    return 'AuthState(data: $data, email: $email, token: $token, name: $name, avatar: $avatar, isAvatarLoading: $isAvatarLoading, isUsernameLoading: $isUsernameLoading, error: $error, isLoading: $isLoading)';
+    return 'AuthState(id: $id, data: $data, email: $email, token: $token, name: $name, avatar: $avatar, isAvatarLoading: $isAvatarLoading, isUsernameLoading: $isUsernameLoading, error: $error, isLoading: $isLoading)';
   }
 
   @override
@@ -253,6 +269,7 @@ class _$_AuthState implements _AuthState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.token, token) || other.token == token) &&
@@ -268,8 +285,8 @@ class _$_AuthState implements _AuthState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, data, email, token, name, avatar,
-      isAvatarLoading, isUsernameLoading, error, isLoading);
+  int get hashCode => Object.hash(runtimeType, id, data, email, token, name,
+      avatar, isAvatarLoading, isUsernameLoading, error, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -280,7 +297,8 @@ class _$_AuthState implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
-      {required final UserGameData data,
+      {required final int id,
+      required final UserGameData data,
       required final String email,
       required final String token,
       required final String name,
@@ -290,6 +308,8 @@ abstract class _AuthState implements AuthState {
       final String error,
       final bool isLoading}) = _$_AuthState;
 
+  @override
+  int get id;
   @override
   UserGameData get data;
   @override

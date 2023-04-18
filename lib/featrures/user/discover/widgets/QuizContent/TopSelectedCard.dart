@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:indexed/indexed.dart';
@@ -7,7 +6,7 @@ import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/quizzes/models/quiz.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../home/widgets/Hexagon.dart';
+import '../../../profile/widgets/Badges/Hexagon.dart';
 
 class TopSelectedCard extends StatefulWidget {
   final Topic topic;

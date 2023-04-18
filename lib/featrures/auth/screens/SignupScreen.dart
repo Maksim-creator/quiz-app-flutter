@@ -7,7 +7,6 @@ import 'package:quizz_app/featrures/auth/utils/validation.dart';
 import '../../../assets/colors.dart';
 import '../../../widgets/TextInput.dart';
 import '../../../widgets/Button.dart';
-import '../../user/screens/BottomTabsNavigation.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
