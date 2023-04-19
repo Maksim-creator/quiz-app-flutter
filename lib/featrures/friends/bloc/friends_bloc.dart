@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:quizz_app/featrures/repositories/friends_repo.dart';
 
-
 part 'friends_bloc.freezed.dart';
 // part 'friends_bloc.g.dart';
 part 'friends_event.dart';
@@ -15,6 +14,7 @@ abstract class FriendsState with _$FriendsState {
     required List<int> requestSent,
     required List<int> requestGet,
     @Default(false) bool isFriendsLoading,
+    @Default(false) bool isIncomingRequestsLoading,
     @Default('') String friendsError,
   }) = _FriendsState;
 }
@@ -43,6 +43,78 @@ class FriendsBloc extends Bloc<FriendsEvent, FriendsState> {
       }, (friends) async* {
         final updatedState = currentState.copyWith(
             friends: friends, isFriendsLoading: false, friendsError: '');
+
+        yield updatedState;
+      });
+    }, getIncomingRequests: () async* {
+      final currentState = state;
+      final loadingState =
+          currentState.copyWith(isIncomingRequestsLoading: true);
+      yield loadingState;
+
+      Either<String, List<int>> incomingRequests =
+          await friendsRepo.getIncomingRequests();
+
+      yield* incomingRequests.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          friendsError: error,
+          isIncomingRequestsLoading: false,
+        );
+
+        yield updatedState;
+      }, (requests) async* {
+        final updatedState = currentState.copyWith(
+            requestGet: requests, isFriendsLoading: false, friendsError: '');
+
+        yield updatedState;
+      });
+    }, submitFriendRequest: (whoSentId) async* {
+      final currentState = state;
+      final loadingState =
+          currentState.copyWith(isIncomingRequestsLoading: true);
+
+      yield loadingState;
+
+      Either<String, List<int>> incomingRequests =
+          await friendsRepo.submitFriendRequest(whoSentId);
+
+      yield* incomingRequests.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          friendsError: error,
+          isIncomingRequestsLoading: false,
+        );
+
+        yield updatedState;
+      }, (requests) async* {
+        final updatedState = currentState.copyWith(
+            requestGet: requests,
+            isIncomingRequestsLoading: false,
+            friendsError: '');
+
+        yield updatedState;
+      });
+    }, rejectFriendRequest: (whoSentId) async* {
+      final currentState = state;
+      final loadingState =
+          currentState.copyWith(isIncomingRequestsLoading: true);
+      yield loadingState;
+
+      Either<String, List<int>> incomingRequests =
+          await friendsRepo.rejectFriendRequest(whoSentId);
+
+      yield* incomingRequests.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          friendsError: error,
+          isIncomingRequestsLoading: false,
+        );
+
+        yield updatedState;
+      }, (requests) async* {
+        print(requests);
+        final updatedState = currentState.copyWith(
+            requestGet: requests,
+            isIncomingRequestsLoading: false,
+            friendsError: '');
 
         yield updatedState;
       });

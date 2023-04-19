@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendsList.dart';
+import 'package:quizz_app/featrures/friends/widgets/IncomingRequests.dart';
 import 'package:quizz_app/widgets/Button.dart';
 
 import '../../../assets/colors.dart';
@@ -91,7 +92,7 @@ class FriendsModal extends StatelessWidget {
                             width: Device.screenWidth,
                             child: const TabBarView(children: [
                               FriendsList(),
-                              SizedBox(),
+                              IncomingRequests(),
                             ]),
                           ),
                         ],

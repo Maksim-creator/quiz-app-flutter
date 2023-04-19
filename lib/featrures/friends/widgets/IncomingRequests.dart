@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app/featrures/friends/bloc/friends_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quizz_app/assets/colors.dart';
-import 'package:quizz_app/featrures/auth/models/user_data.dart';
-import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendCard.dart';
 
-import '../bloc/friends_bloc.dart';
+import '../../../assets/colors.dart';
+import '../../auth/models/user_data.dart';
+import '../../repositories/user_repo.dart';
 
-class FriendsList extends StatefulWidget {
-  const FriendsList({super.key});
+class IncomingRequests extends StatefulWidget {
+  const IncomingRequests({super.key});
 
   @override
-  State<FriendsList> createState() => _FriendsListState();
+  State<IncomingRequests> createState() => _IncomingRequestsState();
 }
 
-class _FriendsListState extends State<FriendsList> {
+class _IncomingRequestsState extends State<IncomingRequests> {
   @override
   void initState() {
-    context.read<FriendsBloc>().add(const FriendsEvent.getFriendsList());
+    context.read<FriendsBloc>().add(const FriendsEvent.getIncomingRequests());
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class _FriendsListState extends State<FriendsList> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FriendsBloc, FriendsState>(builder: (context, state) {
-      if (state.isFriendsLoading) {
+      if (state.isIncomingRequestsLoading) {
         return Center(
           child: CircularProgressIndicator(
             color: ColorConstants.violet,
@@ -36,10 +36,10 @@ class _FriendsListState extends State<FriendsList> {
         );
       } else {
         return ListView.builder(
-            itemCount: state.friends.length,
+            itemCount: state.requestGet.length,
             itemBuilder: (context, index) {
               return FutureBuilder(
-                  future: getFriend(state.friends[index]),
+                  future: getFriend(state.requestGet[index]),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return SizedBox(
@@ -58,6 +58,7 @@ class _FriendsListState extends State<FriendsList> {
                             id: snapshot.data!.id,
                             name: snapshot.data!.name,
                             points: snapshot.data!.totalExperience,
+                            forIncomingRequests: true,
                             avatar: snapshot.data!.avatar),
                       );
                     } else {
