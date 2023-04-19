@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: providers,
+      providers: BlocProviders.getBlocProviders,
       child: MaterialApp(
         initialRoute: initialRoute,
         routes: routes,
