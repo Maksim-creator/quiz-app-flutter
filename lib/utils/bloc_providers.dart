@@ -21,19 +21,25 @@ final leaderboardRepo = LeaderboardRepo();
 final userRepo = UserRepo();
 final friendsRepo = FriendsRepo();
 
-final List<BlocProvider> providers = [
-  BlocProvider(
-      create: (BuildContext context) => AuthBloc(authRepo: authRepository)),
-  BlocProvider(
-      create: (BuildContext context) =>
-          CategoriesBloc(categoriesRepo: categoriesRepository)),
-  BlocProvider(
-      create: (BuildContext context) =>
-          QuizzesBloc(quizzesRepo: quizzesRepository)),
-  BlocProvider(
-      create: (BuildContext context) =>
-          LeaderboardBloc(leaderboardRepo: leaderboardRepo)),
-  BlocProvider(create: (BuildContext conttext) => UserBloc(userRepo: userRepo)),
-  BlocProvider(
-      create: (BuildContext context) => FriendsBloc(friendsRepo: friendsRepo))
-];
+class BlocProviders {
+  static get getBlocProviders {
+    return [
+      BlocProvider(
+          create: (BuildContext context) => AuthBloc(authRepo: authRepository)),
+      BlocProvider(
+          create: (BuildContext context) =>
+              CategoriesBloc(categoriesRepo: categoriesRepository)),
+      BlocProvider(
+          create: (BuildContext context) =>
+              QuizzesBloc(quizzesRepo: quizzesRepository)),
+      BlocProvider(
+          create: (BuildContext context) =>
+              LeaderboardBloc(leaderboardRepo: leaderboardRepo)),
+      BlocProvider(
+          create: (BuildContext conttext) => UserBloc(userRepo: userRepo)),
+      BlocProvider(
+          create: (BuildContext context) =>
+              FriendsBloc(friendsRepo: friendsRepo))
+    ];
+  }
+}
