@@ -20,6 +20,7 @@ mixin _$FriendsState {
   List<int> get requestSent => throw _privateConstructorUsedError;
   List<int> get requestGet => throw _privateConstructorUsedError;
   bool get isFriendsLoading => throw _privateConstructorUsedError;
+  bool get isIncomingRequestsLoading => throw _privateConstructorUsedError;
   String get friendsError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,6 +39,7 @@ abstract class $FriendsStateCopyWith<$Res> {
       List<int> requestSent,
       List<int> requestGet,
       bool isFriendsLoading,
+      bool isIncomingRequestsLoading,
       String friendsError});
 }
 
@@ -58,6 +60,7 @@ class _$FriendsStateCopyWithImpl<$Res, $Val extends FriendsState>
     Object? requestSent = null,
     Object? requestGet = null,
     Object? isFriendsLoading = null,
+    Object? isIncomingRequestsLoading = null,
     Object? friendsError = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +79,10 @@ class _$FriendsStateCopyWithImpl<$Res, $Val extends FriendsState>
       isFriendsLoading: null == isFriendsLoading
           ? _value.isFriendsLoading
           : isFriendsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isIncomingRequestsLoading: null == isIncomingRequestsLoading
+          ? _value.isIncomingRequestsLoading
+          : isIncomingRequestsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       friendsError: null == friendsError
           ? _value.friendsError
@@ -98,6 +105,7 @@ abstract class _$$_FriendsStateCopyWith<$Res>
       List<int> requestSent,
       List<int> requestGet,
       bool isFriendsLoading,
+      bool isIncomingRequestsLoading,
       String friendsError});
 }
 
@@ -116,6 +124,7 @@ class __$$_FriendsStateCopyWithImpl<$Res>
     Object? requestSent = null,
     Object? requestGet = null,
     Object? isFriendsLoading = null,
+    Object? isIncomingRequestsLoading = null,
     Object? friendsError = null,
   }) {
     return _then(_$_FriendsState(
@@ -135,6 +144,10 @@ class __$$_FriendsStateCopyWithImpl<$Res>
           ? _value.isFriendsLoading
           : isFriendsLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isIncomingRequestsLoading: null == isIncomingRequestsLoading
+          ? _value.isIncomingRequestsLoading
+          : isIncomingRequestsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       friendsError: null == friendsError
           ? _value.friendsError
           : friendsError // ignore: cast_nullable_to_non_nullable
@@ -151,6 +164,7 @@ class _$_FriendsState implements _FriendsState {
       required final List<int> requestSent,
       required final List<int> requestGet,
       this.isFriendsLoading = false,
+      this.isIncomingRequestsLoading = false,
       this.friendsError = ''})
       : _friends = friends,
         _requestSent = requestSent,
@@ -185,11 +199,14 @@ class _$_FriendsState implements _FriendsState {
   final bool isFriendsLoading;
   @override
   @JsonKey()
+  final bool isIncomingRequestsLoading;
+  @override
+  @JsonKey()
   final String friendsError;
 
   @override
   String toString() {
-    return 'FriendsState(friends: $friends, requestSent: $requestSent, requestGet: $requestGet, isFriendsLoading: $isFriendsLoading, friendsError: $friendsError)';
+    return 'FriendsState(friends: $friends, requestSent: $requestSent, requestGet: $requestGet, isFriendsLoading: $isFriendsLoading, isIncomingRequestsLoading: $isIncomingRequestsLoading, friendsError: $friendsError)';
   }
 
   @override
@@ -204,6 +221,9 @@ class _$_FriendsState implements _FriendsState {
                 .equals(other._requestGet, _requestGet) &&
             (identical(other.isFriendsLoading, isFriendsLoading) ||
                 other.isFriendsLoading == isFriendsLoading) &&
+            (identical(other.isIncomingRequestsLoading,
+                    isIncomingRequestsLoading) ||
+                other.isIncomingRequestsLoading == isIncomingRequestsLoading) &&
             (identical(other.friendsError, friendsError) ||
                 other.friendsError == friendsError));
   }
@@ -215,6 +235,7 @@ class _$_FriendsState implements _FriendsState {
       const DeepCollectionEquality().hash(_requestSent),
       const DeepCollectionEquality().hash(_requestGet),
       isFriendsLoading,
+      isIncomingRequestsLoading,
       friendsError);
 
   @JsonKey(ignore: true)
@@ -230,6 +251,7 @@ abstract class _FriendsState implements FriendsState {
       required final List<int> requestSent,
       required final List<int> requestGet,
       final bool isFriendsLoading,
+      final bool isIncomingRequestsLoading,
       final String friendsError}) = _$_FriendsState;
 
   @override
@@ -240,6 +262,8 @@ abstract class _FriendsState implements FriendsState {
   List<int> get requestGet;
   @override
   bool get isFriendsLoading;
+  @override
+  bool get isIncomingRequestsLoading;
   @override
   String get friendsError;
   @override
@@ -253,32 +277,59 @@ mixin _$FriendsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -344,6 +395,9 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
   }) {
     return getFriendsList();
   }
@@ -352,6 +406,9 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
   }) {
     return getFriendsList?.call();
   }
@@ -360,6 +417,9 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
     required TResult orElse(),
   }) {
     if (getFriendsList != null) {
@@ -372,6 +432,12 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
   }) {
     return getFriendsList(this);
   }
@@ -380,6 +446,12 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
   }) {
     return getFriendsList?.call(this);
   }
@@ -388,6 +460,12 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
     required TResult orElse(),
   }) {
     if (getFriendsList != null) {
@@ -399,4 +477,456 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
 
 abstract class _FriendsEventGetFriendsList implements FriendsEvent {
   const factory _FriendsEventGetFriendsList() = _$_FriendsEventGetFriendsList;
+}
+
+/// @nodoc
+abstract class _$$_FriendsEventGetIncomingRequestsCopyWith<$Res> {
+  factory _$$_FriendsEventGetIncomingRequestsCopyWith(
+          _$_FriendsEventGetIncomingRequests value,
+          $Res Function(_$_FriendsEventGetIncomingRequests) then) =
+      __$$_FriendsEventGetIncomingRequestsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_FriendsEventGetIncomingRequestsCopyWithImpl<$Res>
+    extends _$FriendsEventCopyWithImpl<$Res, _$_FriendsEventGetIncomingRequests>
+    implements _$$_FriendsEventGetIncomingRequestsCopyWith<$Res> {
+  __$$_FriendsEventGetIncomingRequestsCopyWithImpl(
+      _$_FriendsEventGetIncomingRequests _value,
+      $Res Function(_$_FriendsEventGetIncomingRequests) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_FriendsEventGetIncomingRequests
+    implements _FriendsEventGetIncomingRequests {
+  const _$_FriendsEventGetIncomingRequests();
+
+  @override
+  String toString() {
+    return 'FriendsEvent.getIncomingRequests()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FriendsEventGetIncomingRequests);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
+  }) {
+    return getIncomingRequests();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
+  }) {
+    return getIncomingRequests?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (getIncomingRequests != null) {
+      return getIncomingRequests();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
+  }) {
+    return getIncomingRequests(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+  }) {
+    return getIncomingRequests?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (getIncomingRequests != null) {
+      return getIncomingRequests(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FriendsEventGetIncomingRequests implements FriendsEvent {
+  const factory _FriendsEventGetIncomingRequests() =
+      _$_FriendsEventGetIncomingRequests;
+}
+
+/// @nodoc
+abstract class _$$_FriendsEventSubmitFriendRequestCopyWith<$Res> {
+  factory _$$_FriendsEventSubmitFriendRequestCopyWith(
+          _$_FriendsEventSubmitFriendRequest value,
+          $Res Function(_$_FriendsEventSubmitFriendRequest) then) =
+      __$$_FriendsEventSubmitFriendRequestCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int whoSentId});
+}
+
+/// @nodoc
+class __$$_FriendsEventSubmitFriendRequestCopyWithImpl<$Res>
+    extends _$FriendsEventCopyWithImpl<$Res, _$_FriendsEventSubmitFriendRequest>
+    implements _$$_FriendsEventSubmitFriendRequestCopyWith<$Res> {
+  __$$_FriendsEventSubmitFriendRequestCopyWithImpl(
+      _$_FriendsEventSubmitFriendRequest _value,
+      $Res Function(_$_FriendsEventSubmitFriendRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? whoSentId = null,
+  }) {
+    return _then(_$_FriendsEventSubmitFriendRequest(
+      whoSentId: null == whoSentId
+          ? _value.whoSentId
+          : whoSentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FriendsEventSubmitFriendRequest
+    implements _FriendsEventSubmitFriendRequest {
+  const _$_FriendsEventSubmitFriendRequest({required this.whoSentId});
+
+  @override
+  final int whoSentId;
+
+  @override
+  String toString() {
+    return 'FriendsEvent.submitFriendRequest(whoSentId: $whoSentId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FriendsEventSubmitFriendRequest &&
+            (identical(other.whoSentId, whoSentId) ||
+                other.whoSentId == whoSentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, whoSentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FriendsEventSubmitFriendRequestCopyWith<
+          _$_FriendsEventSubmitFriendRequest>
+      get copyWith => __$$_FriendsEventSubmitFriendRequestCopyWithImpl<
+          _$_FriendsEventSubmitFriendRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
+  }) {
+    return submitFriendRequest(whoSentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
+  }) {
+    return submitFriendRequest?.call(whoSentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (submitFriendRequest != null) {
+      return submitFriendRequest(whoSentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
+  }) {
+    return submitFriendRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+  }) {
+    return submitFriendRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (submitFriendRequest != null) {
+      return submitFriendRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FriendsEventSubmitFriendRequest implements FriendsEvent {
+  const factory _FriendsEventSubmitFriendRequest(
+      {required final int whoSentId}) = _$_FriendsEventSubmitFriendRequest;
+
+  int get whoSentId;
+  @JsonKey(ignore: true)
+  _$$_FriendsEventSubmitFriendRequestCopyWith<
+          _$_FriendsEventSubmitFriendRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FriendsEventRejectFriendRequestCopyWith<$Res> {
+  factory _$$_FriendsEventRejectFriendRequestCopyWith(
+          _$_FriendsEventRejectFriendRequest value,
+          $Res Function(_$_FriendsEventRejectFriendRequest) then) =
+      __$$_FriendsEventRejectFriendRequestCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int whoSentId});
+}
+
+/// @nodoc
+class __$$_FriendsEventRejectFriendRequestCopyWithImpl<$Res>
+    extends _$FriendsEventCopyWithImpl<$Res, _$_FriendsEventRejectFriendRequest>
+    implements _$$_FriendsEventRejectFriendRequestCopyWith<$Res> {
+  __$$_FriendsEventRejectFriendRequestCopyWithImpl(
+      _$_FriendsEventRejectFriendRequest _value,
+      $Res Function(_$_FriendsEventRejectFriendRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? whoSentId = null,
+  }) {
+    return _then(_$_FriendsEventRejectFriendRequest(
+      whoSentId: null == whoSentId
+          ? _value.whoSentId
+          : whoSentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FriendsEventRejectFriendRequest
+    implements _FriendsEventRejectFriendRequest {
+  const _$_FriendsEventRejectFriendRequest({required this.whoSentId});
+
+  @override
+  final int whoSentId;
+
+  @override
+  String toString() {
+    return 'FriendsEvent.rejectFriendRequest(whoSentId: $whoSentId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FriendsEventRejectFriendRequest &&
+            (identical(other.whoSentId, whoSentId) ||
+                other.whoSentId == whoSentId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, whoSentId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FriendsEventRejectFriendRequestCopyWith<
+          _$_FriendsEventRejectFriendRequest>
+      get copyWith => __$$_FriendsEventRejectFriendRequestCopyWithImpl<
+          _$_FriendsEventRejectFriendRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
+  }) {
+    return rejectFriendRequest(whoSentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
+  }) {
+    return rejectFriendRequest?.call(whoSentId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (rejectFriendRequest != null) {
+      return rejectFriendRequest(whoSentId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
+  }) {
+    return rejectFriendRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+  }) {
+    return rejectFriendRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (rejectFriendRequest != null) {
+      return rejectFriendRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FriendsEventRejectFriendRequest implements FriendsEvent {
+  const factory _FriendsEventRejectFriendRequest(
+      {required final int whoSentId}) = _$_FriendsEventRejectFriendRequest;
+
+  int get whoSentId;
+  @JsonKey(ignore: true)
+  _$$_FriendsEventRejectFriendRequestCopyWith<
+          _$_FriendsEventRejectFriendRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }
