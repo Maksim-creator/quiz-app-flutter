@@ -7,6 +7,8 @@ import 'package:quizz_app/featrures/auth/models/user_data.dart';
 import 'package:quizz_app/featrures/auth/utils/entities.dart';
 import 'package:quizz_app/featrures/repositories/auth_repo.dart';
 
+import '../../friends/bloc/friends_bloc.dart';
+
 part 'auth_bloc.freezed.dart';
 // part 'auth_bloc.g.dart';
 part 'auth_event.dart';
@@ -58,6 +60,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
         yield updatedState;
       }, (user) async* {
+        context
+            .read<FriendsBloc>()
+            .add(const FriendsEvent.getIncomingRequests());
         final updatedState = currentState.copyWith(
             id: user.id,
             name: user.name,

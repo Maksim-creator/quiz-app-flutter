@@ -280,6 +280,7 @@ mixin _$FriendsEvent {
     required TResult Function() getIncomingRequests,
     required TResult Function(int whoSentId) submitFriendRequest,
     required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -288,6 +289,7 @@ mixin _$FriendsEvent {
     TResult? Function()? getIncomingRequests,
     TResult? Function(int whoSentId)? submitFriendRequest,
     TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -296,6 +298,7 @@ mixin _$FriendsEvent {
     TResult Function()? getIncomingRequests,
     TResult Function(int whoSentId)? submitFriendRequest,
     TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -308,6 +311,8 @@ mixin _$FriendsEvent {
         submitFriendRequest,
     required TResult Function(_FriendsEventRejectFriendRequest value)
         rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -319,6 +324,7 @@ mixin _$FriendsEvent {
         submitFriendRequest,
     TResult? Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -330,6 +336,7 @@ mixin _$FriendsEvent {
         submitFriendRequest,
     TResult Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -398,6 +405,7 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
     required TResult Function() getIncomingRequests,
     required TResult Function(int whoSentId) submitFriendRequest,
     required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
   }) {
     return getFriendsList();
   }
@@ -409,6 +417,7 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
     TResult? Function()? getIncomingRequests,
     TResult? Function(int whoSentId)? submitFriendRequest,
     TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
   }) {
     return getFriendsList?.call();
   }
@@ -420,6 +429,7 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
     TResult Function()? getIncomingRequests,
     TResult Function(int whoSentId)? submitFriendRequest,
     TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (getFriendsList != null) {
@@ -438,6 +448,8 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
         submitFriendRequest,
     required TResult Function(_FriendsEventRejectFriendRequest value)
         rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
   }) {
     return getFriendsList(this);
   }
@@ -452,6 +464,7 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
         submitFriendRequest,
     TResult? Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
   }) {
     return getFriendsList?.call(this);
   }
@@ -466,6 +479,7 @@ class _$_FriendsEventGetFriendsList implements _FriendsEventGetFriendsList {
         submitFriendRequest,
     TResult Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (getFriendsList != null) {
@@ -525,6 +539,7 @@ class _$_FriendsEventGetIncomingRequests
     required TResult Function() getIncomingRequests,
     required TResult Function(int whoSentId) submitFriendRequest,
     required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
   }) {
     return getIncomingRequests();
   }
@@ -536,6 +551,7 @@ class _$_FriendsEventGetIncomingRequests
     TResult? Function()? getIncomingRequests,
     TResult? Function(int whoSentId)? submitFriendRequest,
     TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
   }) {
     return getIncomingRequests?.call();
   }
@@ -547,6 +563,7 @@ class _$_FriendsEventGetIncomingRequests
     TResult Function()? getIncomingRequests,
     TResult Function(int whoSentId)? submitFriendRequest,
     TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (getIncomingRequests != null) {
@@ -565,6 +582,8 @@ class _$_FriendsEventGetIncomingRequests
         submitFriendRequest,
     required TResult Function(_FriendsEventRejectFriendRequest value)
         rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
   }) {
     return getIncomingRequests(this);
   }
@@ -579,6 +598,7 @@ class _$_FriendsEventGetIncomingRequests
         submitFriendRequest,
     TResult? Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
   }) {
     return getIncomingRequests?.call(this);
   }
@@ -593,6 +613,7 @@ class _$_FriendsEventGetIncomingRequests
         submitFriendRequest,
     TResult Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (getIncomingRequests != null) {
@@ -681,6 +702,7 @@ class _$_FriendsEventSubmitFriendRequest
     required TResult Function() getIncomingRequests,
     required TResult Function(int whoSentId) submitFriendRequest,
     required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
   }) {
     return submitFriendRequest(whoSentId);
   }
@@ -692,6 +714,7 @@ class _$_FriendsEventSubmitFriendRequest
     TResult? Function()? getIncomingRequests,
     TResult? Function(int whoSentId)? submitFriendRequest,
     TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
   }) {
     return submitFriendRequest?.call(whoSentId);
   }
@@ -703,6 +726,7 @@ class _$_FriendsEventSubmitFriendRequest
     TResult Function()? getIncomingRequests,
     TResult Function(int whoSentId)? submitFriendRequest,
     TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (submitFriendRequest != null) {
@@ -721,6 +745,8 @@ class _$_FriendsEventSubmitFriendRequest
         submitFriendRequest,
     required TResult Function(_FriendsEventRejectFriendRequest value)
         rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
   }) {
     return submitFriendRequest(this);
   }
@@ -735,6 +761,7 @@ class _$_FriendsEventSubmitFriendRequest
         submitFriendRequest,
     TResult? Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
   }) {
     return submitFriendRequest?.call(this);
   }
@@ -749,6 +776,7 @@ class _$_FriendsEventSubmitFriendRequest
         submitFriendRequest,
     TResult Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (submitFriendRequest != null) {
@@ -843,6 +871,7 @@ class _$_FriendsEventRejectFriendRequest
     required TResult Function() getIncomingRequests,
     required TResult Function(int whoSentId) submitFriendRequest,
     required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
   }) {
     return rejectFriendRequest(whoSentId);
   }
@@ -854,6 +883,7 @@ class _$_FriendsEventRejectFriendRequest
     TResult? Function()? getIncomingRequests,
     TResult? Function(int whoSentId)? submitFriendRequest,
     TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
   }) {
     return rejectFriendRequest?.call(whoSentId);
   }
@@ -865,6 +895,7 @@ class _$_FriendsEventRejectFriendRequest
     TResult Function()? getIncomingRequests,
     TResult Function(int whoSentId)? submitFriendRequest,
     TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (rejectFriendRequest != null) {
@@ -883,6 +914,8 @@ class _$_FriendsEventRejectFriendRequest
         submitFriendRequest,
     required TResult Function(_FriendsEventRejectFriendRequest value)
         rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
   }) {
     return rejectFriendRequest(this);
   }
@@ -897,6 +930,7 @@ class _$_FriendsEventRejectFriendRequest
         submitFriendRequest,
     TResult? Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
   }) {
     return rejectFriendRequest?.call(this);
   }
@@ -911,6 +945,7 @@ class _$_FriendsEventRejectFriendRequest
         submitFriendRequest,
     TResult Function(_FriendsEventRejectFriendRequest value)?
         rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
     required TResult orElse(),
   }) {
     if (rejectFriendRequest != null) {
@@ -928,5 +963,172 @@ abstract class _FriendsEventRejectFriendRequest implements FriendsEvent {
   @JsonKey(ignore: true)
   _$$_FriendsEventRejectFriendRequestCopyWith<
           _$_FriendsEventRejectFriendRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FriendsEventSendFriendRequestCopyWith<$Res> {
+  factory _$$_FriendsEventSendFriendRequestCopyWith(
+          _$_FriendsEventSendFriendRequest value,
+          $Res Function(_$_FriendsEventSendFriendRequest) then) =
+      __$$_FriendsEventSendFriendRequestCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int friendId});
+}
+
+/// @nodoc
+class __$$_FriendsEventSendFriendRequestCopyWithImpl<$Res>
+    extends _$FriendsEventCopyWithImpl<$Res, _$_FriendsEventSendFriendRequest>
+    implements _$$_FriendsEventSendFriendRequestCopyWith<$Res> {
+  __$$_FriendsEventSendFriendRequestCopyWithImpl(
+      _$_FriendsEventSendFriendRequest _value,
+      $Res Function(_$_FriendsEventSendFriendRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? friendId = null,
+  }) {
+    return _then(_$_FriendsEventSendFriendRequest(
+      friendId: null == friendId
+          ? _value.friendId
+          : friendId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FriendsEventSendFriendRequest
+    implements _FriendsEventSendFriendRequest {
+  const _$_FriendsEventSendFriendRequest({required this.friendId});
+
+  @override
+  final int friendId;
+
+  @override
+  String toString() {
+    return 'FriendsEvent.sendFriendRequest(friendId: $friendId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FriendsEventSendFriendRequest &&
+            (identical(other.friendId, friendId) ||
+                other.friendId == friendId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, friendId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FriendsEventSendFriendRequestCopyWith<_$_FriendsEventSendFriendRequest>
+      get copyWith => __$$_FriendsEventSendFriendRequestCopyWithImpl<
+          _$_FriendsEventSendFriendRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getFriendsList,
+    required TResult Function() getIncomingRequests,
+    required TResult Function(int whoSentId) submitFriendRequest,
+    required TResult Function(int whoSentId) rejectFriendRequest,
+    required TResult Function(int friendId) sendFriendRequest,
+  }) {
+    return sendFriendRequest(friendId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getFriendsList,
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(int whoSentId)? submitFriendRequest,
+    TResult? Function(int whoSentId)? rejectFriendRequest,
+    TResult? Function(int friendId)? sendFriendRequest,
+  }) {
+    return sendFriendRequest?.call(friendId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getFriendsList,
+    TResult Function()? getIncomingRequests,
+    TResult Function(int whoSentId)? submitFriendRequest,
+    TResult Function(int whoSentId)? rejectFriendRequest,
+    TResult Function(int friendId)? sendFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (sendFriendRequest != null) {
+      return sendFriendRequest(friendId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FriendsEventGetFriendsList value) getFriendsList,
+    required TResult Function(_FriendsEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_FriendsEventSubmitFriendRequest value)
+        submitFriendRequest,
+    required TResult Function(_FriendsEventRejectFriendRequest value)
+        rejectFriendRequest,
+    required TResult Function(_FriendsEventSendFriendRequest value)
+        sendFriendRequest,
+  }) {
+    return sendFriendRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult? Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult? Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+    TResult? Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
+  }) {
+    return sendFriendRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FriendsEventGetFriendsList value)? getFriendsList,
+    TResult Function(_FriendsEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_FriendsEventSubmitFriendRequest value)?
+        submitFriendRequest,
+    TResult Function(_FriendsEventRejectFriendRequest value)?
+        rejectFriendRequest,
+    TResult Function(_FriendsEventSendFriendRequest value)? sendFriendRequest,
+    required TResult orElse(),
+  }) {
+    if (sendFriendRequest != null) {
+      return sendFriendRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FriendsEventSendFriendRequest implements FriendsEvent {
+  const factory _FriendsEventSendFriendRequest({required final int friendId}) =
+      _$_FriendsEventSendFriendRequest;
+
+  int get friendId;
+  @JsonKey(ignore: true)
+  _$$_FriendsEventSendFriendRequestCopyWith<_$_FriendsEventSendFriendRequest>
       get copyWith => throw _privateConstructorUsedError;
 }

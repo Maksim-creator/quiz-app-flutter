@@ -121,4 +121,32 @@ class FriendsRepo {
 
     return const Left('Unauthorized');
   }
+
+  EitherData<List<int>> sendFriendRequest(int friendId) async {
+    Uri url = Uri.parse('$baseUrl/friends/sendRequest');
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? token = prefs.getString('token');
+
+    if (token != null) {
+      http.Response response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          },
+          body: jsonEncode({'friendId': friendId}));
+
+      final List<dynamic> jsonData = jsonDecode(response.body);
+
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        return const Left('error');
+      } else {
+        return Right(jsonData.cast<int>());
+      }
+    }
+
+    return const Left('Unauthorized');
+  }
 }
