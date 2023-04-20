@@ -9,4 +9,6 @@ class FriendsEvent with _$FriendsEvent {
       _FriendsEventSubmitFriendRequest;
   const factory FriendsEvent.rejectFriendRequest({required int whoSentId}) =
       _FriendsEventRejectFriendRequest;
+  const factory FriendsEvent.sendFriendRequest({required int friendId}) =
+      _FriendsEventSendFriendRequest;
 }

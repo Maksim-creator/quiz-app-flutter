@@ -22,54 +22,61 @@ class FriendCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: ColorConstants.grey.withOpacity(0.3),
-              spreadRadius: 0.3,
-              blurRadius: 2,
-              offset: const Offset(0, 3),
-            )
-          ],
-          color: Colors.grey.shade200,
-          border: Border.all(width: 1.5, color: Colors.grey.withOpacity(0.4)),
-          borderRadius: BorderRadius.circular(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: ColorConstants.grey.withOpacity(0.3),
+                  spreadRadius: 0.3,
+                  blurRadius: 2,
+                  offset: const Offset(0, 3),
+                )
+              ],
+              color: Colors.grey.shade200,
+              border:
+                  Border.all(width: 1.5, color: Colors.grey.withOpacity(0.4)),
+              borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(100)),
-                  child: Container(
-                    height: 60,
-                    width: 60,
-                    color: Colors.white,
-                    child: Image.memory(
-                      base64Decode(avatar),
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.cover,
-                    ),
-                  )),
-              UserName(
-                  name: name,
-                  forIncomingRequests: forIncomingRequests,
-                  points: points)
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(100)),
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        color: Colors.white,
+                        child: Image.memory(
+                          base64Decode(avatar),
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
+                  UserName(
+                      name: name,
+                      forIncomingRequests: forIncomingRequests,
+                      points: points)
+                ],
+              ),
+              !forIncomingRequests
+                  ? QuizPoints(points: points)
+                  : Buttons(
+                      whoSentId: id,
+                    )
             ],
           ),
-          !forIncomingRequests
-              ? QuizPoints(points: points)
-              : Buttons(
-                  whoSentId: id,
-                )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +8,6 @@ import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/auth/bloc/auth_bloc.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendsModal.dart';
 import 'package:quizz_app/featrures/user/utils/helpers.dart';
-
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -19,18 +19,30 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   final String baseAvatar = 'lib/assets/baseAvatar.png';
   final ImagePicker picker = ImagePicker();
+  final storage = const FlutterSecureStorage();
 
   Future getImage() async {
     try {
       var img = await picker.pickImage(source: ImageSource.gallery);
 
-      if (img != null) {
+      if (img != null && context.mounted) {
         File file = File(img.path);
 
         context.read<AuthBloc>().add(AuthEvent.uploadAvatar(avatar: file));
       }
     } catch (e) {
       throw Exception();
+    }
+  }
+
+  Future<dynamic> getReviewedFriendRequests() async {
+    final storageRequestsGot = await storage.read(key: 'requestsGot');
+    if (storageRequestsGot != null) {
+      final decoded = jsonDecode(storageRequestsGot);
+
+      return decoded;
+    } else {
+      return [];
     }
   }
 
@@ -118,23 +130,61 @@ class _HomeHeaderState extends State<HomeHeader> {
                     ),
                   ],
                 ),
-                Center(
-                  child: Ink(
-                    decoration: ShapeDecoration(
-                      color: Colors.white.withOpacity(0.3),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.group_add_rounded),
-                      color: Colors.white,
-                      onPressed: () => showDialog(
-                        context: context,
-                        builder: (BuildContext context) => const FriendsModal(),
-                      ),
-                    ),
-                  ),
-                ),
+                FutureBuilder(
+                    future: getReviewedFriendRequests(),
+                    builder: (context, snapshot) {
+                      dynamic mydata = json.decode((snapshot.data.toString()));
+                      if (snapshot.hasError) {
+                        return const SizedBox.shrink();
+                      } else {
+                        return Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            mydata == null
+                                ? const CircularProgressIndicator()
+                                : mydata.length == 0
+                                    ? const SizedBox.shrink()
+                                    : Positioned(
+                                        top: -7,
+                                        right: -7,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          width: 18,
+                                          height: 18,
+                                          decoration: BoxDecoration(
+                                              color: Colors.red.shade500,
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          child: Text(
+                                            mydata.length.toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11),
+                                          ),
+                                        )),
+                            Center(
+                              child: Ink(
+                                decoration: ShapeDecoration(
+                                  color: Colors.white.withOpacity(0.3),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                child: IconButton(
+                                  icon: const Icon(Icons.group_add_rounded),
+                                  color: Colors.white,
+                                  onPressed: () => showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        const FriendsModal(),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      }
+                    }),
               ],
             );
     });

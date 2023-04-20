@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:quizz_app/featrures/friends/bloc/friends_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../widgets/Button.dart';
 
-class AddFriendCard extends StatelessWidget {
+class AddFriendCard extends StatefulWidget {
   final String name;
+  final int friendId;
 
-  const AddFriendCard({super.key, required this.name});
+  const AddFriendCard({super.key, required this.name, required this.friendId});
+
+  @override
+  State<AddFriendCard> createState() => _AddFriendCardState();
+}
+
+class _AddFriendCardState extends State<AddFriendCard> {
+  void sendRequest(int friendId) {
+    context
+        .read<FriendsBloc>()
+        .add(FriendsEvent.sendFriendRequest(friendId: friendId));
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +49,7 @@ class AddFriendCard extends StatelessWidget {
                               color: Colors.black, fontSize: 15),
                           children: [
                         TextSpan(
-                            text: name,
+                            text: widget.name,
                             style:
                                 const TextStyle(fontWeight: FontWeight.bold)),
                         const TextSpan(text: '?')
@@ -44,7 +59,9 @@ class AddFriendCard extends StatelessWidget {
               Button(
                   backgroundColor: Colors.green.shade300,
                   buttonText: 'Send',
-                  onPress: () {},
+                  onPress: () {
+                    sendRequest(widget.friendId);
+                  },
                   disabled: false)
             ],
           )),
