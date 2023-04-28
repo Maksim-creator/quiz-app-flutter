@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
@@ -9,6 +7,7 @@ import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/user/profile/widgets/Badges/Badges.dart';
 import 'package:quizz_app/featrures/user/profile/widgets/CircleTabIndicator.dart';
 import 'package:quizz_app/featrures/user/profile/widgets/Statistics.dart';
+import 'package:quizz_app/widgets/Avatar.dart';
 
 import '../../../auth/bloc/auth_bloc.dart';
 import '../widgets/Details/UserDetails.dart';
@@ -90,28 +89,14 @@ class _ProfileState extends State<Profile> {
                   Indexed(
                     index: 100,
                     child: Positioned(
-                      left: Device.screenWidth / 2 - 45,
-                      top: 120,
-                      child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(100)),
-                          child: Container(
-                            height: 90,
-                            width: 90,
-                            color: Colors.white,
-                            child: state.isLoading
-                                ? CircularProgressIndicator(
-                                    color: Colors.white,
-                                    backgroundColor: ColorConstants.darkViolet,
-                                  )
-                                : Image.memory(
-                                    base64Decode(state.avatar),
-                                    width: 60,
-                                    height: 60,
-                                    fit: BoxFit.cover,
-                                  ),
-                          )),
-                    ),
+                        left: Device.screenWidth / 2 - 45,
+                        top: 120,
+                        child: state.isLoading
+                            ? CircularProgressIndicator(
+                                color: Colors.white,
+                                backgroundColor: ColorConstants.darkViolet,
+                              )
+                            : Avatar(avatar: state.avatar)),
                   ),
                   Indexed(
                       index: 50,

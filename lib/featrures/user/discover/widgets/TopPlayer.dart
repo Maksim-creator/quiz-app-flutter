@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/leaderboard/bloc/leaderboard_bloc.dart';
+import 'package:quizz_app/widgets/Avatar.dart';
 
 class TopPlayerCard extends StatefulWidget {
   const TopPlayerCard({super.key});
@@ -73,16 +73,7 @@ class _TopPlayerCardState extends State<TopPlayerCard> {
                                       ),
                                     ),
                                   ),
-                                  ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(100)),
-                                    child: Image.memory(
-                                      base64Decode(state.leader.avatar),
-                                      width: 60,
-                                      height: 60,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                                  Avatar(avatar: state.leader.avatar),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 20, top: 10, bottom: 10),

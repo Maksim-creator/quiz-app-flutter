@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../featrures/auth/screens/InitialScreen.dart';
 import '../featrures/auth/screens/LoginScreen.dart';
 import '../featrures/auth/screens/SignupScreen.dart';
+import '../featrures/battles/screens/BattlesScreen.dart';
 import '../featrures/categories/screens/TopicsListScreen.dart';
 import '../featrures/friends/screens/FindFriends.dart';
 import '../featrures/friends/screens/FindFriendsSearch.dart';
@@ -65,5 +66,6 @@ final Map<String, Widget Function(BuildContext)> routes = {
       ((context) => const UsernameChange()),
   '/main_screen/find_friends': ((context) => const FindFriends()),
   '/main_screen/find_friends/search_users': ((context) =>
-      const FindFriendsSearch())
+      const FindFriendsSearch()),
+  '/main_screen/battles': ((context) => const BattlesScreen())
 };

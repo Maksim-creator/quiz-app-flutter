@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:quizz_app/featrures/auth/models/user_data.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendCard.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendsSerach/AddFriendModal.dart';
+import 'package:quizz_app/widgets/Avatar.dart';
 
 class FriendSearchCard extends StatefulWidget {
   final User user;
@@ -70,20 +69,7 @@ class _FriendSearchCardState extends State<FriendSearchCard> {
             children: [
               Row(
                 children: [
-                  ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(100)),
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        color: Colors.white,
-                        child: Image.memory(
-                          base64Decode(widget.user.avatar),
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
+                  Avatar(avatar: widget.user.avatar),
                 ],
               ),
               Padding(

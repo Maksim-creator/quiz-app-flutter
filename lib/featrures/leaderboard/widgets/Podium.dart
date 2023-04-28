@@ -1,7 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quizz_app/widgets/Avatar.dart';
 
 import '../models/leaderboard.dart';
 
@@ -54,20 +54,11 @@ class _PodiumState extends State<Podium> {
                   right: e.right,
                   child: Column(
                     children: [
-                      ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(100)),
-                          child: Container(
-                            width: Device.get().isTablet ? 120 : 60,
-                            height: Device.get().isTablet ? 120 : 60,
-                            color: Colors.white,
-                            child: Image.memory(
-                              base64Decode(leaderboard[index].avatar),
-                              width: Device.get().isTablet ? 120 : 60,
-                              height: Device.get().isTablet ? 120 : 60,
-                              fit: BoxFit.cover,
-                            ),
-                          )),
+                      Avatar(
+                        avatar: leaderboard[index].avatar,
+                        width: Device.get().isTablet ? 120 : 60,
+                        height: Device.get().isTablet ? 120 : 60,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(

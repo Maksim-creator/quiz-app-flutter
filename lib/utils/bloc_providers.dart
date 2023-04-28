@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz_app/featrures/battles/bloc/battles_bloc.dart';
+import 'package:quizz_app/featrures/repositories/battles_repo.dart';
 
 import '../featrures/auth/bloc/auth_bloc.dart';
 import '../featrures/categories/bloc/categories_bloc.dart';
@@ -20,6 +22,7 @@ final quizzesRepository = QuizzesRepo();
 final leaderboardRepo = LeaderboardRepo();
 final userRepo = UserRepo();
 final friendsRepo = FriendsRepo();
+final battlesRepo = BattleRepo();
 
 class BlocProviders {
   static get getBlocProviders {
@@ -39,7 +42,10 @@ class BlocProviders {
           create: (BuildContext conttext) => UserBloc(userRepo: userRepo)),
       BlocProvider(
           create: (BuildContext context) =>
-              FriendsBloc(friendsRepo: friendsRepo))
+              FriendsBloc(friendsRepo: friendsRepo)),
+      BlocProvider(
+          create: (BuildContext context) =>
+              BattlesBloc(battlesRepo: battlesRepo))
     ];
   }
 }

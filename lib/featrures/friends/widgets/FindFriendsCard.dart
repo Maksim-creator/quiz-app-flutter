@@ -19,7 +19,6 @@ class _FindFriendsCardState extends State<FindFriendsCard> {
     return Expanded(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        // margin: EdgeInsets.only(left: 2),
         height: Device.get().isTablet ? 300 : 235,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
