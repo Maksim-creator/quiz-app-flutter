@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:quizz_app/featrures/auth/models/user_data.dart';
+import 'package:quizz_app/featrures/battles/bloc/battles_bloc.dart';
+import 'package:quizz_app/featrures/battles/models/battle/battle.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendCard.dart';
 import 'package:quizz_app/utils/api_requests.dart';
 import 'package:quizz_app/widgets/Avatar.dart';
 
 import '../../../assets/colors.dart';
 
-class BattleCard extends StatelessWidget {
+class BattleCard extends StatefulWidget {
   final String topic;
   final String difficultyLevel;
   final String comment;
   final int bid;
   final int fromUserId;
+  final int toUserId;
+  final String? battleId;
 
   const BattleCard(
       {super.key,
@@ -19,7 +25,23 @@ class BattleCard extends StatelessWidget {
       required this.comment,
       required this.difficultyLevel,
       required this.topic,
+      required this.toUserId,
+      this.battleId,
       required this.bid});
+
+  @override
+  State<BattleCard> createState() => _BattleCardState();
+}
+
+class _BattleCardState extends State<BattleCard> {
+  void rejectBattleRequest() {
+    context.read<BattlesBloc>().add(BattlesEvent.rejectBattleRequest(Battle(
+        to: widget.toUserId,
+        topic: widget.topic,
+        difficultyLevel: widget.difficultyLevel,
+        bid: widget.bid,
+        battleId: widget.battleId)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +61,7 @@ class BattleCard extends StatelessWidget {
             ),
           ]),
       child: FutureBuilder(
-          future: ApiHelpersRequest().getUserById(fromUserId),
+          future: ApiHelpersRequest().getUserById(widget.fromUserId),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -94,7 +116,7 @@ class BattleCard extends StatelessWidget {
                                           const TextStyle(color: Colors.black),
                                       children: [
                                         TextSpan(
-                                            text: topic,
+                                            text: widget.topic,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold))
                                       ]),
@@ -106,7 +128,7 @@ class BattleCard extends StatelessWidget {
                                     style: const TextStyle(color: Colors.black),
                                     children: [
                                       TextSpan(
-                                          text: difficultyLevel,
+                                          text: widget.difficultyLevel,
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold))
                                     ]),
@@ -124,7 +146,7 @@ class BattleCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const Text('Bid:'),
-                                  QuizPoints(points: bid)
+                                  QuizPoints(points: widget.bid)
                                 ],
                               ),
                               RichText(
@@ -133,7 +155,7 @@ class BattleCard extends StatelessWidget {
                                     style: const TextStyle(color: Colors.black),
                                     children: [
                                       TextSpan(
-                                          text: comment,
+                                          text: widget.comment,
                                           style: const TextStyle(
                                               fontWeight: FontWeight.bold))
                                     ]),
@@ -163,7 +185,7 @@ class BattleCard extends StatelessWidget {
                             width: 10,
                           ),
                           OutlinedButton(
-                              onPressed: () {},
+                              onPressed: rejectBattleRequest,
                               style: OutlinedButton.styleFrom(
                                   backgroundColor: Colors.red,
                                   shape: const RoundedRectangleBorder(
@@ -179,9 +201,15 @@ class BattleCard extends StatelessWidget {
                   ],
                 );
               }
-              return Text('no battle requests');
+              return const Text('no battle requests');
             }
-            return Text('error');
+            return const Center(
+              child: Text(
+                'Something went wrong with gettin battle request. Try again later.',
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            );
           }),
     );
   }

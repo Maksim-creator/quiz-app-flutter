@@ -4,7 +4,7 @@ import 'package:quizz_app/featrures/battles/bloc/battles_bloc.dart';
 import 'package:quizz_app/featrures/battles/widgets/BattleCard.dart';
 
 import '../../../assets/colors.dart';
-import '../models/battle.dart';
+import '../models/battle/battle.dart';
 
 class BattlesScreen extends StatefulWidget {
   const BattlesScreen({super.key});
@@ -58,6 +58,16 @@ class _BattlesScreenState extends State<BattlesScreen> {
               if (state.battlesError.isNotEmpty) {
                 return Text(state.battlesError.toString());
               }
+              if (state.incomingRequests.isEmpty) {
+                return const Center(
+                  child: Text(
+                    "You don't have any battle requests right now.",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
               return ListView.builder(
                   itemCount: state.incomingRequests.length,
                   itemBuilder: (BuildContext context, index) {
@@ -67,6 +77,8 @@ class _BattlesScreenState extends State<BattlesScreen> {
                         difficultyLevel: battle.difficultyLevel,
                         topic: battle.topic,
                         fromUserId: battle.from!,
+                        toUserId: battle.to,
+                        battleId: battle.battleId,
                         bid: battle.bid);
                   });
             },

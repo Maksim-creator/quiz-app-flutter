@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BattlesState {
   List<Battle> get incomingRequests => throw _privateConstructorUsedError;
   bool get isIncomingRequestsLoading => throw _privateConstructorUsedError;
+  bool get isRejectRequestLoading => throw _privateConstructorUsedError;
   String get battlesError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,6 +35,7 @@ abstract class $BattlesStateCopyWith<$Res> {
   $Res call(
       {List<Battle> incomingRequests,
       bool isIncomingRequestsLoading,
+      bool isRejectRequestLoading,
       String battlesError});
 }
 
@@ -52,6 +54,7 @@ class _$BattlesStateCopyWithImpl<$Res, $Val extends BattlesState>
   $Res call({
     Object? incomingRequests = null,
     Object? isIncomingRequestsLoading = null,
+    Object? isRejectRequestLoading = null,
     Object? battlesError = null,
   }) {
     return _then(_value.copyWith(
@@ -62,6 +65,10 @@ class _$BattlesStateCopyWithImpl<$Res, $Val extends BattlesState>
       isIncomingRequestsLoading: null == isIncomingRequestsLoading
           ? _value.isIncomingRequestsLoading
           : isIncomingRequestsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRejectRequestLoading: null == isRejectRequestLoading
+          ? _value.isRejectRequestLoading
+          : isRejectRequestLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       battlesError: null == battlesError
           ? _value.battlesError
@@ -82,6 +89,7 @@ abstract class _$$_FriendsStateCopyWith<$Res>
   $Res call(
       {List<Battle> incomingRequests,
       bool isIncomingRequestsLoading,
+      bool isRejectRequestLoading,
       String battlesError});
 }
 
@@ -98,6 +106,7 @@ class __$$_FriendsStateCopyWithImpl<$Res>
   $Res call({
     Object? incomingRequests = null,
     Object? isIncomingRequestsLoading = null,
+    Object? isRejectRequestLoading = null,
     Object? battlesError = null,
   }) {
     return _then(_$_FriendsState(
@@ -108,6 +117,10 @@ class __$$_FriendsStateCopyWithImpl<$Res>
       isIncomingRequestsLoading: null == isIncomingRequestsLoading
           ? _value.isIncomingRequestsLoading
           : isIncomingRequestsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRejectRequestLoading: null == isRejectRequestLoading
+          ? _value.isRejectRequestLoading
+          : isRejectRequestLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       battlesError: null == battlesError
           ? _value.battlesError
@@ -123,6 +136,7 @@ class _$_FriendsState implements _FriendsState {
   const _$_FriendsState(
       {required final List<Battle> incomingRequests,
       this.isIncomingRequestsLoading = false,
+      this.isRejectRequestLoading = false,
       this.battlesError = ''})
       : _incomingRequests = incomingRequests;
 
@@ -140,11 +154,14 @@ class _$_FriendsState implements _FriendsState {
   final bool isIncomingRequestsLoading;
   @override
   @JsonKey()
+  final bool isRejectRequestLoading;
+  @override
+  @JsonKey()
   final String battlesError;
 
   @override
   String toString() {
-    return 'BattlesState(incomingRequests: $incomingRequests, isIncomingRequestsLoading: $isIncomingRequestsLoading, battlesError: $battlesError)';
+    return 'BattlesState(incomingRequests: $incomingRequests, isIncomingRequestsLoading: $isIncomingRequestsLoading, isRejectRequestLoading: $isRejectRequestLoading, battlesError: $battlesError)';
   }
 
   @override
@@ -157,6 +174,8 @@ class _$_FriendsState implements _FriendsState {
             (identical(other.isIncomingRequestsLoading,
                     isIncomingRequestsLoading) ||
                 other.isIncomingRequestsLoading == isIncomingRequestsLoading) &&
+            (identical(other.isRejectRequestLoading, isRejectRequestLoading) ||
+                other.isRejectRequestLoading == isRejectRequestLoading) &&
             (identical(other.battlesError, battlesError) ||
                 other.battlesError == battlesError));
   }
@@ -166,6 +185,7 @@ class _$_FriendsState implements _FriendsState {
       runtimeType,
       const DeepCollectionEquality().hash(_incomingRequests),
       isIncomingRequestsLoading,
+      isRejectRequestLoading,
       battlesError);
 
   @JsonKey(ignore: true)
@@ -179,12 +199,15 @@ abstract class _FriendsState implements BattlesState {
   const factory _FriendsState(
       {required final List<Battle> incomingRequests,
       final bool isIncomingRequestsLoading,
+      final bool isRejectRequestLoading,
       final String battlesError}) = _$_FriendsState;
 
   @override
   List<Battle> get incomingRequests;
   @override
   bool get isIncomingRequestsLoading;
+  @override
+  bool get isRejectRequestLoading;
   @override
   String get battlesError;
   @override
@@ -198,16 +221,19 @@ mixin _$BattlesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getIncomingRequests,
+    required TResult Function(Battle battleRequest) rejectBattleRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getIncomingRequests,
+    TResult? Function(Battle battleRequest)? rejectBattleRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getIncomingRequests,
+    TResult Function(Battle battleRequest)? rejectBattleRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -215,18 +241,24 @@ mixin _$BattlesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_BattlesEventGetIncomingRequests value)
         getIncomingRequests,
+    required TResult Function(_BattlesEventRejectBattleRequest value)
+        rejectBattleRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_BattlesEventGetIncomingRequests value)?
         getIncomingRequests,
+    TResult? Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_BattlesEventGetIncomingRequests value)?
         getIncomingRequests,
+    TResult Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -293,6 +325,7 @@ class _$_BattlesEventGetIncomingRequests
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getIncomingRequests,
+    required TResult Function(Battle battleRequest) rejectBattleRequest,
   }) {
     return getIncomingRequests();
   }
@@ -301,6 +334,7 @@ class _$_BattlesEventGetIncomingRequests
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getIncomingRequests,
+    TResult? Function(Battle battleRequest)? rejectBattleRequest,
   }) {
     return getIncomingRequests?.call();
   }
@@ -309,6 +343,7 @@ class _$_BattlesEventGetIncomingRequests
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getIncomingRequests,
+    TResult Function(Battle battleRequest)? rejectBattleRequest,
     required TResult orElse(),
   }) {
     if (getIncomingRequests != null) {
@@ -322,6 +357,8 @@ class _$_BattlesEventGetIncomingRequests
   TResult map<TResult extends Object?>({
     required TResult Function(_BattlesEventGetIncomingRequests value)
         getIncomingRequests,
+    required TResult Function(_BattlesEventRejectBattleRequest value)
+        rejectBattleRequest,
   }) {
     return getIncomingRequests(this);
   }
@@ -331,6 +368,8 @@ class _$_BattlesEventGetIncomingRequests
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_BattlesEventGetIncomingRequests value)?
         getIncomingRequests,
+    TResult? Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
   }) {
     return getIncomingRequests?.call(this);
   }
@@ -340,6 +379,8 @@ class _$_BattlesEventGetIncomingRequests
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_BattlesEventGetIncomingRequests value)?
         getIncomingRequests,
+    TResult Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
     required TResult orElse(),
   }) {
     if (getIncomingRequests != null) {
@@ -352,4 +393,161 @@ class _$_BattlesEventGetIncomingRequests
 abstract class _BattlesEventGetIncomingRequests implements BattlesEvent {
   const factory _BattlesEventGetIncomingRequests() =
       _$_BattlesEventGetIncomingRequests;
+}
+
+/// @nodoc
+abstract class _$$_BattlesEventRejectBattleRequestCopyWith<$Res> {
+  factory _$$_BattlesEventRejectBattleRequestCopyWith(
+          _$_BattlesEventRejectBattleRequest value,
+          $Res Function(_$_BattlesEventRejectBattleRequest) then) =
+      __$$_BattlesEventRejectBattleRequestCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Battle battleRequest});
+
+  $BattleCopyWith<$Res> get battleRequest;
+}
+
+/// @nodoc
+class __$$_BattlesEventRejectBattleRequestCopyWithImpl<$Res>
+    extends _$BattlesEventCopyWithImpl<$Res, _$_BattlesEventRejectBattleRequest>
+    implements _$$_BattlesEventRejectBattleRequestCopyWith<$Res> {
+  __$$_BattlesEventRejectBattleRequestCopyWithImpl(
+      _$_BattlesEventRejectBattleRequest _value,
+      $Res Function(_$_BattlesEventRejectBattleRequest) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? battleRequest = null,
+  }) {
+    return _then(_$_BattlesEventRejectBattleRequest(
+      null == battleRequest
+          ? _value.battleRequest
+          : battleRequest // ignore: cast_nullable_to_non_nullable
+              as Battle,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BattleCopyWith<$Res> get battleRequest {
+    return $BattleCopyWith<$Res>(_value.battleRequest, (value) {
+      return _then(_value.copyWith(battleRequest: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_BattlesEventRejectBattleRequest
+    implements _BattlesEventRejectBattleRequest {
+  const _$_BattlesEventRejectBattleRequest(this.battleRequest);
+
+  @override
+  final Battle battleRequest;
+
+  @override
+  String toString() {
+    return 'BattlesEvent.rejectBattleRequest(battleRequest: $battleRequest)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BattlesEventRejectBattleRequest &&
+            (identical(other.battleRequest, battleRequest) ||
+                other.battleRequest == battleRequest));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, battleRequest);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BattlesEventRejectBattleRequestCopyWith<
+          _$_BattlesEventRejectBattleRequest>
+      get copyWith => __$$_BattlesEventRejectBattleRequestCopyWithImpl<
+          _$_BattlesEventRejectBattleRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getIncomingRequests,
+    required TResult Function(Battle battleRequest) rejectBattleRequest,
+  }) {
+    return rejectBattleRequest(battleRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getIncomingRequests,
+    TResult? Function(Battle battleRequest)? rejectBattleRequest,
+  }) {
+    return rejectBattleRequest?.call(battleRequest);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getIncomingRequests,
+    TResult Function(Battle battleRequest)? rejectBattleRequest,
+    required TResult orElse(),
+  }) {
+    if (rejectBattleRequest != null) {
+      return rejectBattleRequest(battleRequest);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_BattlesEventGetIncomingRequests value)
+        getIncomingRequests,
+    required TResult Function(_BattlesEventRejectBattleRequest value)
+        rejectBattleRequest,
+  }) {
+    return rejectBattleRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_BattlesEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult? Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
+  }) {
+    return rejectBattleRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_BattlesEventGetIncomingRequests value)?
+        getIncomingRequests,
+    TResult Function(_BattlesEventRejectBattleRequest value)?
+        rejectBattleRequest,
+    required TResult orElse(),
+  }) {
+    if (rejectBattleRequest != null) {
+      return rejectBattleRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BattlesEventRejectBattleRequest implements BattlesEvent {
+  const factory _BattlesEventRejectBattleRequest(final Battle battleRequest) =
+      _$_BattlesEventRejectBattleRequest;
+
+  Battle get battleRequest;
+  @JsonKey(ignore: true)
+  _$$_BattlesEventRejectBattleRequestCopyWith<
+          _$_BattlesEventRejectBattleRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }

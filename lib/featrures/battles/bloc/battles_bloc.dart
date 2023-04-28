@@ -1,8 +1,9 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:quizz_app/featrures/battles/models/battle.dart';
 import 'package:quizz_app/featrures/repositories/battles_repo.dart';
+
+import '../models/battle/battle.dart';
 
 part 'battles_bloc.freezed.dart';
 part 'battles_event.dart';
@@ -12,6 +13,7 @@ abstract class BattlesState with _$BattlesState {
   const factory BattlesState({
     required List<Battle> incomingRequests,
     @Default(false) bool isIncomingRequestsLoading,
+    @Default(false) bool isRejectRequestLoading,
     @Default('') String battlesError,
   }) = _FriendsState;
 }
@@ -43,6 +45,29 @@ class BattlesBloc extends Bloc<BattlesEvent, BattlesState> {
         final updatedState = currentState.copyWith(
             incomingRequests: battles,
             isIncomingRequestsLoading: false,
+            battlesError: '');
+
+        yield updatedState;
+      });
+    }, rejectBattleRequest: (battleRequest) async* {
+      final currentState = state;
+      final loadingState = currentState.copyWith(isRejectRequestLoading: true);
+      yield loadingState;
+
+      Either<String, List<Battle>> response =
+          await battlesRepo.rejectBattleRequest(battleRequest);
+
+      yield* response.fold((error) async* {
+        final updatedState = currentState.copyWith(
+          battlesError: error,
+          isRejectRequestLoading: false,
+        );
+
+        yield updatedState;
+      }, (battles) async* {
+        final updatedState = currentState.copyWith(
+            incomingRequests: battles,
+            isRejectRequestLoading: false,
             battlesError: '');
 
         yield updatedState;
