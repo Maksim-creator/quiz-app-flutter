@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz_app/assets/colors.dart';
-import 'package:quizz_app/featrures/auth/models/user_data.dart';
-import 'package:quizz_app/featrures/repositories/user_repo.dart';
 import 'package:quizz_app/featrures/friends/widgets/FriendCard.dart';
+import 'package:quizz_app/utils/api_requests.dart';
 
 import '../bloc/friends_bloc.dart';
 
@@ -21,10 +20,6 @@ class _FriendsListState extends State<FriendsList> {
     super.initState();
   }
 
-  Future<User> getFriend(int id) async {
-    return await UserRepo().getUserById(id);
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FriendsBloc, FriendsState>(builder: (context, state) {
@@ -39,7 +34,7 @@ class _FriendsListState extends State<FriendsList> {
             itemCount: state.friends.length,
             itemBuilder: (context, index) {
               return FutureBuilder(
-                  future: getFriend(state.friends[index]),
+                  future: ApiHelpersRequest().getUserById(state.friends[index]),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return SizedBox(

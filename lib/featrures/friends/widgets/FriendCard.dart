@@ -1,11 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:indexed/indexed.dart';
 import 'package:quizz_app/assets/colors.dart';
 import 'package:quizz_app/featrures/friends/widgets/Buttons.dart';
+import 'package:quizz_app/widgets/Avatar.dart';
 
-class FriendCard extends StatelessWidget {
+class FriendCard extends StatefulWidget {
   final int id;
   final String name;
   final int points;
@@ -21,61 +20,129 @@ class FriendCard extends StatelessWidget {
       this.forIncomingRequests = false});
 
   @override
+  State<FriendCard> createState() => _FriendCardState();
+}
+
+class _FriendCardState extends State<FriendCard> {
+  bool isVisible = false;
+  double x = 0;
+  double y = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: ColorConstants.grey.withOpacity(0.3),
-                  spreadRadius: 0.3,
-                  blurRadius: 2,
-                  offset: const Offset(0, 3),
-                )
-              ],
-              color: Colors.grey.shade200,
-              border:
-                  Border.all(width: 1.5, color: Colors.grey.withOpacity(0.4)),
-              borderRadius: BorderRadius.circular(20)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
+        GestureDetector(
+          onTapDown: (details) {
+            setState(() {
+              x = details.localPosition.dx;
+              y = details.localPosition.dy;
+              isVisible = !isVisible;
+            });
+          },
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+                side: BorderSide.none,
+                padding: EdgeInsets.zero,
+                foregroundColor: Colors.white,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)))),
+            onPressed: () {},
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: ColorConstants.grey.withOpacity(0.3),
+                      spreadRadius: 0.3,
+                      blurRadius: 2,
+                      offset: const Offset(0, 3),
+                    )
+                  ],
+                  color: Colors.grey.shade200,
+                  border: Border.all(
+                      width: 1.5, color: Colors.grey.withOpacity(0.4)),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(100)),
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        color: Colors.white,
-                        child: Image.memory(
-                          base64Decode(avatar),
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
-                  UserName(
-                      name: name,
-                      forIncomingRequests: forIncomingRequests,
-                      points: points)
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Avatar(avatar: widget.avatar),
+                      UserName(
+                          name: widget.name,
+                          forIncomingRequests: widget.forIncomingRequests,
+                          points: widget.points)
+                    ],
+                  ),
+                  !widget.forIncomingRequests
+                      ? QuizPoints(points: widget.points)
+                      : Buttons(
+                          whoSentId: widget.id,
+                        )
                 ],
               ),
-              !forIncomingRequests
-                  ? QuizPoints(points: points)
-                  : Buttons(
-                      whoSentId: id,
-                    )
-            ],
+            ),
           ),
         ),
+        isVisible
+            ? Positioned(
+                left: x,
+                top: y - 50,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          width: 2, color: Colors.grey.withOpacity(0.5))),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 35,
+                        child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: BorderSide.none,
+                                // maximumSize: Size(60, 20),
+                                padding: EdgeInsets.zero),
+                            onPressed: () {},
+                            child: const Text(
+                              'Remove friend',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 11),
+                            )),
+                      ),
+                      Container(
+                        height: 1,
+                        width: 90,
+                        color: Colors.grey.shade400,
+                      ),
+                      SizedBox(
+                        height: 35,
+                        child: OutlinedButton(
+                            onPressed: () {},
+                            style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: BorderSide.none,
+                                // maximumSize: Size(60, 20),
+                                padding: EdgeInsets.zero),
+                            child: const Text(
+                              'Ask a battle',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 11),
+                            )),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            : const SizedBox.shrink()
       ],
     );
   }
@@ -131,7 +198,9 @@ class QuizPoints extends StatelessWidget {
                     child: Text(
                       points.toString(),
                       style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
                   ),
                 ),
@@ -168,7 +237,9 @@ class UserName extends StatelessWidget {
                   child: Text(
                     name,
                     style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.bold),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ),
                 QuizPoints(points: points),
@@ -179,7 +250,10 @@ class UserName extends StatelessWidget {
             padding: const EdgeInsets.only(left: 7),
             child: Text(
               name,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
           );
   }
